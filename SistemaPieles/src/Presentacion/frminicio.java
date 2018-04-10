@@ -7,7 +7,7 @@ package Presentacion;
 
 /**
  *
- * @author SONY
+ * @author Alan
  */
 public class frminicio extends javax.swing.JFrame {
 
@@ -32,10 +32,16 @@ public class frminicio extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Sistema Pieles");
+        jMenu1.setText("Sistema pieles");
         menuBar.add(jMenu1);
 
         jMenu2.setText("Agregar");
@@ -49,6 +55,26 @@ public class frminicio extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
 
         menuBar.add(jMenu2);
+
+        jMenu3.setText("Ventas");
+
+        jMenuItem2.setText("Detalle de venta");
+        jMenu3.add(jMenuItem2);
+
+        menuBar.add(jMenu3);
+
+        jMenu4.setText("Consultas");
+        menuBar.add(jMenu4);
+
+        jMenu5.setText("Configuraciones");
+
+        jMenuItem3.setText("Usuarios y accesos");
+        jMenu5.add(jMenuItem3);
+
+        menuBar.add(jMenu5);
+
+        jMenu6.setText("Ayuda");
+        menuBar.add(jMenu6);
 
         setJMenuBar(menuBar);
 
@@ -109,7 +135,13 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
