@@ -5,29 +5,30 @@
  */
 package Presentacion;
 
-import Datos.vempleado;
+import Datos.vcliente;
+import Logica.fcliente;
 import Logica.fempleado;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Alan Itzep
+ * @author SONY
  */
-public class frmempleado extends javax.swing.JFrame {
+public class frmcliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmempleado
+     * Creates new form frmcliente
      */
-    public frmempleado() {
+    public frmcliente() {
+        this.setTitle("Clientes");
         initComponents();
-        this.setTitle("Empleados");
         mostrar("");
         inhabilitar();
     }
     
     private String accion = "guardar";
-
+    
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
@@ -42,14 +43,7 @@ public class frmempleado extends javax.swing.JFrame {
         txttelefono.setEnabled(false);
         txtemail.setEnabled(false);
         txtdireccion.setEnabled(false);
-        
-        cboacceso.setEnabled(false);
-        
-        txtlogin.setEnabled(false);
-        txtpassword.setEnabled(false);
-        
-        cboestado.setEnabled(false);
-        
+        txtnit.setEnabled(false);        
         
         btnguardar.setEnabled(false);
         btncancelar.setEnabled(false);
@@ -61,9 +55,7 @@ public class frmempleado extends javax.swing.JFrame {
         txtemail.setText("");
         txttelefono.setText("");
         txtdireccion.setText("");
-        
-        txtlogin.setText("");
-        txtpassword.setText("");
+        txtnit.setText("");
     }
 
     void habilitar() {
@@ -74,14 +66,7 @@ public class frmempleado extends javax.swing.JFrame {
         txttelefono.setEnabled(true);
         txtemail.setEnabled(true);
         txtdireccion.setEnabled(true);
-        
-        cboacceso.setEnabled(true);
-        
-        txtlogin.setEnabled(true);
-        txtpassword.setEnabled(true);
-        
-        cboestado.setEnabled(true);
-        
+        txtnit.setEnabled(true);  
         
         btnguardar.setEnabled(true);
         btncancelar.setEnabled(true);
@@ -93,15 +78,13 @@ public class frmempleado extends javax.swing.JFrame {
         txtemail.setText("");
         txttelefono.setText("");
         txtdireccion.setText("");
-        
-        txtlogin.setText("");
-        txtpassword.setText("");
+        txtnit.setText("");
     }
 
     void mostrar(String buscar) {
         try {
             DefaultTableModel modelo;
-            fempleado func = new fempleado();
+            fcliente func = new fcliente();
             modelo = func.mostrar(buscar);
 
             tablalistado.setModel(modelo);
@@ -112,7 +95,6 @@ public class frmempleado extends javax.swing.JFrame {
         }
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,17 +117,11 @@ public class frmempleado extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         txtemail = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
         txtdireccion = new javax.swing.JTextField();
-        txtlogin = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
-        cboacceso = new javax.swing.JComboBox<>();
-        cboestado = new javax.swing.JComboBox<>();
+        txtnit = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -158,9 +134,9 @@ public class frmempleado extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Empleado");
+        jLabel1.setText("Cliente");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de empleados"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de clientes"));
 
         jLabel2.setText("Nombre");
 
@@ -205,17 +181,7 @@ public class frmempleado extends javax.swing.JFrame {
 
         jLabel9.setText("Direccion");
 
-        jLabel10.setText("Acceso");
-
-        jLabel11.setText("Login");
-
-        jLabel12.setText("Password");
-
-        jLabel14.setText("Estado");
-
-        cboacceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digitador", "Administrador" }));
-
-        cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "D", "A" }));
+        jLabel11.setText("NIT");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -254,18 +220,10 @@ public class frmempleado extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addComponent(btncancelar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel14))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel11)
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtlogin, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cboacceso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cboestado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(txtnit)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -296,21 +254,8 @@ public class frmempleado extends javax.swing.JFrame {
                             .addComponent(jLabel9))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtlogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(cboacceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnnuevo)
@@ -319,7 +264,7 @@ public class frmempleado extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de empleados"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de clientes"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -368,9 +313,6 @@ public class frmempleado extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane2))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
@@ -382,10 +324,11 @@ public class frmempleado extends javax.swing.JFrame {
                 .addComponent(btneliminar)
                 .addGap(42, 42, 42)
                 .addComponent(btnsalir)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,7 +342,7 @@ public class frmempleado extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 38, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(lbltotalregistros)
@@ -413,12 +356,13 @@ public class frmempleado extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(958, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,56 +403,50 @@ public class frmempleado extends javax.swing.JFrame {
             txtapellido.requestFocus();
             return;
         }
-        
+
         if(txttelefono.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
             txttelefono.requestFocus();
             return;
         }
-        
+
         if(txtemail.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
             txtemail.requestFocus();
             return;
         }
-        
+
         if(txtdireccion.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
             txtdireccion.requestFocus();
             return;
         }
-        
-        if(txtlogin.getText().length() == 0){
+
+        if(txtnit.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
-            txtlogin.requestFocus();
-            return;
-        }
-        
-        if(txtpassword.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
-            txtpassword.requestFocus();
+            txtnit.requestFocus();
             return;
         }
 
-        vempleado dts = new vempleado();
-        fempleado func = new fempleado();
+        if(txtnit.getText().length() == 0){
+            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar el ");
+            txtnit.requestFocus();
+            return;
+        }
+
+        vcliente dts = new vcliente();
+        fcliente func = new fcliente();
 
         dts.setNombre(txtnombre.getText());
-
         dts.setApellido(txtapellido.getText());
         dts.setTelefono(txttelefono.getText());
         dts.setEmail(txtemail.getText());
         dts.setDireccion(txtdireccion.getText());
-        dts.setLogin(txtlogin.getText());
-        dts.setPassword(txtpassword.getText());
-        
-        int seleccionado = cboacceso.getSelectedIndex();
-        dts.setAcceso((String) cboacceso.getItemAt(seleccionado));
-        dts.setEstado((String) cboestado.getItemAt(seleccionado));
+        dts.setNit(txtnit.getText());
 
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showConfirmDialog(rootPane, "El ingreso de empleado fue satisfactorio");
+                JOptionPane.showConfirmDialog(rootPane, "El ingreso de cliente fue satisfactorio");
                 mostrar("");
                 inhabilitar();
             }
@@ -516,17 +454,26 @@ public class frmempleado extends javax.swing.JFrame {
             dts.setIdpersona(Integer.parseInt(txtidpersona.getText()));
 
             if (func.editar(dts)) {
-                JOptionPane.showMessageDialog(rootPane, "La edicion de empleado fue satisfactorio");
+                JOptionPane.showMessageDialog(rootPane, "La edicion de cliente fue satisfactorio");
                 mostrar("");
                 inhabilitar();
             }
         }
-    }   
-/*   
+        }
+        /*
     }//GEN-LAST:event_btnguardarActionPerformed
 */
-     
-     
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane,"El ingreso de datos fue cancelado");
+        mostrar("");
+        inhabilitar();
+    }//GEN-LAST:event_btncancelarActionPerformed
+
+    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtapellidoActionPerformed
+
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         // TODO add your handling code here:
         btnguardar.setText("Editar");
@@ -541,14 +488,7 @@ public class frmempleado extends javax.swing.JFrame {
         txttelefono.setText(tablalistado.getValueAt(fila, 3).toString());
         txtemail.setText(tablalistado.getValueAt(fila, 4).toString());
         txtdireccion.setText(tablalistado.getValueAt(fila, 5).toString());
-        
-        cboacceso.setSelectedItem(tablalistado.getValueAt(fila, 6).toString());
-        
-        txtlogin.setText(tablalistado.getValueAt(fila, 7).toString());
-        txtpassword.setText(tablalistado.getValueAt(fila, 8).toString());
-        
-        cboestado.setSelectedItem(tablalistado.getValueAt(fila, 9).toString());
-                
+        txtnit.setText(tablalistado.getValueAt(fila, 6).toString());
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -559,10 +499,10 @@ public class frmempleado extends javax.swing.JFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
         if(!txtidpersona.getText().equals("")){
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar a este empleado?","Confirmar",2);
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar a este cliente?","Confirmar",2);
             if(confirmacion == 0){
-                fempleado func = new fempleado();
-                vempleado dts = new vempleado();
+                fcliente func = new fcliente();
+                vcliente dts = new vcliente();
 
                 dts.setIdpersona(Integer.parseInt(txtidpersona.getText()));
                 func.eliminar(dts);
@@ -576,17 +516,6 @@ public class frmempleado extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidoActionPerformed
-
-    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(rootPane,"El ingreso de datos fue cancelado");
-        mostrar("");
-        inhabilitar();
-    }//GEN-LAST:event_btncancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -605,20 +534,20 @@ public class frmempleado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmcliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmcliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmcliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmcliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmempleado().setVisible(true);
+                new frmcliente().setVisible(true);
             }
         });
     }
@@ -630,13 +559,8 @@ public class frmempleado extends javax.swing.JFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> cboacceso;
-    private javax.swing.JComboBox<String> cboestado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -653,9 +577,8 @@ public class frmempleado extends javax.swing.JFrame {
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtidpersona;
-    private javax.swing.JTextField txtlogin;
+    private javax.swing.JTextField txtnit;
     private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txtpassword;
     private javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }
