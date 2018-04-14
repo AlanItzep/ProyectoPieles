@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alan Itzep
  */
-public class frmproducto extends javax.swing.JFrame {
+public class frmproducto extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmproducto
@@ -120,7 +120,9 @@ public class frmproducto extends javax.swing.JFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setText("Procucto");
 
@@ -315,14 +317,13 @@ public class frmproducto extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 3, Short.MAX_VALUE))
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnsalir)
                             .addComponent(btneliminar)
                             .addComponent(btnbuscar))))
-                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(lbltotalregistros)
@@ -408,7 +409,7 @@ public class frmproducto extends javax.swing.JFrame {
         
         if(accion.equals ("guardar")){
             if(func.insertar(dts)){
-                JOptionPane.showConfirmDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
+                JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
                 mostrar("");
                 inhabilitar();
             }else if(accion.equals("editar")){
