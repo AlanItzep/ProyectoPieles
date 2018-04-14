@@ -122,6 +122,8 @@ public class frminicio extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
     frmcliente mostcliente = new frmcliente();   // TODO add your handling code here:
+    escritorio.add(mostcliente);
+    mostcliente.toFront();
     mostcliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -131,6 +133,8 @@ public class frminicio extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     frmempleado mostempleado = new frmempleado();
+    escritorio.add(mostempleado);
+    mostempleado.toFront();
     mostempleado.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

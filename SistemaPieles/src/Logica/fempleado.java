@@ -116,7 +116,7 @@ public class fempleado {
         sSQL = "update persona set nombre = ?,apellido = ?,telefono = ?,email = ?,direccion = ? "
                 + "where idpersona  = ?";
         
-        sSQL2 = "update persona set acceso = ?,login = ?,password = ?,estado = ? "
+        sSQL2 = "update empleado set acceso = ?,login = ?,password = ?,estado = ? "
                 + "where idpersona = ?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);

@@ -404,7 +404,9 @@ public class frmproducto extends javax.swing.JInternalFrame {
         dts.setNombre(txtnombre.getText());
         
         dts.setDescripcion(txtdescripcion.getText());
+        
         dts.setPrecio_venta(Double.parseDouble(txtprecioventa.getText()));
+        
         dts.setPrecio_costo(Double.parseDouble(txtpreciocosto.getText()));
         
         if(accion.equals ("guardar")){
@@ -412,7 +414,9 @@ public class frmproducto extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
                 mostrar("");
                 inhabilitar();
-            }else if(accion.equals("editar")){
+            }
+        }
+            else if(accion.equals("editar")){
                 dts.setIdproducto(Integer.parseInt(txtidproducto.getText()));
                 
                 if(func.editar(dts)){
@@ -421,7 +425,7 @@ public class frmproducto extends javax.swing.JInternalFrame {
                     inhabilitar();
                 }
             }
-        }
+        
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed

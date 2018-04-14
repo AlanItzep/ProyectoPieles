@@ -110,7 +110,7 @@ public class fcliente {
     }
     
     public boolean editar(vcliente dts){
-        sSQL = "update persoan set nombre=?,apellido=?,telefono=?,email=?,direccion=?"
+        sSQL = "update persona set nombre=?,apellido=?,telefono=?,email=?,direccion=?"
                 + "where idpersona=?";
         
         sSQL2 = "update cliente set nit=? "
