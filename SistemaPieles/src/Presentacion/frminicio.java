@@ -133,6 +133,11 @@ public class frminicio extends javax.swing.JFrame {
         mnuventas.setText("Ventas");
 
         jMenuItem2.setText("Detalle de venta");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         mnuventas.add(jMenuItem2);
 
         menuBar.add(mnuventas);
@@ -201,6 +206,18 @@ public class frminicio extends javax.swing.JFrame {
     mostempleado.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        frmventas form = new frmventas();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        
+        frmventas.txtidempleado.setText(lblidpersona.getText());
+        frmventas.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmventas.idusuario = Integer.parseInt(lblidpersona.getText());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,7 +254,7 @@ public class frminicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

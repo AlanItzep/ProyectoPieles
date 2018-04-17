@@ -188,7 +188,7 @@ public class frmcuenta extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de productos"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de cuenta"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

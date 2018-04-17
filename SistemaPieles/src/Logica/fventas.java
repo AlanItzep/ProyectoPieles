@@ -43,13 +43,13 @@ public class fventas {
             totalregistros = 0;
             modelo = new DefaultTableModel(null,titulos);
             
-            sSQL = "select v.idventas, "
-                    + "v.idcliente,(select nombre from persona where idpersona = v.idcliente)as clienten, "
+            sSQL = "select v.idventas, v.idcliente,"
+                    + "(select nombre from persona where idpersona = v.idcliente)as clienten, "
                     + "(select apellido from persona where idpersona = v.idcliente) as clienteap, "
                     + "v.idempleado,(select nombre from persona where idpersona = v.idempleado) as empleadon, "
-                    + "(select apellido from persona where idpersona = v.idempleado) as empleadoap "
+                    + "(select apellido from persona where idpersona = v.idempleado) as empleadoap, "
                     + "v.total_venta, v.fecha_venta, v.tipo_pago, v.estado "
-                    + "from ventas v where clienten like '%"
+                    + "from ventas v inner join cliente c on v.idcliente = c.idpersona where v.idcliente like '%"
                     + buscar+"%' order  by idventas desc";
             
             try{
@@ -59,11 +59,13 @@ public class fventas {
                 while(rs.next()){
                     registro[0] = rs.getString("idventas");
                     registro[1] = rs.getString("idcliente");
-                    registro[2] = rs.getString("idempleado");
-                    registro[3] = rs.getString("total_venta");
-                    registro[4] = rs.getString("fecha_venta");
-                    registro[5] = rs.getString("tipo_pago");
-                    registro[6] = rs.getString("estado");
+                    registro[2] = rs.getString("clienten")+" "+rs.getString("clienteap");
+                    registro[3] = rs.getString("idempleado");
+                    registro[4] = rs.getString("empleadon")+" "+rs.getString("empleadoap");
+                    registro[5] = rs.getString("total_venta");
+                    registro[6] = rs.getString("fecha_venta");
+                    registro[7] = rs.getString("tipo_pago");
+                    registro[8] = rs.getString("estado");
                     
                     totalregistros = totalregistros +1;
                     modelo.addRow(registro);
@@ -147,4 +149,45 @@ public class fventas {
             return false;
         }
     }
+    public boolean pagar(vventas dts){
+    sSQL = "update ventas set estado='Pagado'"+
+            " where idventas=?";
+    try{
+        PreparedStatement pst = cn.prepareStatement(sSQL);
+        
+        pst.setInt(1, dts.getIdventas());
+        
+        int n = pst.executeUpdate();
+        
+        if(n != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }catch(Exception e){
+    JOptionPane.showConfirmDialog(null, e);
+    return false;
+    }
+}
+
+public boolean pendentear(vventas dts){
+    sSQL = "update ventas set estado='Pendiente'"+
+            " where idventas=?";
+    try{
+        PreparedStatement pst = cn.prepareStatement(sSQL);
+        
+        pst.setInt(1, dts.getIdventas());
+        
+        int n = pst.executeUpdate();
+        
+        if(n != 0){
+            return true;
+        }else{
+            return false;
+        }
+    }catch(Exception e){
+    JOptionPane.showConfirmDialog(null, e);
+    return false;
+    }
+}
 }

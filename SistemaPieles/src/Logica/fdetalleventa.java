@@ -22,6 +22,7 @@ public class fdetalleventa {
     private Connection cn = mysql.conectar();
     private String sSQL = "";
     public Integer totalregistros;
+    public Double totalconsumo;
     
     public DefaultTableModel mostrar(String buscar){
         DefaultTableModel modelo;
@@ -30,19 +31,22 @@ public class fdetalleventa {
             "ID",
             "ID Producto",
             "ID Ventas",
+            "Producto",
             "Medidas",
+            "Precio venta",
             "Subtotal"
         };
         
-        String [] registro = new String[5];
+        String [] registro = new String[7];
         
             totalregistros = 0;
+            totalconsumo = 0.0;
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select dv.iddetalle_venta, p.idproducto, v.idventas,"
-                    + " dv.medidas, dv.subtotal form detalle_venta dv inner join producto p, ventas v "
-                    + "on dv.iddetalle_venta = v.idventas where dv.iddetalle_venta like '%"
-                    + buscar+"%' order by iddetalle_venta desc";
+            sSQL = "select d.iddetalle_venta, d.idproducto, d.idventas,p.nombre,"
+                    + " d.medida,p.precio_venta, d.subtotal from detalle_venta d inner join producto p "
+                    + "on d.idproducto = p.idproducto where d.idventas="
+                    + buscar+" order by d.iddetalle_venta desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
@@ -51,10 +55,14 @@ public class fdetalleventa {
                     registro[0] = rs.getString("iddetalle_venta");
                     registro[1] = rs.getString("idproducto");
                     registro[2] = rs.getString("idventas");
-                    registro[3] = rs.getString("medidas");
-                    registro[4] = rs.getString("subtotal");
+                    registro[3] = rs.getString("nombre");
+                    registro[4] = rs.getString("medida");
+                    registro[5] = rs.getString("precio_venta");
+                    registro[6] = rs.getString("subtotal");
                     
                     totalregistros = totalregistros + 1;
+                    //operacion total de la suma de subtotales
+                    totalconsumo = totalconsumo+(rs.getDouble("medida")*rs.getDouble("precio_venta"));
                     modelo.addRow(registro);
                 }
                 return modelo;
@@ -65,8 +73,8 @@ public class fdetalleventa {
     }
     
     public boolean insertar(vdetalleventa dts){
-        sSQL = "insert into detalle_venta(iddetalle_venta,idproducto,idventas,medidas,subtotal) "
-                + "values(?,?,?,?,?)";
+        sSQL = "insert into detalle_venta(idproducto,idventas,medida,subtotal) "
+                + "values(?,?,?,?)";
         
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);

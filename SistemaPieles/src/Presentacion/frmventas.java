@@ -5,19 +5,113 @@
  */
 package Presentacion;
 
+import Datos.vventas;
+import Logica.fventas;
+import java.sql.Date;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alan Itzep
  */
-public class frmventas extends javax.swing.JFrame {
+public class frmventas extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmventas
      */
     public frmventas() {
         initComponents();
+        mostrar("");
+        inhabilitar();
+        this.setTitle("Ventas");
     }
 
+    private String accion = "guardar";
+    public static int idusuario;
+    
+    void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(3).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setPreferredWidth(0);
+        
+    }
+    
+    void inhabilitar(){
+        txtidventas.setVisible(false);
+        txtidcliente.setVisible(false);
+        txtidempleado.setVisible(false);
+        
+        txtnombrecliente.setEnabled(false); 
+        txtnombreempleado.setEnabled(false);
+        txttotalventa.setEnabled(false);
+        
+        dcfechaventa.setEnabled(false);
+        cbotipopago.setEnabled(false);
+        cboestado.setEnabled(false);
+        
+        btnbuscarcliente.setEnabled(false);
+        btnconsumo.setEnabled(false);
+        btnpago.setEnabled(false);
+        btnguardar.setEnabled(false);
+        btncancelar.setEnabled(false);
+        btneliminar.setEnabled(false);
+        
+        txtidventas.setText("");
+        txtidcliente.setText("");
+        txtnombrecliente.setText("");
+        txttotalventa.setText("");
+    }
+    
+    void habilitar(){
+        txtidventas.setVisible(false);
+        txtidcliente.setVisible(false);
+        txtidempleado.setVisible(false);
+        
+        txtnombrecliente.setEnabled(false); 
+        txtnombreempleado.setEnabled(false);
+        txttotalventa.setEnabled(true);
+        
+        dcfechaventa.setEnabled(true);
+        cbotipopago.setEnabled(true);
+        cboestado.setEnabled(true);
+        
+        btnbuscarcliente.setEnabled(true);
+        btnconsumo.setEnabled(true);
+        btnpago.setEnabled(true);
+        btnguardar.setEnabled(true);
+        btncancelar.setEnabled(true);
+        btneliminar.setEnabled(true);
+        
+        txtidventas.setText("");
+        txtidcliente.setText("");
+        txtnombrecliente.setText("");
+        txttotalventa.setText("");
+    }
+    
+    void mostrar(String buscar){
+        try{
+            DefaultTableModel modelo;
+            fventas func = new fventas();
+            modelo = func.mostrar(buscar);
+            
+            tablalistado.setModel(modelo);
+            ocultar_columnas();
+            lbltotalregistros.setText("Total Registros: "+Integer.toString(func.totalregistros));
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +128,7 @@ public class frmventas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtclientenombre = new javax.swing.JTextField();
+        txtnombrecliente = new javax.swing.JTextField();
         txttotalventa = new javax.swing.JTextField();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
@@ -42,10 +136,12 @@ public class frmventas extends javax.swing.JFrame {
         txtidcliente = new javax.swing.JTextField();
         btnbuscarcliente = new javax.swing.JButton();
         txtidempleado = new javax.swing.JTextField();
-        txtempleadonombre = new javax.swing.JTextField();
+        txtnombreempleado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        dcfechapago = new com.toedter.calendar.JDateChooser();
+        dcfechaventa = new com.toedter.calendar.JDateChooser();
         cbotipopago = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        cboestado = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -73,9 +169,9 @@ public class frmventas extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha pago");
 
-        txtclientenombre.addActionListener(new java.awt.event.ActionListener() {
+        txtnombrecliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtclientenombreActionPerformed(evt);
+                txtnombreclienteActionPerformed(evt);
             }
         });
 
@@ -100,6 +196,11 @@ public class frmventas extends javax.swing.JFrame {
         });
 
         btncancelar.setText("Cancelar");
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarActionPerformed(evt);
+            }
+        });
 
         txtidcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +209,11 @@ public class frmventas extends javax.swing.JFrame {
         });
 
         btnbuscarcliente.setText("...");
+        btnbuscarcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarclienteActionPerformed(evt);
+            }
+        });
 
         txtidempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,15 +221,19 @@ public class frmventas extends javax.swing.JFrame {
             }
         });
 
-        txtempleadonombre.addActionListener(new java.awt.event.ActionListener() {
+        txtnombreempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtempleadonombreActionPerformed(evt);
+                txtnombreempleadoActionPerformed(evt);
             }
         });
 
         jLabel7.setText("Tipo pago");
 
-        cbotipopago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
+        cbotipopago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cheque", "Efectivo" }));
+
+        jLabel8.setText("Estado");
+
+        cboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Pagado" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,7 +258,7 @@ public class frmventas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txttotalventa, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtempleadonombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtnombreempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,24 +270,34 @@ public class frmventas extends javax.swing.JFrame {
                                         .addGap(83, 83, 83)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cbotipopago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(dcfechapago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cboestado, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(53, 53, 53))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtclientenombre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtidventas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(txtidventas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(75, 75, 75)
+                                                .addComponent(dcfechaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 2, Short.MAX_VALUE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +307,13 @@ public class frmventas extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtclientenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnbuscarcliente))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtempleadonombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombreempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtidempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,12 +324,16 @@ public class frmventas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txttotalventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(dcfechapago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dcfechaventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbotipopago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cboestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnnuevo)
                     .addComponent(btnguardar)
@@ -311,12 +435,13 @@ public class frmventas extends javax.swing.JFrame {
                             .addComponent(btnsalir)
                             .addComponent(btneliminar)
                             .addComponent(btnbuscar))))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbltotalregistros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnpago)
-                .addGap(177, 177, 177))
+                .addGap(126, 126, 126))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Consumo"));
@@ -353,7 +478,7 @@ public class frmventas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,17 +497,16 @@ public class frmventas extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtclientenombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtclientenombreActionPerformed
+    private void txtnombreclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreclienteActionPerformed
         // TODO add your handling code here:
-        txtclientenombre.transferFocus();
-    }//GEN-LAST:event_txtclientenombreActionPerformed
+        txtnombrecliente.transferFocus();
+    }//GEN-LAST:event_txtnombreclienteActionPerformed
 
     private void txttotalventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalventaActionPerformed
         // TODO add your handling code here:
@@ -399,52 +523,56 @@ public class frmventas extends javax.swing.JFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         //validadion de ingreso de datos
-        if(txtclientenombre.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un nombre de producto");
-            txtclientenombre.requestFocus();
+        if(txtnombrecliente.getText().length() == 0){
+            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un cliente");
+            btnbuscarcliente.requestFocus();
             return;
         }
+        
+        vventas dts = new vventas();
+        fventas func = new fventas();
 
-        if(txtdescripcion.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar una descripcion del producto");
-            txtdescripcion.requestFocus();
-            return;
-        }
-
-        if(txttotalventa.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio para la venta");
-            txttotalventa.requestFocus();
-            return;
-        }
-        if(txtpreciocosto.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio-costo");
-            txtpreciocosto.requestFocus();
-            return;
-        }
-
-        vproducto dts = new vproducto();
-        fproducto func = new fproducto();
-
-        dts.setNombre(txtclientenombre.getText());
-
-        dts.setDescripcion(txtdescripcion.getText());
-
-        dts.setPrecio_venta(Double.parseDouble(txttotalventa.getText()));
-
-        dts.setPrecio_costo(Double.parseDouble(txtpreciocosto.getText()));
+       dts.setIdcliente(Integer.parseInt(txtidcliente.getText()));
+       dts.setIdempleado(Integer.parseInt(txtidempleado.getText()));
+       
+       dts.setTotal_venta(Double.parseDouble(txttotalventa.getText()));
+       
+       Calendar cal;
+       int d,m,a;
+       cal = dcfechaventa.getCalendar();
+       d = cal.get(Calendar.DAY_OF_MONTH);
+       m = cal.get(Calendar.MONTH);
+       a = cal.get(Calendar.YEAR)-1900;
+       
+       dts.setFecha_venta(new Date(a,m,d));
+       
+       int seleccionado = cbotipopago.getSelectedIndex();
+       dts.setTipo_pago((String) cbotipopago.getItemAt(seleccionado));
+       
+       seleccionado = cboestado.getSelectedIndex();
+       dts.setEstado((String) cboestado.getItemAt(seleccionado));
 
         if(accion.equals ("guardar")){
             if(func.insertar(dts)){
-                JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
+                JOptionPane.showMessageDialog(rootPane, "La venta fue guardada satisfactoriamente");
                 mostrar("");
                 inhabilitar();
+                /// si hay que marcar algo de manera autmatica
+                /*
+                fventas func3 = new fventas();
+                vventas dts3 = new vventas();
+                
+                dts3.setIdventas(Integer.parseInt(txtidventas.getText()));
+                func3.pendentear(dts3);*/
+                
             }
         }
         else if(accion.equals("editar")){
-            dts.setIdproducto(Integer.parseInt(txtidventas.getText()));
+            dts.setIdventas(Integer.parseInt(txtidventas.getText()));
+            dts.setIdempleado(Integer.parseInt(txtidempleado.getText()));
 
             if(func.editar(dts)){
-                JOptionPane.showMessageDialog(rootPane,"La edicion del producto fue realizado satisfactoriamente");
+                JOptionPane.showMessageDialog(rootPane,"La edicion de la venta fue realizada satisfactoriamente");
                 mostrar("");
                 inhabilitar();
             }
@@ -460,11 +588,19 @@ public class frmventas extends javax.swing.JFrame {
         accion = "editar";
 
         int fila = tablalistado.rowAtPoint(evt.getPoint());
+        
         txtidventas.setText(tablalistado.getValueAt(fila, 0).toString());
-        txtclientenombre.setText(tablalistado.getValueAt(fila,1).toString());
-        txtdescripcion.setText(tablalistado.getValueAt(fila, 2).toString());
-        txttotalventa.setText(tablalistado.getValueAt(fila, 3).toString());
-        txtpreciocosto.setText(tablalistado.getValueAt(fila, 4).toString());
+        txtidcliente.setText(tablalistado.getValueAt(fila, 1).toString());
+        txtidempleado.setText(tablalistado.getValueAt(fila, 2).toString());
+        
+        txtnombrecliente.setText(tablalistado.getValueAt(fila, 3).toString());
+        txtnombreempleado.setText(tablalistado.getValueAt(fila, 4).toString());
+        txttotalventa.setText(tablalistado.getValueAt(fila, 5).toString());
+        
+        dcfechaventa.setDate(Date.valueOf(tablalistado.getValueAt(fila, 6).toString()));
+        cbotipopago.setSelectedItem(tablalistado.getValueAt(fila, 7).toString());
+        cboestado.setSelectedItem(tablalistado.getValueAt(fila, 8).toString());
+        
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -475,12 +611,12 @@ public class frmventas extends javax.swing.JFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
         if(!txtidventas.getText().equals("")){
-            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar la habitacion?","Confirmar",2);
+            int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar esta venta? ","Confirmar",2);
             if(confirmacion == 0){
-                fproducto func = new fproducto();
-                vproducto dts = new vproducto();
+                fventas func = new fventas();
+                vventas dts = new vventas();
 
-                dts.setIdproducto(Integer.parseInt(txtidventas.getText()));
+                dts.setIdventas(Integer.parseInt(txtidventas.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 inhabilitar();
@@ -501,17 +637,41 @@ public class frmventas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidempleadoActionPerformed
 
-    private void txtempleadonombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtempleadonombreActionPerformed
+    private void txtnombreempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreempleadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtempleadonombreActionPerformed
+    }//GEN-LAST:event_txtnombreempleadoActionPerformed
 
     private void btnconsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconsumoActionPerformed
         // TODO add your handling code here:
+        int fila = tablalistado.getSelectedRow();
+        frmdetalleventa.idventas = tablalistado.getValueAt(fila,0).toString();
+        frmdetalleventa.cliente = tablalistado.getValueAt(fila, 2).toString();
+        
+        frmdetalleventa form = new frmdetalleventa();
+        frminicio.escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_btnconsumoActionPerformed
 
     private void btnpagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnpagoActionPerformed
+
+    private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
+        // TODO add your handling code here:
+        frmvistacliente form = new frmvistacliente();
+        form.toFront();
+        form.setVisible(true);
+        
+    }//GEN-LAST:event_btnbuscarclienteActionPerformed
+
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "El registro de venta fue cancelado");
+        mostrar("");
+        inhabilitar();
+        
+    }//GEN-LAST:event_btncancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -558,8 +718,9 @@ public class frmventas extends javax.swing.JFrame {
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnpago;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JComboBox<String> cboestado;
     private javax.swing.JComboBox<String> cbotipopago;
-    private com.toedter.calendar.JDateChooser dcfechapago;
+    private com.toedter.calendar.JDateChooser dcfechaventa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -567,6 +728,7 @@ public class frmventas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -574,11 +736,11 @@ public class frmventas extends javax.swing.JFrame {
     private javax.swing.JLabel lbltotalregistros;
     private javax.swing.JTable tablalistado;
     private javax.swing.JTextField txtbuscar;
-    private javax.swing.JTextField txtclientenombre;
-    private javax.swing.JTextField txtempleadonombre;
-    private javax.swing.JTextField txtidcliente;
-    private javax.swing.JTextField txtidempleado;
+    public static javax.swing.JTextField txtidcliente;
+    public static javax.swing.JTextField txtidempleado;
     private javax.swing.JTextField txtidventas;
+    public static javax.swing.JTextField txtnombrecliente;
+    public static javax.swing.JTextField txtnombreempleado;
     private javax.swing.JTextField txttotalventa;
     // End of variables declaration//GEN-END:variables
 }
