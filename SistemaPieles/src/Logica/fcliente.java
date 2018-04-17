@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author SONY
+ * @author Alan Itzep
  */
 public class fcliente {
     private conexion mysql = new conexion();

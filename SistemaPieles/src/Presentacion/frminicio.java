@@ -7,7 +7,7 @@ package Presentacion;
 
 /**
  *
- * @author Alan
+ * @author Alan Itzep
  */
 public class frminicio extends javax.swing.JFrame {
 
@@ -30,24 +30,87 @@ public class frminicio extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
+        lblacceso = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lblidpersona = new javax.swing.JLabel();
+        lblnombre = new javax.swing.JLabel();
+        lblapellido = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        mnuagregar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mnuventas = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        mnuconsultas = new javax.swing.JMenu();
+        mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        mnuayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("DATOS DEL EMPLEADO");
+        escritorio.add(jLabel1);
+        jLabel1.setBounds(20, 20, 290, 50);
+
+        lblacceso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblacceso.setForeground(new java.awt.Color(255, 255, 153));
+        lblacceso.setText("SSS");
+        escritorio.add(lblacceso);
+        lblacceso.setBounds(160, 180, 230, 30);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel4.setText("NOMBRE:");
+        escritorio.add(jLabel4);
+        jLabel4.setBounds(60, 120, 90, 30);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel5.setText("APELLIDO:");
+        escritorio.add(jLabel5);
+        jLabel5.setBounds(50, 150, 99, 30);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel6.setText("ACCESO:");
+        escritorio.add(jLabel6);
+        jLabel6.setBounds(70, 180, 79, 30);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 153));
+        jLabel7.setText("ID:");
+        escritorio.add(jLabel7);
+        jLabel7.setBounds(120, 90, 30, 30);
+
+        lblidpersona.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblidpersona.setForeground(new java.awt.Color(255, 255, 153));
+        lblidpersona.setText("SSS");
+        escritorio.add(lblidpersona);
+        lblidpersona.setBounds(160, 90, 230, 30);
+
+        lblnombre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblnombre.setForeground(new java.awt.Color(255, 255, 153));
+        lblnombre.setText("SSS");
+        escritorio.add(lblnombre);
+        lblnombre.setBounds(160, 120, 230, 30);
+
+        lblapellido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblapellido.setForeground(new java.awt.Color(255, 255, 153));
+        lblapellido.setText("SSS");
+        escritorio.add(lblapellido);
+        lblapellido.setBounds(160, 150, 230, 30);
 
         jMenu1.setText("Sistema pieles");
         menuBar.add(jMenu1);
 
-        jMenu2.setText("Agregar");
+        mnuagregar.setText("Agregar");
 
         jMenuItem1.setText("Productos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +118,7 @@ public class frminicio extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        mnuagregar.add(jMenuItem1);
 
         jMenuItem4.setText("Clientes");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -63,24 +126,24 @@ public class frminicio extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        mnuagregar.add(jMenuItem4);
 
-        menuBar.add(jMenu2);
+        menuBar.add(mnuagregar);
 
-        jMenu3.setText("Ventas");
+        mnuventas.setText("Ventas");
 
         jMenuItem2.setText("Detalle de venta");
-        jMenu3.add(jMenuItem2);
+        mnuventas.add(jMenuItem2);
 
-        menuBar.add(jMenu3);
+        menuBar.add(mnuventas);
 
-        jMenu4.setText("Consultas");
-        menuBar.add(jMenu4);
+        mnuconsultas.setText("Consultas");
+        menuBar.add(mnuconsultas);
 
-        jMenu5.setText("Configuraciones");
-        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+        mnuconfiguraciones.setText("Configuraciones");
+        mnuconfiguraciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu5ActionPerformed(evt);
+                mnuconfiguracionesActionPerformed(evt);
             }
         });
 
@@ -90,12 +153,12 @@ public class frminicio extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem3);
+        mnuconfiguraciones.add(jMenuItem3);
 
-        menuBar.add(jMenu5);
+        menuBar.add(mnuconfiguraciones);
 
-        jMenu6.setText("Ayuda");
-        menuBar.add(jMenu6);
+        mnuayuda.setText("Ayuda");
+        menuBar.add(mnuayuda);
 
         setJMenuBar(menuBar);
 
@@ -127,9 +190,9 @@ public class frminicio extends javax.swing.JFrame {
     mostcliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+    private void mnuconfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuconfiguracionesActionPerformed
     // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu5ActionPerformed
+    }//GEN-LAST:event_mnuconfiguracionesActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
     frmempleado mostempleado = new frmempleado();
@@ -175,17 +238,26 @@ public class frminicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    public static javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    public static javax.swing.JLabel lblacceso;
+    public static javax.swing.JLabel lblapellido;
+    public static javax.swing.JLabel lblidpersona;
+    public static javax.swing.JLabel lblnombre;
     private javax.swing.JMenuBar menuBar;
+    public static javax.swing.JMenu mnuagregar;
+    public static javax.swing.JMenu mnuayuda;
+    public static javax.swing.JMenu mnuconfiguraciones;
+    public static javax.swing.JMenu mnuconsultas;
+    public static javax.swing.JMenu mnuventas;
     // End of variables declaration//GEN-END:variables
 
 }
