@@ -13,19 +13,8 @@ public class vproducto {
     private int idproducto;
     private String nombre;
     private String descripcion;
-    private Double precio_venta;
-    private Double precio_costo;
-
-    public vproducto(int idproducto, String nombre, String descripcion, Double precio_venta, Double precio_costo) {
-        this.idproducto = idproducto;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio_venta = precio_venta;
-        this.precio_costo = precio_costo;
-    }
-
-    public vproducto() {
-    }
+    private Double precioventa;
+    private Double preciocosto;
 
     public int getIdproducto() {
         return idproducto;
@@ -51,21 +40,32 @@ public class vproducto {
         this.descripcion = descripcion;
     }
 
-    public Double getPrecio_venta() {
-        return precio_venta;
+    public Double getPrecioventa() {
+        return precioventa;
     }
 
-    public void setPrecio_venta(Double precio_venta) {
-        this.precio_venta = precio_venta;
+    public void setPrecioventa(Double precioventa) {
+        this.precioventa = precioventa;
     }
 
-    public Double getPrecio_costo() {
-        return precio_costo;
+    public Double getPreciocosto() {
+        return preciocosto;
     }
 
-    public void setPrecio_costo(Double precio_costo) {
-        this.precio_costo = precio_costo;
+    public void setPreciocosto(Double preciocosto) {
+        this.preciocosto = preciocosto;
     }
-    
+
+    public vproducto() {
+    }
+
+    public vproducto(int idproducto, String nombre, String descripcion, Double precioventa, Double preciocosto) {
+        this.idproducto = idproducto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioventa = precioventa;
+        this.preciocosto = preciocosto;
+    }
+
     
 }

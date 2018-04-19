@@ -405,9 +405,9 @@ public class frmproducto extends javax.swing.JInternalFrame {
         
         dts.setDescripcion(txtdescripcion.getText());
         
-        dts.setPrecio_venta(Double.parseDouble(txtprecioventa.getText()));
+        dts.setPrecioventa(Double.parseDouble(txtprecioventa.getText()));
         
-        dts.setPrecio_costo(Double.parseDouble(txtpreciocosto.getText()));
+        dts.setPreciocosto(Double.parseDouble(txtpreciocosto.getText()));
         
         if(accion.equals ("guardar")){
             if(func.insertar(dts)){

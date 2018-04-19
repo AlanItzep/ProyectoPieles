@@ -5,36 +5,47 @@
  */
 package Datos;
 
+import java.sql.Date;
+
 /**
  *
  * @author Alan Itzep
  */
 public class vcuenta {
-    private int idcliente;
+
+    private int idcuenta;
+    private int idventa;
     private String descripcion;
-    private String cantidad;
-    private String haber;
-    private String debe;
-    private String total;
+    private Double abono;
+    private Date fechaabono;
+    private Double saldo;
 
     public vcuenta() {
     }
 
-    public vcuenta(int idcliente, String descripcion, String cantidad, String haber, String debe, String total) {
-        this.idcliente = idcliente;
+    public vcuenta(int idcuenta, int idventa, String descripcion, Double abono, Date fechaabono, Double saldo) {
+        this.idcuenta = idcuenta;
+        this.idventa = idventa;
         this.descripcion = descripcion;
-        this.cantidad = cantidad;
-        this.haber = haber;
-        this.debe = debe;
-        this.total = total;
+        this.abono = abono;
+        this.fechaabono = fechaabono;
+        this.saldo = saldo;
     }
 
-    public int getIdcliente() {
-        return idcliente;
+    public int getIdcuenta() {
+        return idcuenta;
     }
 
-    public void setIdcliente(int idcliente) {
-        this.idcliente = idcliente;
+    public void setIdcuenta(int idcuenta) {
+        this.idcuenta = idcuenta;
+    }
+
+    public int getIdventa() {
+        return idventa;
+    }
+
+    public void setIdventa(int idventa) {
+        this.idventa = idventa;
     }
 
     public String getDescripcion() {
@@ -45,35 +56,28 @@ public class vcuenta {
         this.descripcion = descripcion;
     }
 
-    public String getCantidad() {
-        return cantidad;
+    public Double getAbono() {
+        return abono;
     }
 
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
+    public void setAbono(Double abono) {
+        this.abono = abono;
     }
 
-    public String getHaber() {
-        return haber;
+    public Date getFechaabono() {
+        return fechaabono;
     }
 
-    public void setHaber(String haber) {
-        this.haber = haber;
+    public void setFechaabono(Date fechaabono) {
+        this.fechaabono = fechaabono;
     }
 
-    public String getDebe() {
-        return debe;
+    public Double getSaldo() {
+        return saldo;
     }
 
-    public void setDebe(String debe) {
-        this.debe = debe;
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
     }
 
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }    
 }

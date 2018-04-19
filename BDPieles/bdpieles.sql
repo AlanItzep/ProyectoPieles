@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-04-2018 a las 01:52:46
+-- Tiempo de generación: 19-04-2018 a las 18:00:33
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bdpieles`
+-- Base de datos: `bdpieles2`
 --
 
 -- --------------------------------------------------------
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cliente` (
   `idpersona` int(11) NOT NULL,
-  `nit` int(11) NOT NULL
+  `nit` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -40,26 +40,28 @@ CREATE TABLE `cliente` (
 --
 
 CREATE TABLE `cuenta` (
+  `idcuenta` int(11) NOT NULL,
+  `idventa` int(11) NOT NULL,
   `idcliente` int(11) NOT NULL,
   `descripcion` varchar(50) NOT NULL,
-  `cantidad` varchar(25) NOT NULL,
-  `haber` varchar(30) NOT NULL,
-  `debe` varchar(30) NOT NULL,
-  `total` varchar(45) NOT NULL
+  `abono` decimal(10,2) NOT NULL,
+  `fechaabono` date NOT NULL,
+  `saldo` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `detalle_venta`
+-- Estructura de tabla para la tabla `detalleventa`
 --
 
-CREATE TABLE `detalle_venta` (
-  `iddetalle_venta` int(11) NOT NULL,
+CREATE TABLE `detalleventa` (
+  `iddetalleventa` int(11) NOT NULL,
+  `idcliente` int(11) NOT NULL,
+  `idempleado` int(11) NOT NULL,
   `idproducto` int(11) NOT NULL,
-  `idventas` int(11) NOT NULL,
-  `medida` decimal(7,2) NOT NULL,
-  `subtotal` decimal(7,2) NOT NULL
+  `medida` decimal(10,2) NOT NULL,
+  `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -101,23 +103,23 @@ CREATE TABLE `producto` (
   `idproducto` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
-  `precio_venta` decimal(7,2) NOT NULL,
-  `precio_costo` decimal(7,2) NOT NULL
+  `precioventa` decimal(10,2) NOT NULL,
+  `preciocosto` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas`
+-- Estructura de tabla para la tabla `venta`
 --
 
-CREATE TABLE `ventas` (
-  `idventas` int(11) NOT NULL,
-  `idcliente` int(11) NOT NULL,
-  `idempleado` int(11) NOT NULL,
-  `total_venta` float NOT NULL,
-  `fecha_venta` date NOT NULL,
-  `tipo_pago` varchar(15) NOT NULL,
+CREATE TABLE `venta` (
+  `idventa` int(11) NOT NULL,
+  `iddetalleventa` int(11) NOT NULL,
+  `totalventa` decimal(10,2) NOT NULL,
+  `totalmedida` decimal(10,2) NOT NULL,
+  `fechaventa` date NOT NULL,
+  `tipopago` varchar(15) NOT NULL,
   `estado` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -135,15 +137,18 @@ ALTER TABLE `cliente`
 -- Indices de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  ADD PRIMARY KEY (`idcliente`);
+  ADD PRIMARY KEY (`idcuenta`,`idventa`,`idcliente`),
+  ADD KEY `fk_cuenta_venta1_idx` (`idventa`),
+  ADD KEY `fk_cuenta_cliente1_idx` (`idcliente`);
 
 --
--- Indices de la tabla `detalle_venta`
+-- Indices de la tabla `detalleventa`
 --
-ALTER TABLE `detalle_venta`
-  ADD PRIMARY KEY (`iddetalle_venta`),
-  ADD KEY `fk_detalle_venta_producto1_idx` (`idproducto`),
-  ADD KEY `fk_detalle_venta_ventas1_idx` (`idventas`);
+ALTER TABLE `detalleventa`
+  ADD PRIMARY KEY (`iddetalleventa`),
+  ADD KEY `fk_detalleventa_empleado1_idx` (`idempleado`),
+  ADD KEY `fk_detalleventa_cliente1_idx` (`idcliente`),
+  ADD KEY `fk_detalleventa_producto1_idx` (`idproducto`);
 
 --
 -- Indices de la tabla `empleado`
@@ -164,22 +169,27 @@ ALTER TABLE `producto`
   ADD PRIMARY KEY (`idproducto`);
 
 --
--- Indices de la tabla `ventas`
+-- Indices de la tabla `venta`
 --
-ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`idventas`),
-  ADD KEY `fk_ventas_cliente1_idx` (`idcliente`),
-  ADD KEY `fk_ventas_empleado1_idx` (`idempleado`);
+ALTER TABLE `venta`
+  ADD PRIMARY KEY (`idventa`),
+  ADD KEY `fk_venta_detalleventa1_idx` (`iddetalleventa`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `detalle_venta`
+-- AUTO_INCREMENT de la tabla `cuenta`
 --
-ALTER TABLE `detalle_venta`
-  MODIFY `iddetalle_venta` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `cuenta`
+  MODIFY `idcuenta` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalleventa`
+--
+ALTER TABLE `detalleventa`
+  MODIFY `iddetalleventa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
@@ -194,10 +204,10 @@ ALTER TABLE `producto`
   MODIFY `idproducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `ventas`
+-- AUTO_INCREMENT de la tabla `venta`
 --
-ALTER TABLE `ventas`
-  MODIFY `idventas` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `venta`
+  MODIFY `idventa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -213,14 +223,16 @@ ALTER TABLE `cliente`
 -- Filtros para la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  ADD CONSTRAINT `fk_cuenta_cliente1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_cuenta_cliente1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cuenta_venta1` FOREIGN KEY (`idventa`) REFERENCES `venta` (`idventa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `detalle_venta`
+-- Filtros para la tabla `detalleventa`
 --
-ALTER TABLE `detalle_venta`
-  ADD CONSTRAINT `fk_detalle_venta_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_detalle_venta_ventas1` FOREIGN KEY (`idventas`) REFERENCES `ventas` (`idventas`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `detalleventa`
+  ADD CONSTRAINT `fk_detalleventa_cliente1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_detalleventa_empleado1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_detalleventa_producto1` FOREIGN KEY (`idproducto`) REFERENCES `producto` (`idproducto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `empleado`
@@ -229,11 +241,10 @@ ALTER TABLE `empleado`
   ADD CONSTRAINT `fk_empleado_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `ventas`
+-- Filtros para la tabla `venta`
 --
-ALTER TABLE `ventas`
-  ADD CONSTRAINT `fk_ventas_cliente1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_ventas_empleado1` FOREIGN KEY (`idempleado`) REFERENCES `empleado` (`idpersona`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `venta`
+  ADD CONSTRAINT `fk_venta_detalleventa1` FOREIGN KEY (`iddetalleventa`) REFERENCES `detalleventa` (`iddetalleventa`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

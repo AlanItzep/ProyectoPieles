@@ -199,6 +199,8 @@ public class frmvistaproducto extends javax.swing.JFrame {
             frmdetalleventa.txtidproducto.setText(cod);
             frmdetalleventa.txtnombreproducto.setText(valor1);
             frmdetalleventa.txtprecioventa.setText(valor2);
+            
+            this.dispose();
         }
         
     }//GEN-LAST:event_tablalistadoMousePressed

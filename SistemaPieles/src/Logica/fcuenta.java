@@ -27,39 +27,50 @@ public class fcuenta {
         DefaultTableModel modelo;
         
         String [] titulos = {
-            "ID cliente",
-            "Nombre",
+            "ID cuenta",
+            "ID venta",
+            "Nombre Cliente",
             "Descripcion",
-            "Cantidad",
-            "Haber",
-            "Debe",
-            "Total"            
+            "Total Medida",
+            "Abono",
+            "Fecha Abono",
+            "Saldo",
+            "Fecha Venta",
+            "Total Inicial",
+            "Estado"
         };
         
-        String [] registro = new String [7];
+        String [] registro = new String [11];
         
             totalregistros = 0;
             modelo = new DefaultTableModel(null,titulos);
             
-            sSQL = "select c.idcliente, "
+            sSQL = "select c.idcuenta, c.idventa, "
                     + "(select nombre from persona where idpersona = c.idcliente) as clienten,"
                     + "(select apellido from persona where idpersona = c.dicliente) as clienteap,"
-                    + "c.descripcion, c.cantidad, c.haber, c.debe, c.total"
-                    + "from cuenta c where c.clienten like '%"
+                    + "c.descripcion, v.totalmedida, "
+                    + "c.abono, c.fechaabono, c.saldo,"
+                    + "v.fechaventa,v.totalventa,v.estado "
+                    + "from cuenta c inner join ventas v on c.idventas = v.idventas "
+                    + "where c.clienten like '%"
                     + buscar + "%' order by idreserva desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
                 
                 while(rs.next()){
-                    registro[0] = rs.getString("idcliente");
-                    registro[1] = rs.getString("clienten")+" "+rs.getString("clienteap");
-                    registro[2] = rs.getString("descripcion");
-                    registro[3] = rs.getString("cantidad");
-                    registro[4] = rs.getString("haber");
-                    registro[5] = rs.getString("debe");
-                    registro[0] = rs.getString("total");
-                    
+                    registro[0] = rs.getString("idcuenta");
+                    registro[1] = rs.getString("idventa");
+                    registro[2] = rs.getString("clienten")+" "+rs.getString("clienteap");
+                    registro[3] = rs.getString("descripcion");
+                    registro[4] = rs.getString("totalmedida");
+                    registro[5] = rs.getString("abono");
+                    registro[6] = rs.getString("fechaabono");
+                    registro[7] = rs.getString("saldo");
+                    registro[8] = rs.getString("fechaventa");
+                    registro[9] = rs.getString("totalventa");
+                    registro[10] = rs.getString("estado");
+                   
                     totalregistros = totalregistros + 1;
                     modelo.addRow(registro);
                 }
@@ -70,16 +81,18 @@ public class fcuenta {
             }
     }
     public boolean insertar (vcuenta dts){
-        sSQL = "insert into cuenta (idcliente, descripcion,cantidad,haber,debe,total)"
-                + "values(?,?,?,?,?,?)";
+        sSQL = "insert into cuenta (idventa, descripcion,abono,fechaabono,saldo)"
+                + "values(?,?,?,?,?)";
+        sSQL = "insert into cliente (idcuenta) "
+                + "values (select idcuenta from cuenta orde by idpersona)";
         try{
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdcliente());
-            pst.setString(2, dts.getDescripcion());
-            pst.setString(3, dts.getCantidad());
-            pst.setString(4, dts.getHaber());
-            pst.setString(5, dts.getDebe());
-            pst.setString(6, dts.getTotal());
+            PreparedStatement pst = cn.prepareStatement(sSQL);          
+            pst.setInt(1, dts.getIdcuenta());
+            pst.setInt(2, dts.getIdventa());
+            pst.setString(3, dts.getDescripcion());
+            pst.setDouble(4, dts.getAbono());
+            pst.setDate(5, dts.getFechaabono());
+            pst.setDouble(6, dts.getSaldo());
             
             int n = pst.executeUpdate();
             
@@ -101,12 +114,12 @@ public class fcuenta {
         
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdcliente());
-            pst.setString(2, dts.getDescripcion());
-            pst.setString(3, dts.getCantidad());
-            pst.setString(4, dts.getHaber());
-            pst.setString(5, dts.getDebe());
-            pst.setString(6, dts.getTotal());
+            pst.setInt(1, dts.getIdcuenta());
+            pst.setInt(2, dts.getIdventa());
+            pst.setString(3, dts.getDescripcion());
+            pst.setDouble(4, dts.getAbono());
+            pst.setDate(5, dts.getFechaabono());
+            pst.setDouble(6, dts.getSaldo());
             
             int n = pst.executeUpdate();
             

@@ -10,29 +10,47 @@ package Datos;
  * @author Alan Itzep
  */
 public class vdetalleventa {
-    private int iddetalle_venta;
+    private int iddetalleventa;
+    private int idcliente;
+    private int idempleado;
     private int idproducto;
-    private int idventas;
     private Double medida;
     private Double subtotal;
 
     public vdetalleventa() {
     }
 
-    public vdetalleventa(int iddetalle_venta, int idproducto, int idventas, Double medida, Double subtotal) {
-        this.iddetalle_venta = iddetalle_venta;
+    public vdetalleventa(int iddetalleventa, int idcliente, int idempleado, int idproducto, Double medida, Double subtotal) {
+        this.iddetalleventa = iddetalleventa;
+        this.idcliente = idcliente;
+        this.idempleado = idempleado;
         this.idproducto = idproducto;
-        this.idventas = idventas;
         this.medida = medida;
         this.subtotal = subtotal;
     }
 
-    public int getIddetalle_venta() {
-        return iddetalle_venta;
+    public int getIddetalleventa() {
+        return iddetalleventa;
     }
 
-    public void setIddetalle_venta(int iddetalle_venta) {
-        this.iddetalle_venta = iddetalle_venta;
+    public void setIddetalleventa(int iddetalleventa) {
+        this.iddetalleventa = iddetalleventa;
+    }
+
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
+
+    public int getIdempleado() {
+        return idempleado;
+    }
+
+    public void setIdempleado(int idempleado) {
+        this.idempleado = idempleado;
     }
 
     public int getIdproducto() {
@@ -41,14 +59,6 @@ public class vdetalleventa {
 
     public void setIdproducto(int idproducto) {
         this.idproducto = idproducto;
-    }
-
-    public int getIdventas() {
-        return idventas;
-    }
-
-    public void setIdventas(int idventas) {
-        this.idventas = idventas;
     }
 
     public Double getMedida() {

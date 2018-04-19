@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alan Itzep
  */
-public class frmempleado extends javax.swing.JInternalFrame {
+public class frmempleado extends javax.swing.JFrame {
 
     /**
      * Creates new form frmempleado
@@ -156,10 +156,7 @@ public class frmempleado extends javax.swing.JInternalFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setIconifiable(true);
-        setMaximizable(true);
 
         jLabel1.setText("Empleado");
 

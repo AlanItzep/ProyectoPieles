@@ -45,8 +45,10 @@ public class frminicio extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         mnuventas = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mnuayuda = new javax.swing.JMenu();
@@ -132,7 +134,15 @@ public class frminicio extends javax.swing.JFrame {
 
         mnuventas.setText("Ventas");
 
-        jMenuItem2.setText("Detalle de venta");
+        jMenuItem5.setText("Detalle Venta");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        mnuventas.add(jMenuItem5);
+
+        jMenuItem2.setText("Venta");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -143,6 +153,15 @@ public class frminicio extends javax.swing.JFrame {
         menuBar.add(mnuventas);
 
         mnuconsultas.setText("Consultas");
+
+        jMenuItem6.setText("Cuenta");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem6);
+
         menuBar.add(mnuconsultas);
 
         mnuconfiguraciones.setText("Configuraciones");
@@ -206,16 +225,37 @@ public class frminicio extends javax.swing.JFrame {
     mostempleado.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        frmventas form = new frmventas();
+        frmdetalleventa form = new frmdetalleventa();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
         
-        frmventas.txtidempleado.setText(lblidpersona.getText());
-        frmventas.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
-        frmventas.idusuario = Integer.parseInt(lblidpersona.getText());
+        frmdetalleventa.txtidempleado.setText(lblidpersona.getText());
+        frmdetalleventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmdetalleventa.idusuario = Integer.parseInt(lblidpersona.getText());
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        frmcuenta form = new frmcuenta();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        frmventa form = new frmventa();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        
+        frmventa.txtidempleado.setText(lblidpersona.getText());
+        frmventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
@@ -265,6 +305,8 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     public static javax.swing.JLabel lblacceso;
     public static javax.swing.JLabel lblapellido;
     public static javax.swing.JLabel lblidpersona;

@@ -46,8 +46,8 @@ public class fproducto {
                     registro[0] = rs.getString("idproducto");
                     registro[1] = rs.getString("nombre");
                     registro[2] = rs.getString("descripcion");
-                    registro[3] = rs.getString("precio_venta");
-                    registro[4] = rs.getString("precio_costo");
+                    registro[3] = rs.getString("precioventa");
+                    registro[4] = rs.getString("preciocosto");
 
                     totalregistros = totalregistros + 1;
                     modelo.addRow(registro);
@@ -60,14 +60,14 @@ public class fproducto {
 }
     
     public boolean insertar(vproducto dts) {
-        sSQL = "insert into producto (nombre, descripcion, precio_venta, precio_costo)"
+        sSQL = "insert into producto (nombre, descripcion, precioventa, preciocosto)"
                 + "values (?,?,?,?)";
         try {
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getDescripcion());
-            pst.setDouble(3, dts.getPrecio_venta());
-            pst.setDouble(4, dts.getPrecio_costo());
+            pst.setDouble(3, dts.getPrecioventa());
+            pst.setDouble(4, dts.getPreciocosto());
 
             int n = pst.executeUpdate();
             if (n != 0) {
@@ -83,14 +83,14 @@ public class fproducto {
     }
 
     public boolean editar(vproducto dts) {
-        sSQL = "update producto set nombre=?, descripcion=?, precio_venta=?, precio_costo=?"
+        sSQL = "update producto set nombre=?, descripcion=?, precioventa=?, preciocosto=?"
                 + " where idproducto=?";
         try {
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getDescripcion());
-            pst.setDouble(3, dts.getPrecio_venta());
-            pst.setDouble(4, dts.getPrecio_costo());
+            pst.setDouble(3, dts.getPrecioventa());
+            pst.setDouble(4, dts.getPreciocosto());
             pst.setInt(5, dts.getIdproducto());
             int n = pst.executeUpdate();
 

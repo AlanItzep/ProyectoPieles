@@ -64,7 +64,7 @@ public class frmvistacliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de productos"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de clientes"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,14 +178,19 @@ public class frmvistacliente extends javax.swing.JFrame {
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if(evt.getClickCount()==2){
+            
             int fila = tablalistado.getSelectedRow();
 
             String cod, valor1;
             cod = tablalistado.getValueAt(fila, 0).toString();
             valor1 = tablalistado.getValueAt(fila,1).toString()+" "+tablalistado.getValueAt(fila,2).toString();
-
-            frmventas.txtidcliente.setText(cod);
-            frmventas.txtnombrecliente.setText(valor1);
+            /*
+            frmdetalleventa.txtidcliente.setText(cod);
+            frmdetalleventa.txtnombrecliente.setText(valor1);
+            this.dispose();
+            */
+            frmventa.txtidcliente.setText(cod);
+            frmventa.txtnombrecliente.setText(valor1);
             this.dispose();
         }
 
