@@ -184,11 +184,12 @@ public class frmvistacliente extends javax.swing.JFrame {
             String cod, valor1;
             cod = tablalistado.getValueAt(fila, 0).toString();
             valor1 = tablalistado.getValueAt(fila,1).toString()+" "+tablalistado.getValueAt(fila,2).toString();
-            /*
+            
+            
             frmdetalleventa.txtidcliente.setText(cod);
             frmdetalleventa.txtnombrecliente.setText(valor1);
             this.dispose();
-            */
+            
             frmventa.txtidcliente.setText(cod);
             frmventa.txtnombrecliente.setText(valor1);
             this.dispose();

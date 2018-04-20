@@ -43,7 +43,7 @@ public class fventa {
             sSQL = "select v.idventa,v.iddetalleventa, "
                     + "(select clienten from detalleventa where iddetalleventa = v.iddetalleventa) as nombrec, "
                     + "v.totalventa,v.totalmedida,v.fechaventa,v.tipopago,v.estado, "
-                    + "from venta d inner join producto p "
+                    + "from venta v inner join producto p "
                     + "on d.idproducto = p.idproducto where d.idventas="
                     + buscar+" order by d.idventa desc";
             try{
