@@ -21,6 +21,7 @@ public class fdetalleventa {
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
     private String sSQL = "";
+    
     public Integer totalregistros;
     public Double totalconsumo;
     public Double totalmedida;
@@ -31,18 +32,15 @@ public class fdetalleventa {
         
         String [] titulos = {
             "ID detalle venta",//0
-            "ID Cliente",//1
-            "Cliente",
-            "ID Empleado",//3
-            "Empleado",
-            "ID Producto",//5
+            "ID venta",//1
+            "ID Producto",//2
             "Producto",
             "Precio venta",
             "Medida",
             "Sub total"
         };
         
-        String [] registro = new String [10];
+        String [] registro = new String [7];
         
             totalregistros = 0;
             totalconsumo = 0.0;
@@ -50,14 +48,10 @@ public class fdetalleventa {
             
             modelo = new DefaultTableModel(null,titulos);
             
-            sSQL = "select d.iddetalleventa, d.idcliente,"
-                    + "(select nombre from persona where idpersona = d.idcliente)as clienten, "
-                    + "(select apellido from persona where idpersona = d.idcliente) as clienteap, "
-                    + "d.idempleado,(select nombre from persona where idpersona = d.idempleado) as empleadon, "
-                    + "(select apellido from persona where idpersona = d.idempleado) as empleadoap, "
-                    + "d.idproducto,p.nombre, p.precioventa, d.medida, d.subtotal "
-                    + "from detalleventa d inner join producto p on d.idproducto = p.idproducto "
-                    + "where d.iddetalleventa like '%"
+            sSQL = "select d.iddetalleventa, d.idventa, d.idproducto,"
+                    + "p.nombre, p.precioventa, d.medida, d.subtotal "
+                    + "from detalleventa d inner join producto p "
+                    + "on d.idproducto = p.idproducto where d.iddetalleventa like '%"
                     + buscar+"%' order  by iddetalleventa desc";
             
             try{
@@ -66,15 +60,12 @@ public class fdetalleventa {
                 
                 while(rs.next()){
                     registro[0] = rs.getString("iddetalleventa");
-                    registro[1] = rs.getString("idcliente");
-                    registro[2] = rs.getString("clienten")+" "+rs.getString("clienteap");
-                    registro[3] = rs.getString("idempleado");
-                    registro[4] = rs.getString("empleadon")+" "+rs.getString("empleadoap");
-                    registro[5] = rs.getString("idproducto");
-                    registro[6] = rs.getString("nombre");
-                    registro[7] = rs.getString("precioventa");
-                    registro[8] = rs.getString("medida");
-                    registro[9] = rs.getString("subtotal");
+                    registro[1] = rs.getString("idventa");
+                    registro[2] = rs.getString("idproducto");
+                    registro[3] = rs.getString("nombre");
+                    registro[4] = rs.getString("precioventa");
+                    registro[5] = rs.getString("medida");
+                    registro[6] = rs.getString("subtotal");
                     
                     totalregistros = totalregistros +1;
                     totalconsumo = totalconsumo+(rs.getDouble("medida")*rs.getDouble("precioventa"));
@@ -90,15 +81,14 @@ public class fdetalleventa {
     }
     
     public boolean insertar (vdetalleventa dts){
-        sSQL = "insert into detalleventa (idcliente, idempleado, idproducto, medida,subtotal)"
-                + "values(?,?,?,?,?)";
+        sSQL = "insert into detalleventa (idventa, idproducto, medida,subtotal)"
+                + "values(?,?,?,?)";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1,dts.getIdcliente());
-            pst.setInt(2,dts.getIdempleado());
-            pst.setInt(3,dts.getIdproducto());
-            pst.setDouble(4,dts.getMedida());
-            pst.setDouble(5,dts.getSubtotal());
+            pst.setInt(1,dts.getIdventa());
+            pst.setInt(2,dts.getIdproducto());
+            pst.setDouble(3,dts.getMedida());
+            pst.setDouble(4,dts.getSubtotal());
             
             int n = pst.executeUpdate();
             
@@ -114,18 +104,16 @@ public class fdetalleventa {
     }
     
     public boolean editar(vdetalleventa dts){
-        sSQL = "update detalleventa set idcliente=?, idempleado=?, idproducto=?, medida=?,subtotal=? "
+        sSQL = "update detalleventa set idventa=?, idproducto=?, medida=?,subtotal=? "
                 + "where iddetalleventa=?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
+            pst.setInt(1,dts.getIdventa());
+            pst.setInt(2,dts.getIdproducto());
+            pst.setDouble(3,dts.getMedida());
+            pst.setDouble(4,dts.getSubtotal());
             
-            pst.setInt(1,dts.getIdcliente());
-            pst.setInt(2,dts.getIdempleado());
-            pst.setInt(3,dts.getIdproducto());
-            pst.setDouble(4,dts.getMedida());
-            pst.setDouble(5,dts.getSubtotal());
-            
-            pst.setInt(6, dts.getIddetalleventa());
+            pst.setInt(5, dts.getIddetalleventa());
             
             int n = pst.executeUpdate();
             

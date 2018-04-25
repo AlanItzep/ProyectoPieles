@@ -6,6 +6,7 @@
 package Logica;
 
 import Datos.vdetalleventa;
+import Datos.vventa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,37 +28,41 @@ public class fventa {
         
         String [] titulos = {
             "ID venta",//0
-            "ID detalle venta",//1
+            "ID cliente",//1
             "Cliente",
-            "Total Venta",
-            "Total Medida",
+            "ID empleado",
+            "Empleado",
             "Fecha Venta",
+            "Total Medida",
+            "Total Venta",
             "Tipo Pago",
-            "Estado",
         };
         
-        String [] registro = new String[8 ];
+        String [] registro = new String[9];
         
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select v.idventa,v.iddetalleventa, "
-                    + "(select clienten from detalleventa where iddetalleventa = v.iddetalleventa) as nombrec, "
-                    + "v.totalventa,v.totalmedida,v.fechaventa,v.tipopago,v.estado, "
-                    + "from venta v inner join producto p "
-                    + "on d.idproducto = p.idproducto where d.idventas="
-                    + buscar+" order by d.idventa desc";
+            sSQL = "select v.idventa,v.idcliente, "
+                    + "(select nombre from persona where idpersona = v.idcliente) as clienten, "
+                    + "(select apellido from persona where idpersona = v.idcliente) as clineteap, "
+                    + "v.idempleado,(select nombre from persona where idpersona = v.idempleado) as empleadon,"
+                    + "(select apellido from persona where idpersona = v.idempleado) as empleadoap, "
+                    + "v.fechaventa,v.totalmedida,v.totalventa,v.tipopago "
+                    + "from venta v order by v.idventa desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
                 
                 while(rs.next()){
                     registro[0] = rs.getString("idventa");
-                    registro[1] = rs.getString("iddetalleventa");
-                    registro[2] = rs.getString("nombrec");
-                    registro[3] = rs.getString("totalventa");
-                    registro[4] = rs.getString("totalmedida");
+                    registro[1] = rs.getString("idcliente");
+                    registro[2] = rs.getString("clienten")+" "+rs.getString("clineteap");
+                    registro[3] = rs.getString("idempleado");
+                    registro[4] = rs.getString("empleadon")+" "+rs.getString("empleadoap");
                     registro[5] = rs.getString("fechaventa");
-                    registro[6] = rs.getString("subtotal");
+                    registro[6] = rs.getString("totalmedida");
+                    registro[7] = rs.getString("totalventa");
+                    registro[8] = rs.getString("tipopago");
                     
                     modelo.addRow(registro);
                 }
@@ -68,16 +73,18 @@ public class fventa {
             }
     }
     
-    public boolean insertar(vdetalleventa dts){
-        sSQL = "insert into detalle_venta(idproducto,idventas,medida,subtotal) "
-                + "values(?,?,?,?)";
+    public boolean insertar(vventa dts){
+        sSQL = "insert into venta(idcliente, idempleado,fechaventa,totalmedida,totalventa,tipopago) "
+                + "values(?,?,?,?,?,?)";
         
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdproducto());
-            pst.setInt(2, dts.getIdventas());
-            pst.setDouble(3, dts.getMedida());
-            pst.setDouble(4, dts.getSubtotal());
+            pst.setInt(1, dts.getIdcliente());
+            pst.setInt(2, dts.getIdempleado());
+            pst.setDate(3, dts.getFechaventa());
+            pst.setDouble(4, dts.getTotalmedida());
+            pst.setDouble(5,dts.getTotalventa());
+            pst.setString(6, dts.getTipopago());
             
             int n = pst.executeUpdate();
             
@@ -92,18 +99,20 @@ public class fventa {
         }
     }
     
-    public boolean editar(vdetalleventa dts){
-        sSQL = "update detalle_venta set iddetalleventa=?,idproducto=?,idventas=?,medidas=?,subtotal=? "
-                + "where iddetalleventa=?";
+    public boolean editar(vventa dts){
+        sSQL = "update venta set idcliente=?, idempleado=?,fechaventa=?,totalmedida=?,totalventa=?,tipopago=? "
+                + "where venta=?";
         
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIdproducto());
-            pst.setInt(2, dts.getIdventas());
-            pst.setDouble(3, dts.getMedida());
-            pst.setDouble(4, dts.getSubtotal());
+            pst.setInt(1, dts.getIdcliente());
+            pst.setInt(2, dts.getIdempleado());
+            pst.setDate(3, dts.getFechaventa());
+            pst.setDouble(4, dts.getTotalmedida());
+            pst.setDouble(5,dts.getTotalventa());
+            pst.setString(6, dts.getTipopago());
             
-            pst.setInt(5, dts.getIddetalle_venta());
+            pst.setInt(7, dts.getIdventa());
             
             int n = pst.executeUpdate();
             
@@ -118,11 +127,11 @@ public class fventa {
         }
     }
     
-    public boolean eliminar(vdetalleventa dts){
-        sSQL = "delete from vdetalleventa where iddetallevetna = ?";
+    public boolean eliminar(vventa dts){
+        sSQL = "delete from venta where idventa = ?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setInt(1, dts.getIddetalle_venta());
+            pst.setInt(1, dts.getIdventa());
             
             int n = pst.executeUpdate();
             

@@ -5,7 +5,7 @@
  */
 package Logica;
 
-import Datos.vcuenta;
+import Datos.vsaldo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,7 +80,7 @@ public class fcuenta {
                 return null;
             }
     }
-    public boolean insertar (vcuenta dts){
+    public boolean insertar (vsaldo dts){
         sSQL = "insert into cuenta (idventa, descripcion,abono,fechaabono,saldo)"
                 + "values(?,?,?,?,?)";
         sSQL = "insert into cliente (idcuenta) "
@@ -108,7 +108,7 @@ public class fcuenta {
         }
     }
     
-    public boolean editar(vcuenta dts){
+    public boolean editar(vsaldo dts){
         sSQL = "update cuenta set idcliente=?, descripcion+?,cantidad=?,haber=?,debe=?,total=? "
                 + "where idcliente = ?";
         
@@ -134,7 +134,7 @@ public class fcuenta {
         }
     }
     
-    public boolean eliminar(vcuenta dts){
+    public boolean eliminar(vsaldo dts){
         sSQL = "delete from cuenta where idcliente = ?";
         
         try{

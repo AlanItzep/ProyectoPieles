@@ -11,8 +11,7 @@ package Datos;
  */
 public class vdetalleventa {
     private int iddetalleventa;
-    private int idcliente;
-    private int idempleado;
+    private int idventa;
     private int idproducto;
     private Double medida;
     private Double subtotal;
@@ -20,10 +19,9 @@ public class vdetalleventa {
     public vdetalleventa() {
     }
 
-    public vdetalleventa(int iddetalleventa, int idcliente, int idempleado, int idproducto, Double medida, Double subtotal) {
+    public vdetalleventa(int iddetalleventa, int idventa, int idproducto, Double medida, Double subtotal) {
         this.iddetalleventa = iddetalleventa;
-        this.idcliente = idcliente;
-        this.idempleado = idempleado;
+        this.idventa = idventa;
         this.idproducto = idproducto;
         this.medida = medida;
         this.subtotal = subtotal;
@@ -37,20 +35,12 @@ public class vdetalleventa {
         this.iddetalleventa = iddetalleventa;
     }
 
-    public int getIdcliente() {
-        return idcliente;
+    public int getIdventa() {
+        return idventa;
     }
 
-    public void setIdcliente(int idcliente) {
-        this.idcliente = idcliente;
-    }
-
-    public int getIdempleado() {
-        return idempleado;
-    }
-
-    public void setIdempleado(int idempleado) {
-        this.idempleado = idempleado;
+    public void setIdventa(int idventa) {
+        this.idventa = idventa;
     }
 
     public int getIdproducto() {
@@ -76,4 +66,6 @@ public class vdetalleventa {
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
+
+    
 }

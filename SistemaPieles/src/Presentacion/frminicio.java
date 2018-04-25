@@ -227,14 +227,14 @@ public class frminicio extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        frmdetalleventa form = new frmdetalleventa();
+        frmventa form = new frmventa();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
         
-        frmdetalleventa.txtidempleado.setText(lblidpersona.getText());
-        frmdetalleventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
-        frmdetalleventa.idusuario = Integer.parseInt(lblidpersona.getText());
+        frmventa.txtidempleado.setText(lblidpersona.getText());
+        frmventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -247,14 +247,14 @@ public class frminicio extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        frmventa form = new frmventa();
+        frmventas form = new frmventas();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
         
-        frmventa.txtidempleado.setText(lblidpersona.getText());
-        frmventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
-        frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
+        frmventas.txtidempleado.setText(lblidpersona.getText());
+        frmventas.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmventas.idusuario = Integer.parseInt(lblidpersona.getText());
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 

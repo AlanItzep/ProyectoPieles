@@ -9,43 +9,30 @@ import java.sql.Date;
 
 /**
  *
- * @author Alan Itzep
+ * @author SONY
  */
-public class vcuenta {
-
-    private int idcuenta;
-    private int idventa;
+public class vabono {
+    private int idabono;
     private String descripcion;
     private Double abono;
     private Date fechaabono;
-    private Double saldo;
 
-    public vcuenta() {
+    public vabono() {
     }
 
-    public vcuenta(int idcuenta, int idventa, String descripcion, Double abono, Date fechaabono, Double saldo) {
-        this.idcuenta = idcuenta;
-        this.idventa = idventa;
+    public vabono(int idabono, String descripcion, Double abono, Date fechaabono) {
+        this.idabono = idabono;
         this.descripcion = descripcion;
         this.abono = abono;
         this.fechaabono = fechaabono;
-        this.saldo = saldo;
     }
 
-    public int getIdcuenta() {
-        return idcuenta;
+    public int getIdabono() {
+        return idabono;
     }
 
-    public void setIdcuenta(int idcuenta) {
-        this.idcuenta = idcuenta;
-    }
-
-    public int getIdventa() {
-        return idventa;
-    }
-
-    public void setIdventa(int idventa) {
-        this.idventa = idventa;
+    public void setIdabono(int idabono) {
+        this.idabono = idabono;
     }
 
     public String getDescripcion() {
@@ -71,13 +58,6 @@ public class vcuenta {
     public void setFechaabono(Date fechaabono) {
         this.fechaabono = fechaabono;
     }
-
-    public Double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
-    }
-
+    
+    
 }

@@ -196,9 +196,9 @@ public class frmvistaproducto extends javax.swing.JFrame {
             valor1 = tablalistado.getValueAt(fila,1).toString();
             valor2 = tablalistado.getValueAt(fila, 3).toString();
             
-            frmdetalleventa.txtidproducto.setText(cod);
-            frmdetalleventa.txtnombreproducto.setText(valor1);
-            frmdetalleventa.txtprecioventa.setText(valor2);
+            frmventa.txtidproducto.setText(cod);
+            frmventa.txtnombreproducto.setText(valor1);
+            frmventa.txtprecioventa.setText(valor2);
             
             this.dispose();
         }
