@@ -51,7 +51,7 @@ public class fdetalleventa {
             sSQL = "select d.iddetalleventa, d.idventa, d.idproducto,"
                     + "p.nombre, p.precioventa, d.medida, d.subtotal "
                     + "from detalleventa d inner join producto p "
-                    + "on d.idproducto = p.idproducto where d.iddetalleventa like '%"
+                    + "on d.idproducto = p.idproducto where d.idventa like '%"
                     + buscar+"%' order  by iddetalleventa desc";
             
             try{
@@ -81,7 +81,7 @@ public class fdetalleventa {
     }
     
     public boolean insertar (vdetalleventa dts){
-        sSQL = "insert into detalleventa (idventa, idproducto, medida,subtotal)"
+        sSQL = "insert into detalleventa (idventa, idproducto, medida, subtotal) "
                 + "values(?,?,?,?)";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
@@ -105,7 +105,7 @@ public class fdetalleventa {
     
     public boolean editar(vdetalleventa dts){
         sSQL = "update detalleventa set idventa=?, idproducto=?, medida=?,subtotal=? "
-                + "where iddetalleventa=?";
+                + "where idventa=?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setInt(1,dts.getIdventa());

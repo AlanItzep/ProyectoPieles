@@ -19,23 +19,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Alan Itzep
  */
 public class frmventa extends javax.swing.JInternalFrame {
-    public static String idventas;
-    public static String cliente;
+    
+
     
     /**
      * Creates new form frmdetalleventa
      */
     public frmventa() {
         initComponents();
-        mostrarclientes("");
-        mostrar(idventas);
-        txtnombrecliente.setText(cliente);
+        mostrar(idventa);
         this.setTitle("Detalle Venta");
         inhabilitar();
     }
 
     private String accion = "guardar";
     public static int idusuario;
+    public static String idventa = "";  
     
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -192,34 +191,28 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtmedida.setText("");
         txtsubtotal.setText("");
 }
-    
-    void mostrarclientes(String buscar){
-        try{
+
+    void mostrar(String buscar) {
+        try {
             DefaultTableModel modelo;
             fventa func = new fventa();
             modelo = func.mostrar(buscar);
             
             tablaclientes.setModel(modelo);
             ocultarcolumnas();
-        }catch(Exception e){
-            JOptionPane.showConfirmDialog(rootPane,e);
-        }
-    }
-
-    void mostrar(String buscar) {
-        try {
-            DefaultTableModel modelo;
-            fdetalleventa func = new fdetalleventa();
-            modelo = func.mostrar(buscar);
+            
+            //Mostrar consumos en ventas
+            fdetalleventa func2 = new fdetalleventa();
+            modelo = func2.mostrar(buscar);
 
             tablalistado.setModel(modelo);
             ocultar_columnas();
-            lbltotalregistros.setText("Total Registros:  " + Integer.toString(func.totalregistros));
-            lblconsumo.setText("Consumo Total $. "+func.totalconsumo);
-            lbltotalmedida.setText("Medida Total "+Double.toString(func.totalmedida));
+            lbltotalregistros.setText("Total Registros:  " + Integer.toString(func2.totalregistros));
+            lblconsumo.setText("Consumo Total $. "+func2.totalconsumo);
+            lbltotalmedida.setText("Medida Total "+Double.toString(func2.totalmedida));
             
-            txttotalmedida.setText(Double.toString(func.totalmedida));
-            txttotalventa.setText(Double.toString(func.totalconsumo));
+            txttotalmedida.setText(Double.toString(func2.totalmedida));
+            txttotalventa.setText(Double.toString(func2.totalconsumo));
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(rootPane, e);
         }
@@ -360,6 +353,9 @@ public class frmventa extends javax.swing.JInternalFrame {
         tablaclientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaclientesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablaclientesMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tablaclientes);
@@ -780,7 +776,7 @@ public class frmventa extends javax.swing.JInternalFrame {
             if(func.insertar(dts)){
                 JOptionPane.showMessageDialog(rootPane, "La venta "+txtnombreproducto.getText()+" del cliente "
                 +txtnombrecliente.getText() +" fue registrado satisfactoriamente");
-                mostrarclientes("");
+                mostrar(idventa);
                 inhRegVen_habInPro();
             }
         }
@@ -790,7 +786,7 @@ public class frmventa extends javax.swing.JInternalFrame {
             if(func.editar(dts)){
                 JOptionPane.showMessageDialog(rootPane, "El detalle del cliente "+txtnombrecliente.getText()
                         +" fue modificado satisfactoriamente");
-                mostrarclientes("");
+                mostrar(idventa);
                 inhRegVen_habInPro();
             }
         }
@@ -799,25 +795,21 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         // TODO add your handling code here:
-        btnguardar.setText("Editar");
-        habilitar();
+        btnagregar.setText("Editar");
+        inhRegVen_habInPro();
         btneliminar.setEnabled(true);
         accion = "editar";
 
         int fila = tablalistado.rowAtPoint(evt.getPoint());
         
-        txtidventa.setText(tablalistado.getValueAt(fila,0).toString());
-        txtidcliente.setText(tablalistado.getValueAt(fila,0).toString());
-        txtidempleado.setText(tablalistado.getValueAt(fila,0).toString());
-        txtidproducto.setText(tablalistado.getValueAt(fila,0).toString());
+        txtiddetalleventa.setText(tablalistado.getValueAt(fila,0).toString());
+        txtidventa2.setText(tablalistado.getValueAt(fila,1).toString());
+        txtidproducto.setText(tablalistado.getValueAt(fila,2).toString());
+        txtnombreproducto.setText(tablalistado.getValueAt(fila,3).toString());
+        txtprecioventa.setText(tablalistado.getValueAt(fila,4).toString());
+        txtmedida.setText(tablalistado.getValueAt(fila,5).toString());
+        txtsubtotal.setText(tablalistado.getValueAt(fila,6).toString());
         
-        txtnombrecliente.setText(tablalistado.getValueAt(fila,0).toString());
-        txtnombreempleado.setText(tablalistado.getValueAt(fila,0).toString());
-        txtnombreproducto.setText(tablalistado.getValueAt(fila,0).toString());
-        txtmedida.setText(tablalistado.getValueAt(fila,0).toString());
-        txtprecioventa.setText(tablalistado.getValueAt(fila,0).toString());
-        txtsubtotal.setText(tablalistado.getValueAt(fila,0).toString());
-
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
@@ -830,7 +822,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
                 dts.setIddetalleventa(Integer.parseInt(txtidventa.getText()));
                 func.eliminar(dts);
-                mostrar(idventas);
+                mostrar(idventa);
                 inhabilitar();
             }
         }
@@ -910,6 +902,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         // TODO add your handling code here:
+        accion = "guardar";
         if (txtnombreproducto.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes seleccionar un producto");
             btnbuscarproducto.requestFocus();
@@ -933,27 +926,51 @@ public class frmventa extends javax.swing.JInternalFrame {
         if(accion.equals("guardar")){
             if(func.insertar(dts)){
                 JOptionPane.showMessageDialog(rootPane,"Agregado!");
-                mostrar("");
+                mostrar(idventa);
             }
         }else if(accion.equals("editar")){
             if(func.editar(dts)){
                 JOptionPane.showMessageDialog(rootPane,"editado!");
-                mostrar("");
+                mostrar(idventa);
             }
         }
     }//GEN-LAST:event_btnagregarActionPerformed
 
     private void cbotipopagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipopagoActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_cbotipopagoActionPerformed
 
     private void tablaclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaclientesMouseClicked
         // TODO add your handling code here:
         
+    }//GEN-LAST:event_tablaclientesMouseClicked
+
+    private void tablaclientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaclientesMousePressed
+        // TODO add your handling code here:
+        btnguardar.setText("Editar");
+        inhRegVen_habInPro();
+        
+        accion = "editar";
+        
         int fila = tablaclientes.rowAtPoint(evt.getPoint());
         
+        txtidventa.setText(tablaclientes.getValueAt(fila,0).toString());
+        txtidcliente.setText(tablaclientes.getValueAt(fila,1).toString());
+        txtidempleado.setText(tablaclientes.getValueAt(fila,3).toString());
+                
+        txtnombrecliente.setText(tablaclientes.getValueAt(fila,2).toString());
+        txtnombreempleado.setText(tablaclientes.getValueAt(fila,4).toString());
+        dcfechaventa.setDate(Date.valueOf(tablaclientes.getValueAt(fila,5).toString()));
+        txttotalmedida.setText(tablaclientes.getValueAt(fila,6).toString());
+        txttotalventa.setText(tablaclientes.getValueAt(fila,7).toString());
+        cbotipopago.setSelectedItem(tablaclientes.getValueAt(fila, 8).toString());
+        
         txtidventa2.setText(tablaclientes.getValueAt(fila,0).toString());
-    }//GEN-LAST:event_tablaclientesMouseClicked
+        
+        idventa = txtidventa2.getText();
+        mostrar(idventa);
+    }//GEN-LAST:event_tablaclientesMousePressed
 
     /**
      * @param args the command line arguments
