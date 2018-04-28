@@ -46,7 +46,6 @@ public class frminicio extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         mnuventas = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         mnuconfiguraciones = new javax.swing.JMenu();
@@ -142,19 +141,11 @@ public class frminicio extends javax.swing.JFrame {
         });
         mnuventas.add(jMenuItem5);
 
-        jMenuItem2.setText("Venta");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        mnuventas.add(jMenuItem2);
-
         menuBar.add(mnuventas);
 
         mnuconsultas.setText("Consultas");
 
-        jMenuItem6.setText("Cuenta");
+        jMenuItem6.setText("Abono");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -239,24 +230,11 @@ public class frminicio extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        frmcuenta form = new frmcuenta();
+        frmsaldoabono form = new frmsaldoabono();
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        frmventas form = new frmventas();
-        escritorio.add(form);
-        form.toFront();
-        form.setVisible(true);
-        
-        frmventas.txtidempleado.setText(lblidpersona.getText());
-        frmventas.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
-        frmventas.idusuario = Integer.parseInt(lblidpersona.getText());
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,7 +280,6 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     public static javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

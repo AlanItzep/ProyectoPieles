@@ -11,20 +11,20 @@ import java.sql.Date;
  *
  * @author Alan Itzep
  */
-public class vsaldo extends vabono{
+public class vsaldo extends vcliente{
 
     private int idsaldo;
-    private int idcliente;
     private int idventa;
+    private int idabono;
     private Double saldo;
 
     public vsaldo() {
     }
 
-    public vsaldo(int idsaldo, int idcliente, int idventa, Double saldo) {
+    public vsaldo(int idsaldo, int idventa, int idabono, Double saldo) {
         this.idsaldo = idsaldo;
-        this.idcliente = idcliente;
         this.idventa = idventa;
+        this.idabono = idabono;
         this.saldo = saldo;
     }
 
@@ -36,20 +36,20 @@ public class vsaldo extends vabono{
         this.idsaldo = idsaldo;
     }
 
-    public int getIdcliente() {
-        return idcliente;
-    }
-
-    public void setIdcliente(int idcliente) {
-        this.idcliente = idcliente;
-    }
-
     public int getIdventa() {
         return idventa;
     }
 
     public void setIdventa(int idventa) {
         this.idventa = idventa;
+    }
+
+    public int getIdabono() {
+        return idabono;
+    }
+
+    public void setIdabono(int idabono) {
+        this.idabono = idabono;
     }
 
     public Double getSaldo() {
@@ -59,5 +59,6 @@ public class vsaldo extends vabono{
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
-    
+
+        
 }

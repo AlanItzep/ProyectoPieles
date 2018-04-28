@@ -114,7 +114,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtprecioventa.setEnabled(false);
         txtsubtotal.setEnabled(false);
         
-        btnagregar.setEnabled(false);
+        btnagregarproducto.setEnabled(false);
         btnbuscarproducto.setEnabled(false);
 
         txtidventa.setText("");
@@ -183,7 +183,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtprecioventa.setEnabled(false);
         txtsubtotal.setEnabled(false);
 
-        btnagregar.setEnabled(true);
+        btnagregarproducto.setEnabled(true);
         btnbuscarproducto.setEnabled(true);
         
         txtnombreproducto.setText("");
@@ -269,8 +269,9 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtprecioventa = new javax.swing.JTextField();
         txtmedida = new javax.swing.JTextField();
         txtiddetalleventa = new javax.swing.JTextField();
-        btnagregar = new javax.swing.JButton();
+        btnagregarproducto = new javax.swing.JButton();
         txtidventa2 = new javax.swing.JTextField();
+        btnguardarproducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -484,6 +485,9 @@ public class frmventa extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablalistadoMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tablalistadoMousePressed(evt);
+            }
         });
         jScrollPane2.setViewportView(tablalistado);
 
@@ -609,10 +613,17 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
-        btnagregar.setText("Agregar");
-        btnagregar.addActionListener(new java.awt.event.ActionListener() {
+        btnagregarproducto.setText("Agregar");
+        btnagregarproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnagregarActionPerformed(evt);
+                btnagregarproductoActionPerformed(evt);
+            }
+        });
+
+        btnguardarproducto.setText("Nuevo");
+        btnguardarproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguardarproductoActionPerformed(evt);
             }
         });
 
@@ -624,7 +635,9 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnagregar))
+                        .addComponent(btnguardarproducto)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnagregarproducto))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -683,7 +696,9 @@ public class frmventa extends javax.swing.JInternalFrame {
                     .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnagregar))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnagregarproducto)
+                    .addComponent(btnguardarproducto)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -795,32 +810,18 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         // TODO add your handling code here:
-        btnagregar.setText("Editar");
-        inhRegVen_habInPro();
-        btneliminar.setEnabled(true);
-        accion = "editar";
-
-        int fila = tablalistado.rowAtPoint(evt.getPoint());
-        
-        txtiddetalleventa.setText(tablalistado.getValueAt(fila,0).toString());
-        txtidventa2.setText(tablalistado.getValueAt(fila,1).toString());
-        txtidproducto.setText(tablalistado.getValueAt(fila,2).toString());
-        txtnombreproducto.setText(tablalistado.getValueAt(fila,3).toString());
-        txtprecioventa.setText(tablalistado.getValueAt(fila,4).toString());
-        txtmedida.setText(tablalistado.getValueAt(fila,5).toString());
-        txtsubtotal.setText(tablalistado.getValueAt(fila,6).toString());
         
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
-        if(!txtidventa.getText().equals("")){
+        if(!txtiddetalleventa.getText().equals("")){
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar la habitacion?","Confirmar",2);
             if(confirmacion == 0){
                 fdetalleventa func = new fdetalleventa();
                 vdetalleventa dts = new vdetalleventa();
 
-                dts.setIddetalleventa(Integer.parseInt(txtidventa.getText()));
+                dts.setIddetalleventa(Integer.parseInt(txtiddetalleventa.getText()));
                 func.eliminar(dts);
                 mostrar(idventa);
                 inhabilitar();
@@ -900,9 +901,9 @@ public class frmventa extends javax.swing.JInternalFrame {
         txttotalventa.transferFocus();
     }//GEN-LAST:event_txttotalventaActionPerformed
 
-    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
+    private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
         // TODO add your handling code here:
-        accion = "guardar";
+        
         if (txtnombreproducto.getText().length() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Debes seleccionar un producto");
             btnbuscarproducto.requestFocus();
@@ -929,12 +930,13 @@ public class frmventa extends javax.swing.JInternalFrame {
                 mostrar(idventa);
             }
         }else if(accion.equals("editar")){
+            dts.setIddetalleventa(Integer.parseInt(txtiddetalleventa.getText()));
             if(func.editar(dts)){
                 JOptionPane.showMessageDialog(rootPane,"editado!");
                 mostrar(idventa);
             }
         }
-    }//GEN-LAST:event_btnagregarActionPerformed
+    }//GEN-LAST:event_btnagregarproductoActionPerformed
 
     private void cbotipopagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotipopagoActionPerformed
         // TODO add your handling code here:
@@ -971,6 +973,31 @@ public class frmventa extends javax.swing.JInternalFrame {
         idventa = txtidventa2.getText();
         mostrar(idventa);
     }//GEN-LAST:event_tablaclientesMousePressed
+
+    private void btnguardarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarproductoActionPerformed
+        // TODO add your handling code here:
+        accion = "guardar";
+        inhRegVen_habInPro();
+    }//GEN-LAST:event_btnguardarproductoActionPerformed
+
+    private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
+        // TODO add your handling code here:
+        btnagregarproducto.setText("Editar");
+        inhRegVen_habInPro();
+        btneliminar.setEnabled(true);
+        accion = "editar";
+
+        int fila = tablalistado.rowAtPoint(evt.getPoint());
+        
+        txtiddetalleventa.setText(tablalistado.getValueAt(fila,0).toString());
+        txtidventa2.setText(tablalistado.getValueAt(fila,1).toString());
+        txtidproducto.setText(tablalistado.getValueAt(fila,2).toString());
+        txtnombreproducto.setText(tablalistado.getValueAt(fila,3).toString());
+        txtprecioventa.setText(tablalistado.getValueAt(fila,4).toString());
+        txtmedida.setText(tablalistado.getValueAt(fila,5).toString());
+            txtsubtotal.setText(tablalistado.getValueAt(fila,6).toString());
+        
+    }//GEN-LAST:event_tablalistadoMousePressed
 
     /**
      * @param args the command line arguments
@@ -1023,12 +1050,13 @@ public class frmventa extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btnagregarproducto;
     private javax.swing.JButton btnbuscarcliente;
     private javax.swing.JButton btnbuscarproducto;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton btnguardarproducto;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private javax.swing.JComboBox<String> cbotipopago;

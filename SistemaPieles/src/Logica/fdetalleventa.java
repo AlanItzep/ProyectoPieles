@@ -105,7 +105,7 @@ public class fdetalleventa {
     
     public boolean editar(vdetalleventa dts){
         sSQL = "update detalleventa set idventa=?, idproducto=?, medida=?,subtotal=? "
-                + "where idventa=?";
+                + "where iddetalleventa=?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setInt(1,dts.getIdventa());

@@ -6,6 +6,7 @@
 package Presentacion;
 
 import Logica.fcliente;
+import Logica.fventa;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,27 +14,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SONY
  */
-public class frmvistacliente extends javax.swing.JFrame {
+public class frmvistaventa extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmvistacliente
+     * Creates new form frmvistaventa
      */
-    public frmvistacliente() {
+    public frmvistaventa() {
         initComponents();
         this.setTitle("Clientes");
         mostrar("");
     }
-    
+
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-
+    
     void mostrar(String buscar){
         try{
             DefaultTableModel modelo;
-            fcliente func = new fcliente();
+            fventa func = new fventa();
             modelo = func.mostrar(buscar);
             
             tablalistado.setModel(modelo);
@@ -44,6 +45,7 @@ public class frmvistacliente extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane,e);
         }
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -139,8 +141,8 @@ public class frmvistacliente extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnsalir)
                             .addComponent(btnbuscar))))
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(lbltotalregistros)
                 .addContainerGap())
@@ -172,25 +174,23 @@ public class frmvistacliente extends javax.swing.JFrame {
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         // TODO add your handling code here:
-        
-        
+
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
         // TODO add your handling code here:
         if(evt.getClickCount()==2){
-            
+
             int fila = tablalistado.getSelectedRow();
 
             String cod, valor1;
-            cod = tablalistado.getValueAt(fila, 0).toString();
-            valor1 = tablalistado.getValueAt(fila,1).toString()+" "+tablalistado.getValueAt(fila,2).toString();
-            
-            frmventa.txtidcliente.setText(cod);
-            frmventa.txtnombrecliente.setText(valor1);
+            cod = tablalistado.getValueAt(fila, 1).toString();
+            valor1 = tablalistado.getValueAt(fila,2).toString()+" "+tablalistado.getValueAt(fila,2).toString();
+
+            frmsaldoabono.txtidcliente.setText(cod);
+            frmsaldoabono.txtnombrecliente.setText(valor1);
             this.dispose();
         }
-
     }//GEN-LAST:event_tablalistadoMousePressed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -220,20 +220,20 @@ public class frmvistacliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmvistacliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaventa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmvistacliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaventa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmvistacliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaventa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmvistacliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaventa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmvistacliente().setVisible(true);
+                new frmvistaventa().setVisible(true);
             }
         });
     }
