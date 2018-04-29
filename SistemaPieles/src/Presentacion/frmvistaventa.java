@@ -29,6 +29,22 @@ public class frmvistaventa extends javax.swing.JFrame {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(3).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(3).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(4).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(8).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setPreferredWidth(0);
     }
     
     void mostrar(String buscar){
@@ -39,7 +55,7 @@ public class frmvistaventa extends javax.swing.JFrame {
             
             tablalistado.setModel(modelo);
             ocultar_columnas();
-            lbltotalregistros.setText("Total Registros: "+Integer.toString(func.totalregistros));
+            //lbltotalregistros.setText("Total Registros: "+Integer.toString(func.totalregistros));
             
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
@@ -183,12 +199,16 @@ public class frmvistaventa extends javax.swing.JFrame {
 
             int fila = tablalistado.getSelectedRow();
 
-            String cod, valor1;
+            String cod, valor1,medida,venta;
             cod = tablalistado.getValueAt(fila, 1).toString();
-            valor1 = tablalistado.getValueAt(fila,2).toString()+" "+tablalistado.getValueAt(fila,2).toString();
+            valor1 = tablalistado.getValueAt(fila,2).toString();
+            medida = tablalistado.getValueAt(fila,6).toString();
+            venta = tablalistado.getValueAt(fila,7).toString();
 
             frmsaldoabono.txtidcliente.setText(cod);
             frmsaldoabono.txtnombrecliente.setText(valor1);
+            frmsaldoabono.txttotalmedida.setText(medida);
+            frmsaldoabono.txttotalventa.setText(venta);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

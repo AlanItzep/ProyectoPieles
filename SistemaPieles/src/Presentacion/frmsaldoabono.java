@@ -34,22 +34,22 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtnombre = new javax.swing.JTextField();
-        txtprecioventa = new javax.swing.JTextField();
-        txtpreciocosto = new javax.swing.JTextField();
+        txttotalmedida = new javax.swing.JTextField();
+        txttotalventa = new javax.swing.JTextField();
+        txtabono = new javax.swing.JTextField();
         btnnuevo = new javax.swing.JButton();
         btnguardar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtdescripcion = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
-        txtpreciocosto1 = new javax.swing.JTextField();
         btnbuscarcliente = new javax.swing.JButton();
         txtnombrecliente = new javax.swing.JTextField();
         txtidcliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtpreciocosto2 = new javax.swing.JTextField();
+        txtsaldo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        dcfechaabono = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -60,38 +60,46 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Abono");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de abono"));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Cantidad");
+        jLabel2.setText("Total medida");
 
         jLabel3.setText("Descripcion");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Haber");
+        jLabel4.setText("Total venta");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Debe");
+        jLabel5.setText("Abono");
 
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
+        txttotalmedida.setText("0.00");
+        txttotalmedida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
+                txttotalmedidaActionPerformed(evt);
             }
         });
 
-        txtprecioventa.addActionListener(new java.awt.event.ActionListener() {
+        txttotalventa.setText("0.00");
+        txttotalventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtprecioventaActionPerformed(evt);
+                txttotalventaActionPerformed(evt);
             }
         });
 
-        txtpreciocosto.addActionListener(new java.awt.event.ActionListener() {
+        txtabono.setText("0.00");
+        txtabono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpreciocostoActionPerformed(evt);
+                txtabonoActionPerformed(evt);
+            }
+        });
+        txtabono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtabonoKeyReleased(evt);
             }
         });
 
@@ -116,13 +124,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(txtdescripcion);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Total");
-
-        txtpreciocosto1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpreciocosto1ActionPerformed(evt);
-            }
-        });
+        jLabel7.setText("Fecha abono");
 
         btnbuscarcliente.setText("...");
         btnbuscarcliente.addActionListener(new java.awt.event.ActionListener() {
@@ -133,14 +135,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Cliente");
 
-        txtpreciocosto2.addActionListener(new java.awt.event.ActionListener() {
+        txtsaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpreciocosto2ActionPerformed(evt);
+                txtsaldoActionPerformed(evt);
             }
         });
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Total");
+        jLabel9.setText("Saldo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,8 +166,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
                         .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -174,22 +176,22 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(1, 1, 1))
+                                .addGap(31, 31, 31))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(76, 76, 76)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(30, 30, 30)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpreciocosto1)
-                            .addComponent(txtpreciocosto2)
-                            .addComponent(txtnombre)
-                            .addComponent(txtpreciocosto)
-                            .addComponent(txtprecioventa))))
+                            .addComponent(txtsaldo)
+                            .addComponent(txttotalmedida)
+                            .addComponent(txtabono)
+                            .addComponent(txttotalventa)
+                            .addComponent(dcfechaabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,23 +212,23 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalmedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttotalventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpreciocosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(dcfechaabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpreciocosto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpreciocosto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,7 +349,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -356,20 +358,20 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
+    private void txttotalmedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalmedidaActionPerformed
         // TODO add your handling code here:
-        txtnombre.transferFocus();
-    }//GEN-LAST:event_txtnombreActionPerformed
+        txttotalmedida.transferFocus();
+    }//GEN-LAST:event_txttotalmedidaActionPerformed
 
-    private void txtprecioventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprecioventaActionPerformed
+    private void txttotalventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalventaActionPerformed
         // TODO add your handling code here:
-        txtprecioventa.transferFocus();
-    }//GEN-LAST:event_txtprecioventaActionPerformed
+        txttotalventa.transferFocus();
+    }//GEN-LAST:event_txttotalventaActionPerformed
 
-    private void txtpreciocostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpreciocostoActionPerformed
+    private void txtabonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtabonoActionPerformed
         // TODO add your handling code here:
-        txtpreciocosto.transferFocus();
-    }//GEN-LAST:event_txtpreciocostoActionPerformed
+        txtabono.transferFocus();
+    }//GEN-LAST:event_txtabonoActionPerformed
 
     private void btnnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnuevoActionPerformed
         // TODO add your handling code here:
@@ -381,9 +383,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         //validadion de ingreso de datos
-        if(txtnombre.getText().length() == 0){
+        if(txttotalmedida.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un nombre de producto");
-            txtnombre.requestFocus();
+            txttotalmedida.requestFocus();
             return;
         }
 
@@ -393,27 +395,27 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             return;
         }
 
-        if(txtprecioventa.getText().length() == 0){
+        if(txttotalventa.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio para la venta");
-            txtprecioventa.requestFocus();
+            txttotalventa.requestFocus();
             return;
         }
-        if(txtpreciocosto.getText().length() == 0){
+        if(txtabono.getText().length() == 0){
             JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio-costo");
-            txtpreciocosto.requestFocus();
+            txtabono.requestFocus();
             return;
         }
 
         vproducto dts = new vproducto();
         fproducto func = new fproducto();
 
-        dts.setNombre(txtnombre.getText());
+        dts.setNombre(txttotalmedida.getText());
 
         dts.setDescripcion(txtdescripcion.getText());
 
-        dts.setPrecio_venta(Double.parseDouble(txtprecioventa.getText()));
+        dts.setPrecio_venta(Double.parseDouble(txttotalventa.getText()));
 
-        dts.setPrecio_costo(Double.parseDouble(txtpreciocosto.getText()));
+        dts.setPrecio_costo(Double.parseDouble(txtabono.getText()));
 
         if(accion.equals ("guardar")){
             if(func.insertar(dts)){
@@ -443,10 +445,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
         int fila = tablalistado.rowAtPoint(evt.getPoint());
         txtidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
-        txtnombre.setText(tablalistado.getValueAt(fila,1).toString());
+        txttotalmedida.setText(tablalistado.getValueAt(fila,1).toString());
         txtdescripcion.setText(tablalistado.getValueAt(fila, 2).toString());
-        txtprecioventa.setText(tablalistado.getValueAt(fila, 3).toString());
-        txtpreciocosto.setText(tablalistado.getValueAt(fila, 4).toString());
+        txttotalventa.setText(tablalistado.getValueAt(fila, 3).toString());
+        txtabono.setText(tablalistado.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_tablalistadoMouseClicked
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
@@ -475,10 +477,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
-    private void txtpreciocosto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpreciocosto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpreciocosto1ActionPerformed
-
     private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
         // TODO add your handling code here:
         frmvistaventa form = new frmvistaventa();
@@ -486,9 +484,16 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         form.setVisible(true);
     }//GEN-LAST:event_btnbuscarclienteActionPerformed
 
-    private void txtpreciocosto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpreciocosto2ActionPerformed
+    private void txtsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaldoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpreciocosto2ActionPerformed
+    }//GEN-LAST:event_txtsaldoActionPerformed
+
+    private void txtabonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtabonoKeyReleased
+        // TODO add your handling code here:
+        Double resultado;
+        resultado = Double.parseDouble(txttotalventa.getText())-Double.parseDouble(txtabono.getText());
+        txtsaldo.setText(resultado.toString());
+    }//GEN-LAST:event_txtabonoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -534,6 +539,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
+    private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -549,15 +555,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbltotalregistros;
     private javax.swing.JTable tablalistado;
+    private javax.swing.JTextField txtabono;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextArea txtdescripcion;
     public static javax.swing.JTextField txtidcliente;
     private javax.swing.JTextField txtidproducto;
-    private javax.swing.JTextField txtnombre;
     public static javax.swing.JTextField txtnombrecliente;
-    private javax.swing.JTextField txtpreciocosto;
-    private javax.swing.JTextField txtpreciocosto1;
-    private javax.swing.JTextField txtpreciocosto2;
-    private javax.swing.JTextField txtprecioventa;
+    private javax.swing.JTextField txtsaldo;
+    public static javax.swing.JTextField txttotalmedida;
+    public static javax.swing.JTextField txttotalventa;
     // End of variables declaration//GEN-END:variables
 }
