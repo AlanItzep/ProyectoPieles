@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Alan Itzep
  */
-public class fcuenta {
+public class fsaldo {
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
     private String sSQL="";
@@ -27,17 +27,19 @@ public class fcuenta {
         DefaultTableModel modelo;
         
         String [] titulos = {
-            "ID cuenta",
-            "ID venta",
+            "ID saldo",
+            "ID cliente",
             "Nombre Cliente",
+            "Saldo",
+            
+            "ID abono",
             "Descripcion",
-            "Total Medida",
             "Abono",
             "Fecha Abono",
-            "Saldo",
-            "Fecha Venta",
-            "Total Inicial",
-            "Estado"
+            
+            "ID venta",
+            "Total Medida",
+            "Total venta",
         };
         
         String [] registro = new String [11];
@@ -45,31 +47,33 @@ public class fcuenta {
             totalregistros = 0;
             modelo = new DefaultTableModel(null,titulos);
             
-            sSQL = "select c.idcuenta, c.idventa, "
-                    + "(select nombre from persona where idpersona = c.idcliente) as clienten,"
-                    + "(select apellido from persona where idpersona = c.dicliente) as clienteap,"
-                    + "c.descripcion, v.totalmedida, "
-                    + "c.abono, c.fechaabono, c.saldo,"
-                    + "v.fechaventa,v.totalventa,v.estado "
-                    + "from cuenta c inner join ventas v on c.idventas = v.idventas "
-                    + "where c.clienten like '%"
-                    + buscar + "%' order by idreserva desc";
+            sSQL = "select s.idsaldo, s.idcliente, "
+                    + "(select nombre from persona where idpersona = s.idcliente) as clienten,"
+                    + "(select apellido from persona where idpersona = s.idcliente) as clienteap,"
+                    + "s.saldo,"
+                    + "a.idabono,a.descripcion,a.abono,a.fechaabono, "
+                    + "(select idventa from venta where idventa = s.idventa) as idventas,"
+                    + "(select totalmedida from venta where idventa = s.idventa) as totalmedidas,"
+                    + "(select totalventa from venta where idventa = s.idventa) as totalventas "
+                    + "from saldo s inner join abono a on s.idabono = a.idabono "
+                    + "where s.idabono like '%"
+                    + buscar + "%' order by idabono desc";
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
                 
                 while(rs.next()){
-                    registro[0] = rs.getString("idcuenta");
-                    registro[1] = rs.getString("idventa");
+                    registro[0] = rs.getString("idsaldo");
+                    registro[1] = rs.getString("idcliente");
                     registro[2] = rs.getString("clienten")+" "+rs.getString("clienteap");
-                    registro[3] = rs.getString("descripcion");
-                    registro[4] = rs.getString("totalmedida");
-                    registro[5] = rs.getString("abono");
-                    registro[6] = rs.getString("fechaabono");
-                    registro[7] = rs.getString("saldo");
-                    registro[8] = rs.getString("fechaventa");
-                    registro[9] = rs.getString("totalventa");
-                    registro[10] = rs.getString("estado");
+                    registro[3] = rs.getString("saldo");
+                    registro[4] = rs.getString("idabono");
+                    registro[5] = rs.getString("descripcion");
+                    registro[6] = rs.getString("abono");
+                    registro[7] = rs.getString("fechaabono");
+                    registro[8] = rs.getString("idventa");
+                    registro[9] = rs.getString("totalmedida");
+                    registro[10] = rs.getString("totalventa");
                    
                     totalregistros = totalregistros + 1;
                     modelo.addRow(registro);
@@ -80,6 +84,8 @@ public class fcuenta {
                 return null;
             }
     }
+    
+    
     public boolean insertar (vsaldo dts){
         sSQL = "insert into cuenta (idventa, descripcion,abono,fechaabono,saldo)"
                 + "values(?,?,?,?,?)";

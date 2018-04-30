@@ -5,6 +5,15 @@
  */
 package Presentacion;
 
+import Datos.vabono;
+import Datos.vsaldo;
+import Logica.fabono;
+import Logica.fsaldo;
+import java.sql.Date;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alan Itzep
@@ -16,8 +25,43 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
      */
     public frmsaldoabono() {
         initComponents();
+        mostrar("");
+        this.setTitle("Abonos");
     }
 
+    private String accion = "guardar";
+    
+    void ocultar_columnas() {
+        tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(4).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(4).setPreferredWidth(0);
+        
+        tablalistado.getColumnModel().getColumn(8).setMaxWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setMinWidth(0);
+        tablalistado.getColumnModel().getColumn(8).setPreferredWidth(0);
+    }
+    
+    void mostrar(String buscar){
+        try{
+            DefaultTableModel modelo;
+            fsaldo func = new fsaldo();
+            modelo = func.mostrar(buscar);
+            
+            tablalistado.setModel(modelo);
+            ocultar_columnas();
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +73,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        txtidproducto = new javax.swing.JTextField();
+        txtidsaldo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -50,6 +94,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         txtsaldo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         dcfechaabono = new com.toedter.calendar.JDateChooser();
+        txtidabono = new javax.swing.JTextField();
+        txtidventa = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -59,6 +105,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         btneliminar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -153,25 +200,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnnuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnguardar)
                         .addGap(52, 52, 52)
                         .addComponent(btncancelar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))
-                    .addComponent(txtidproducto, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -191,14 +223,41 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                             .addComponent(txttotalmedida)
                             .addComponent(txtabono)
                             .addComponent(txttotalventa)
-                            .addComponent(dcfechaabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(dcfechaabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtidsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtidabono, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtidventa, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtidproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtidsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
@@ -238,7 +297,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addGap(33, 33, 33))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de cuenta"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de saldo"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -327,6 +386,19 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de abonos"));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -340,19 +412,26 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -383,49 +462,61 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         // TODO add your handling code here:
         //validadion de ingreso de datos
-        if(txttotalmedida.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un nombre de producto");
-            txttotalmedida.requestFocus();
+        if(txtnombrecliente.getText().length() == 0){
+            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un cliente");
+            txtnombrecliente.requestFocus();
             return;
         }
+        
 
         if(txtdescripcion.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar una descripcion del producto");
+            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar una descripcion para el abono");
             txtdescripcion.requestFocus();
             return;
         }
 
-        if(txttotalventa.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio para la venta");
-            txttotalventa.requestFocus();
-            return;
-        }
         if(txtabono.getText().length() == 0){
-            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un precio-costo");
+            JOptionPane.showConfirmDialog(rootPane, "Debes Ingresar un abono");
             txtabono.requestFocus();
             return;
         }
-
-        vproducto dts = new vproducto();
-        fproducto func = new fproducto();
-
-        dts.setNombre(txttotalmedida.getText());
+        vabono dts = new vabono();
+        fabono func = new fabono();
 
         dts.setDescripcion(txtdescripcion.getText());
+        dts.setAbono(Double.parseDouble(txtabono.getText()));
+        Calendar cal;
+        int d,m,a;
+        cal = dcfechaabono.getCalendar();
+        d = cal.get(Calendar.DAY_OF_MONTH);
+        m = cal.get(Calendar.MONTH);
+        a = cal.get(Calendar.YEAR)-1900;
+        dts.setFechaabono(new Date(a,m,d));
 
-        dts.setPrecio_venta(Double.parseDouble(txttotalventa.getText()));
-
-        dts.setPrecio_costo(Double.parseDouble(txtabono.getText()));
-
+        func.insertar(dts);
+        
         if(accion.equals ("guardar")){
+            
             if(func.insertar(dts)){
-                JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
-                mostrar("");
-                inhabilitar();
+                dts.getIdabono();
+                dts.setIdabono(Integer.parseInt(txtidabono.getText()));
+                
+                vsaldo dts2 = new vsaldo();
+                fsaldo func2 = new fsaldo();
+                
+                dts2.setIdpersona(Integer.parseInt(txtidcliente.getText()));
+                dts2.setIdventa(Integer.parseInt(txtidventa.getText()));
+                dts2.setIdabono(Integer.parseInt(txtidabono.getText()));
+                dts2.setSaldo(Double.parseDouble(txtsaldo.getText()));
+                if(func2.insertar(dts2)){
+                    JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
+                    mostrar("");
+                    inhabilitar();
+                }                
             }
         }
         else if(accion.equals("editar")){
-            dts.setIdproducto(Integer.parseInt(txtidproducto.getText()));
+            dts.setIdproducto(Integer.parseInt(txtidsaldo.getText()));
 
             if(func.editar(dts)){
                 JOptionPane.showMessageDialog(rootPane,"La edicion del producto fue realizado satisfactoriamente");
@@ -444,7 +535,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         accion = "editar";
 
         int fila = tablalistado.rowAtPoint(evt.getPoint());
-        txtidproducto.setText(tablalistado.getValueAt(fila, 0).toString());
+        txtidsaldo.setText(tablalistado.getValueAt(fila, 0).toString());
         txttotalmedida.setText(tablalistado.getValueAt(fila,1).toString());
         txtdescripcion.setText(tablalistado.getValueAt(fila, 2).toString());
         txttotalventa.setText(tablalistado.getValueAt(fila, 3).toString());
@@ -458,13 +549,13 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         // TODO add your handling code here:
-        if(!txtidproducto.getText().equals("")){
+        if(!txtidsaldo.getText().equals("")){
             int confirmacion = JOptionPane.showConfirmDialog(rootPane, "Estas seguro de elimiar la habitacion?","Confirmar",2);
             if(confirmacion == 0){
                 fproducto func = new fproducto();
                 vproducto dts = new vproducto();
 
-                dts.setIdproducto(Integer.parseInt(txtidproducto.getText()));
+                dts.setIdproducto(Integer.parseInt(txtidsaldo.getText()));
                 func.eliminar(dts);
                 mostrar("");
                 inhabilitar();
@@ -551,6 +642,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbltotalregistros;
@@ -558,8 +650,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtabono;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextArea txtdescripcion;
+    private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
-    private javax.swing.JTextField txtidproducto;
+    private javax.swing.JTextField txtidsaldo;
+    public static javax.swing.JTextField txtidventa;
     public static javax.swing.JTextField txtnombrecliente;
     private javax.swing.JTextField txtsaldo;
     public static javax.swing.JTextField txttotalmedida;

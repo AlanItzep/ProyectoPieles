@@ -14,6 +14,7 @@ import java.sql.Date;
 public class vsaldo extends vcliente{
 
     private int idsaldo;
+    
     private int idventa;
     private int idabono;
     private Double saldo;
