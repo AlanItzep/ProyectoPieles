@@ -24,12 +24,12 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
      */
     public frmsaldoabono() {
         initComponents();
-        mostrar(idcliente);
+        mostrar("");
         this.setTitle("Abonos");
     }
 
     private String accion = "guardar";
-    public static String idcliente ="";
+    public static String idcliente = "";
     
     
     void ocultar_columnas() {
@@ -40,11 +40,15 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     
     void mostrar(String buscar){
         try{
-            idcliente = txtidcliente.getText();
+            
             DefaultTableModel modelo;
             fventa func = new fventa();
-            modelo = func.mostrar(buscar);
+            modelo = func.mostrarinabono(buscar);
+            
             tablalistadoventa.setModel(modelo);
+            
+            txttotalmedida.setText(Double.toString(func.totalmedida));
+            txttotalventa.setText(Double.toString(func.totalventa));
             
             fabono func2 = new fabono();
             modelo = func2.mostrar(buscar);
@@ -100,6 +104,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         txtidcliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnbuscarcliente = new javax.swing.JButton();
+        cbocliente = new javax.swing.JComboBox<>();
+        btnbuscarc = new javax.swing.JButton();
+        lbltotalregistrosinventa = new javax.swing.JLabel();
+        lbltotalmedidainventa = new javax.swing.JLabel();
+        lbltotalventainventa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -333,7 +342,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 17, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -376,19 +385,48 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             }
         });
 
+        cbocliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnbuscarc.setText("Filtrar");
+        btnbuscarc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarcActionPerformed(evt);
+            }
+        });
+
+        lbltotalregistrosinventa.setText("jLabel10");
+
+        lbltotalmedidainventa.setText("jLabel10");
+
+        lbltotalventainventa.setText("jLabel10");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbltotalregistrosinventa)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnbuscarc)
+                        .addGap(52, 52, 52)
+                        .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(lbltotalmedidainventa)
+                        .addGap(146, 146, 146)
+                        .addComponent(lbltotalventainventa)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -405,8 +443,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnbuscarcliente)))
-                .addContainerGap(152, Short.MAX_VALUE))
+                        .addComponent(btnbuscarcliente)
+                        .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnbuscarc)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltotalregistrosinventa)
+                    .addComponent(lbltotalmedidainventa)
+                    .addComponent(lbltotalventainventa)))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap(45, Short.MAX_VALUE)
@@ -422,12 +466,13 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,12 +480,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -492,8 +539,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         vabono dts = new vabono();
         fabono func = new fabono();
 
+        dts.setIdcliente(Integer.parseInt(txtidcliente.getText()));
         dts.setDescripcion(txtdescripcion.getText());
-        dts.setAbono(Double.parseDouble(txtabono.getText()));
+        
         Calendar cal;
         int d,m,a;
         cal = dcfechaabono.getCalendar();
@@ -501,35 +549,23 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         m = cal.get(Calendar.MONTH);
         a = cal.get(Calendar.YEAR)-1900;
         dts.setFechaabono(new Date(a,m,d));
-
-        func.insertar(dts);
+        
+        dts.setAbono(Double.parseDouble(txtabono.getText()));
         
         if(accion.equals ("guardar")){
             
             if(func.insertar(dts)){
-                dts.getIdabono();
-                dts.setIdabono(Integer.parseInt(txtidabono.getText()));
-                
-                vsaldo dts2 = new vsaldo();
-                fsaldo func2 = new fsaldo();
-                
-                dts2.setIdpersona(Integer.parseInt(txtidcliente.getText()));
-                dts2.setIdventa(Integer.parseInt(txtidventa.getText()));
-                dts2.setIdabono(Integer.parseInt(txtidabono.getText()));
-                dts2.setSaldo(Double.parseDouble(txtsaldo.getText()));
-                if(func2.insertar(dts2)){
                     JOptionPane.showMessageDialog(rootPane, "El ingreso del producto fue realizado satisfactoriamente");
                     mostrar("");
-                    inhabilitar();
+                    //inhabilitar();
                 }                
             }
-        }
         else if(accion.equals("editar")){
             dts.setIdproducto(Integer.parseInt(txtidsaldo.getText()));
 
             if(func.editar(dts)){
                 JOptionPane.showMessageDialog(rootPane,"La edicion del producto fue realizado satisfactoriamente");
-                mostrar("");
+                mostrar(idcliente);
                 inhabilitar();
             }
         }
@@ -580,10 +616,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
         // TODO add your handling code here:
         frmvistaventa form = new frmvistaventa();
-        
-        mostrar(idcliente);
         form.toFront();
         form.setVisible(true);
+        
     }//GEN-LAST:event_btnbuscarclienteActionPerformed
 
     private void txtsaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaldoActionPerformed
@@ -600,6 +635,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void tablalistadoventaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoventaMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tablalistadoventaMouseClicked
+
+    private void btnbuscarcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarcActionPerformed
+        // TODO add your handling code here:
+        mostrar(txtidcliente.getText());
+    }//GEN-LAST:event_btnbuscarcActionPerformed
 
     /**
      * @param args the command line arguments
@@ -639,12 +679,14 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btnbuscarc;
     private javax.swing.JButton btnbuscarcliente;
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
+    private javax.swing.JComboBox<String> cbocliente;
     private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -661,7 +703,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lbltotalmedidainventa;
     private javax.swing.JLabel lbltotalregistros;
+    private javax.swing.JLabel lbltotalregistrosinventa;
+    private javax.swing.JLabel lbltotalventainventa;
     private javax.swing.JTable tablalistado;
     private javax.swing.JTable tablalistadoventa;
     private javax.swing.JTextField txtabono;

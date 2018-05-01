@@ -45,11 +45,12 @@ public class fabono {
                 ResultSet rs = st.executeQuery(sSQL);
                 
                 while(rs.next()){
-                    registro[0] = rs.getString("idcliente");
-                    registro[1] = rs.getString("idabono");
+                    
+                    registro[0] = rs.getString("idabono");                    
+                    registro[1] = rs.getString("idcliente");
                     registro[2] = rs.getString("descripcion");
-                    registro[3] = rs.getString("abono");
-                    registro[4] = rs.getString("fechaabono");
+                    registro[3] = rs.getString("fechaabono");
+                    registro[4] = rs.getString("abono");
                     
                     modelo.addRow(registro);
                 }
@@ -62,14 +63,14 @@ public class fabono {
     }
     
     public boolean insertar (vabono dts){
-        sSQL = "insert into abono (idcliente,descripcion, abono, fechaabono)"
+        sSQL = "insert into abono (idcliente,descripcion,fechaabono,abono)"
                 + "values(?,?,?,?)";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setInt(1, dts.getIdcliente());
-            pst.setString(1,dts.getDescripcion());
+            pst.setString(2,dts.getDescripcion());
             pst.setDate(3,dts.getFechaabono());
-            pst.setDouble(2,dts.getAbono());
+            pst.setDouble(4,dts.getAbono());
             
             int n = pst.executeUpdate();
             

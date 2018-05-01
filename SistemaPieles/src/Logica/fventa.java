@@ -22,6 +22,9 @@ public class fventa {
     private conexion mysql = new conexion();
     private Connection cn = mysql.conectar();
     private String sSQL = "";
+    public Integer totalregistros;
+    public Double totalmedida;
+    public Double totalventa;
     
     public DefaultTableModel mostrar(String buscar){
         DefaultTableModel modelo;
@@ -37,7 +40,7 @@ public class fventa {
             "Total Venta",
             "Tipo Pago",
         };
-        
+                
         String [] registro = new String[9];
         
             modelo = new DefaultTableModel(null, titulos);
@@ -63,6 +66,66 @@ public class fventa {
                     registro[6] = rs.getString("totalmedida");
                     registro[7] = rs.getString("totalventa");
                     registro[8] = rs.getString("tipopago");
+                    
+                    modelo.addRow(registro);
+                }
+                return modelo;
+            }catch(Exception e){
+                JOptionPane.showConfirmDialog(null, e);
+                return null;
+            }
+    }
+    
+    public DefaultTableModel mostrarinabono(String buscar){
+        DefaultTableModel modelo;
+        
+        String [] titulos = {
+            "ID venta",//0
+            "ID cliente",//1
+            "Cliente",
+            "ID empleado",
+            "Empleado",
+            "Fecha Venta",
+            "Total Medida",
+            "Total Venta",
+            "Tipo Pago",
+        };
+        
+        String [] registro = new String[9];
+        
+        
+        totalregistros = 0;
+        totalmedida = 0.00;
+        totalventa = 0.00;
+        
+            modelo = new DefaultTableModel(null, titulos);
+            
+            sSQL = "select v.idventa,v.idcliente, "
+                    + "(select nombre from persona where idpersona = v.idcliente) as clienten, "
+                    + "(select apellido from persona where idpersona = v.idcliente) as clineteap, "
+                    + "v.idempleado,(select nombre from persona where idpersona = v.idempleado) as empleadon,"
+                    + "(select apellido from persona where idpersona = v.idempleado) as empleadoap, "
+                    + "v.fechaventa,v.totalmedida,v.totalventa,v.tipopago "
+                    + "from venta v where v.idcliente like '%"
+                    + buscar +"%' order by idventa desc";
+            try{
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sSQL);
+                
+                while(rs.next()){
+                    registro[0] = rs.getString("idventa");
+                    registro[1] = rs.getString("idcliente");
+                    registro[2] = rs.getString("clienten")+" "+rs.getString("clineteap");
+                    registro[3] = rs.getString("idempleado");
+                    registro[4] = rs.getString("empleadon")+" "+rs.getString("empleadoap");
+                    registro[5] = rs.getString("fechaventa");
+                    registro[6] = rs.getString("totalmedida");
+                    registro[7] = rs.getString("totalventa");
+                    registro[8] = rs.getString("tipopago");
+                    
+                    totalregistros = totalregistros+1;
+                    totalmedida = totalmedida+(rs.getDouble("totalmedida"));
+                    totalventa = totalventa+(rs.getDouble("totalventa"));
                     
                     modelo.addRow(registro);
                 }
