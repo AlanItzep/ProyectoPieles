@@ -6,9 +6,8 @@
 package Presentacion;
 
 import Datos.vabono;
-import Datos.vsaldo;
 import Logica.fabono;
-import Logica.fsaldo;
+import Logica.fventa;
 import java.sql.Date;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -25,37 +24,32 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
      */
     public frmsaldoabono() {
         initComponents();
-        mostrar("");
+        mostrar(idcliente);
         this.setTitle("Abonos");
     }
 
     private String accion = "guardar";
+    public static String idcliente ="";
+    
     
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
-        
-        tablalistado.getColumnModel().getColumn(1).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(1).setMinWidth(0);
-        tablalistado.getColumnModel().getColumn(1).setPreferredWidth(0);
-        
-        tablalistado.getColumnModel().getColumn(4).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(4).setMinWidth(0);
-        tablalistado.getColumnModel().getColumn(4).setPreferredWidth(0);
-        
-        tablalistado.getColumnModel().getColumn(8).setMaxWidth(0);
-        tablalistado.getColumnModel().getColumn(8).setMinWidth(0);
-        tablalistado.getColumnModel().getColumn(8).setPreferredWidth(0);
     }
     
     void mostrar(String buscar){
         try{
+            idcliente = txtidcliente.getText();
             DefaultTableModel modelo;
-            fsaldo func = new fsaldo();
+            fventa func = new fventa();
             modelo = func.mostrar(buscar);
+            tablalistadoventa.setModel(modelo);
             
+            fabono func2 = new fabono();
+            modelo = func2.mostrar(buscar);
             tablalistado.setModel(modelo);
+            
             ocultar_columnas();
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
@@ -73,7 +67,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        txtidsaldo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -91,7 +84,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         dcfechaabono = new com.toedter.calendar.JDateChooser();
         txtidabono = new javax.swing.JTextField();
-        txtidventa = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -193,9 +185,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnnuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(btnguardar)
-                        .addGap(52, 52, 52)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(btncancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,32 +209,27 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                             .addComponent(txtabono)
                             .addComponent(txttotalventa)
                             .addComponent(dcfechaabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtidsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtidabono, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtidventa, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtidabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtidsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtidventa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtidabono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txttotalmedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,8 +410,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap(45, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(32, 32, 32)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -593,6 +580,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnbuscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarclienteActionPerformed
         // TODO add your handling code here:
         frmvistaventa form = new frmvistaventa();
+        
+        mostrar(idcliente);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_btnbuscarclienteActionPerformed
@@ -680,8 +669,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtdescripcion;
     private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
-    private javax.swing.JTextField txtidsaldo;
-    public static javax.swing.JTextField txtidventa;
     public static javax.swing.JTextField txtnombrecliente;
     private javax.swing.JTextField txtsaldo;
     public static javax.swing.JTextField txttotalmedida;

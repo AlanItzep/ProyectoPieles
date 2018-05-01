@@ -13,18 +13,20 @@ import java.sql.Date;
  */
 public class vabono {
     private int idabono;
+    private int idcliente;
     private String descripcion;
-    private Double abono;
     private Date fechaabono;
+    private Double abono;
 
     public vabono() {
     }
 
-    public vabono(int idabono, String descripcion, Double abono, Date fechaabono) {
+    public vabono(int idabono, int idcliente, String descripcion, Date fechaabono, Double abono) {
         this.idabono = idabono;
+        this.idcliente = idcliente;
         this.descripcion = descripcion;
-        this.abono = abono;
         this.fechaabono = fechaabono;
+        this.abono = abono;
     }
 
     public int getIdabono() {
@@ -35,6 +37,14 @@ public class vabono {
         this.idabono = idabono;
     }
 
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -43,20 +53,20 @@ public class vabono {
         this.descripcion = descripcion;
     }
 
-    public Double getAbono() {
-        return abono;
-    }
-
-    public void setAbono(Double abono) {
-        this.abono = abono;
-    }
-
     public Date getFechaabono() {
         return fechaabono;
     }
 
     public void setFechaabono(Date fechaabono) {
         this.fechaabono = fechaabono;
+    }
+
+    public Double getAbono() {
+        return abono;
+    }
+
+    public void setAbono(Double abono) {
+        this.abono = abono;
     }
     
     

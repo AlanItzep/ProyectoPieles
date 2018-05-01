@@ -28,15 +28,16 @@ public class fabono {
         
         String [] titulos ={
             "ID abono",
+            "ID Cliente",
             "Descripcion",
-            "Abono",
-            "Fecha Abono"
+            "Fecha Abono",
+            "Abono"            
         };
         
-        String [] registro = new String [4];
+        String [] registro = new String [5];
             
             modelo = new DefaultTableModel(null,titulos);
-            sSQL = "select a.idabono,a.descripcion,a.abono,a.fechaabono "
+            sSQL = "select a.idabono,a.idcliente,a.descripcion,a.fechaabono,a.abono "
                     + "from abono a where a.idabono like'%"
                     + buscar+ "%' order by idabono desc";
             try{
@@ -44,10 +45,11 @@ public class fabono {
                 ResultSet rs = st.executeQuery(sSQL);
                 
                 while(rs.next()){
-                    registro[0] = rs.getString("idabono");
-                    registro[0] = rs.getString("descripcion");
-                    registro[0] = rs.getString("abono");
-                    registro[0] = rs.getString("fechaabono");
+                    registro[0] = rs.getString("idcliente");
+                    registro[1] = rs.getString("idabono");
+                    registro[2] = rs.getString("descripcion");
+                    registro[3] = rs.getString("abono");
+                    registro[4] = rs.getString("fechaabono");
                     
                     modelo.addRow(registro);
                 }
@@ -60,13 +62,14 @@ public class fabono {
     }
     
     public boolean insertar (vabono dts){
-        sSQL = "insert into abono (descripcion, abono, fechaabono)"
-                + "values(?,?,?)";
+        sSQL = "insert into abono (idcliente,descripcion, abono, fechaabono)"
+                + "values(?,?,?,?)";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
+            pst.setInt(1, dts.getIdcliente());
             pst.setString(1,dts.getDescripcion());
-            pst.setDouble(2,dts.getAbono());
             pst.setDate(3,dts.getFechaabono());
+            pst.setDouble(2,dts.getAbono());
             
             int n = pst.executeUpdate();
             
@@ -83,15 +86,16 @@ public class fabono {
     }
     
     public boolean editar(vabono dts){
-        sSQL = "update abono set descripcion=?, abono=?, fechaabono=? "
+        sSQL = "update abono set idcliente=?,descripcion=?, fechaabono=?,abono=?  "
                 + "where idabono = ?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setString(1,dts.getDescripcion());
-            pst.setDouble(2,dts.getAbono());
+            pst.setInt(2,dts.getIdcliente());
             pst.setDate(3,dts.getFechaabono());
+            pst.setDouble(4,dts.getAbono());
             
-            pst.setInt(4,dts.getIdabono());
+            pst.setInt(5,dts.getIdabono());
             
             int n = pst.executeUpdate();
             

@@ -199,18 +199,12 @@ public class frmvistaventa extends javax.swing.JFrame {
 
             int fila = tablalistado.getSelectedRow();
 
-            String id,codcliente, valor1,medida,venta;
-            id = tablalistado.getValueAt(fila, 0).toString();
+            String codcliente, valor1;
             codcliente = tablalistado.getValueAt(fila, 1).toString();
             valor1 = tablalistado.getValueAt(fila,2).toString();
-            medida = tablalistado.getValueAt(fila,6).toString();
-            venta = tablalistado.getValueAt(fila,7).toString();
 
-            frmsaldoabono.txtidventa.setText(id);
             frmsaldoabono.txtidcliente.setText(codcliente);
             frmsaldoabono.txtnombrecliente.setText(valor1);
-            frmsaldoabono.txttotalmedida.setText(medida);
-            frmsaldoabono.txttotalventa.setText(venta);
             this.dispose();
         }
     }//GEN-LAST:event_tablalistadoMousePressed

@@ -995,7 +995,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtnombreproducto.setText(tablalistado.getValueAt(fila,3).toString());
         txtprecioventa.setText(tablalistado.getValueAt(fila,4).toString());
         txtmedida.setText(tablalistado.getValueAt(fila,5).toString());
-            txtsubtotal.setText(tablalistado.getValueAt(fila,6).toString());
+        txtsubtotal.setText(tablalistado.getValueAt(fila,6).toString());
         
     }//GEN-LAST:event_tablalistadoMousePressed
 
