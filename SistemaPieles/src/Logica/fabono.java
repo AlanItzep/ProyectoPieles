@@ -22,6 +22,7 @@ public class fabono {
     private Connection cn = mysql.conectar();
     private String sSQL = "";
     public Integer totalregistros;
+    public Double totalabonos;
     
     public DefaultTableModel mostrar(String buscar){
         DefaultTableModel modelo;
@@ -35,10 +36,13 @@ public class fabono {
         };
         
         String [] registro = new String [5];
+        
+        totalregistros = 0;
+        totalabonos = 0.00;
             
             modelo = new DefaultTableModel(null,titulos);
             sSQL = "select a.idabono,a.idcliente,a.descripcion,a.fechaabono,a.abono "
-                    + "from abono a where a.idabono like'%"
+                    + "from abono a where a.idcliente like'%"
                     + buscar+ "%' order by idabono desc";
             try{
                 Statement st = cn.createStatement();
@@ -51,6 +55,9 @@ public class fabono {
                     registro[2] = rs.getString("descripcion");
                     registro[3] = rs.getString("fechaabono");
                     registro[4] = rs.getString("abono");
+                    
+                    totalregistros = totalregistros+1;
+                    totalabonos = totalabonos + (rs.getDouble("abono"));
                     
                     modelo.addRow(registro);
                 }
@@ -91,8 +98,8 @@ public class fabono {
                 + "where idabono = ?";
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);
-            pst.setString(1,dts.getDescripcion());
-            pst.setInt(2,dts.getIdcliente());
+            pst.setInt(1,dts.getIdcliente());
+            pst.setString(2,dts.getDescripcion());
             pst.setDate(3,dts.getFechaabono());
             pst.setDouble(4,dts.getAbono());
             
@@ -112,7 +119,7 @@ public class fabono {
     }
     
     public boolean eliminar(vabono dts){
-        sSQL = "delete form abono where idabono = ?";
+        sSQL = "delete from abono where idabono = ?";
         
         try{
             PreparedStatement pst = cn.prepareStatement(sSQL);

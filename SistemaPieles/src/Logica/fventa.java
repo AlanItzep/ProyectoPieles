@@ -83,12 +83,12 @@ public class fventa {
             "ID venta",//0
             "ID cliente",//1
             "Cliente",
-            "ID empleado",
-            "Empleado",
-            "Fecha Venta",
-            "Total Medida",
-            "Total Venta",
-            "Tipo Pago",
+            "ID empleado",//3
+            "Empleado",//4
+            "Fecha Venta",//x5
+            "Total Medida",//6
+            "Total Venta",//7
+            "Tipo Pago",//8
         };
         
         String [] registro = new String[9];

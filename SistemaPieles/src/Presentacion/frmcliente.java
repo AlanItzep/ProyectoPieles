@@ -449,7 +449,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
 
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showConfirmDialog(rootPane, "El ingreso de cliente fue satisfactorio");
+                JOptionPane.showMessageDialog(rootPane, "El ingreso de cliente fue satisfactorio");
                 mostrar("");
                 inhabilitar();
             }
