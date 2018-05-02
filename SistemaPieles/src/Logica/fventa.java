@@ -135,7 +135,7 @@ public class fventa {
                 return null;
             }
     }
-    
+        
     public boolean insertar(vventa dts){
         sSQL = "insert into venta(idcliente, idempleado,fechaventa,totalmedida,totalventa,tipopago) "
                 + "values(?,?,?,?,?,?)";

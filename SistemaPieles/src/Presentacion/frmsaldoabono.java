@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.vabono;
 import Logica.fabono;
+import Logica.fcliente;
 import Logica.fventa;
 import java.sql.Date;
 import java.util.Calendar;
@@ -185,6 +186,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             txtsaldo.setText(resultado.toString());
             
             ocultar_columnas();
+            
+            fcliente func3 = new fcliente();
+            func3.cargarclientes();
+            
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
         }
@@ -237,6 +242,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalregistrosinventa = new javax.swing.JLabel();
         lbltotalmedidainventa = new javax.swing.JLabel();
         lbltotalventainventa = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -388,10 +394,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                     .addComponent(txtsaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnnuevo)
-                    .addComponent(btncancelar)
-                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnguardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnnuevo)
+                        .addComponent(btncancelar)))
                 .addContainerGap())
         );
 
@@ -521,22 +528,23 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(8, 8, 8)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
                         .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnfiltrar)
-                        .addGap(52, 52, 52)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
                         .addComponent(lbltotalmedidainventa)
                         .addGap(146, 146, 146)
                         .addComponent(lbltotalventainventa)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(315, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -554,7 +562,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnbuscarcliente)
                         .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnfiltrar)))
+                        .addComponent(btnfiltrar)
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistrosinventa)
@@ -793,7 +802,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    private javax.swing.JComboBox<String> cbocliente;
+    public static javax.swing.JComboBox<String> cbocliente;
     private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -818,6 +827,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablalistadoventa;
     private javax.swing.JTextField txtabono;
     private javax.swing.JTextArea txtdescripcion;
+    public static javax.swing.JTextField txtid;
     private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
     public static javax.swing.JTextField txtnombrecliente;

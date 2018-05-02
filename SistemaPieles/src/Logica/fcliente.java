@@ -6,6 +6,8 @@
 package Logica;
 
 import Datos.vcliente;
+import static Presentacion.frmsaldoabono.cbocliente;
+import static Presentacion.frmsaldoabono.txtid;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +70,29 @@ public class fcliente {
                 JOptionPane.showConfirmDialog(null, e);
                 return null;
             }
+    }
+    
+    public void cargarclientes(){
+        String registro;
+        String id="";
+        
+        sSQL = "select p.idpersona,p.nombre, p.apellido from persona p inner join cliente c on p.idpersona = c.idpersona order by p.idpersona desc ";
+        try{
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            
+            cbocliente.removeAllItems();
+            
+            while(rs.next()){
+                id=rs.getString(1);
+                registro = rs.getString(2)+" "+rs.getString(3);
+                txtid.setText(id);
+                cbocliente.addItem(registro);
+                
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
     
     public boolean insertar(vcliente dts){

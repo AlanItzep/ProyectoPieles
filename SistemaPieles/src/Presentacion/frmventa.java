@@ -768,7 +768,7 @@ public class frmventa extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "La venta "+txtnombreproducto.getText()+" del cliente "
                 +txtnombrecliente.getText() +" fue registrado satisfactoriamente");
                 mostrar(idventa);
-                inhRegVen_habInPro();
+                habilitarproducto();
             }
         }
         else if(accion.equals("editar")){
@@ -778,7 +778,7 @@ public class frmventa extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "El detalle del cliente "+txtnombrecliente.getText()
                         +" fue modificado satisfactoriamente");
                 mostrar(idventa);
-                inhRegVen_habInPro();
+                habilitarproducto();
             }
         }
 
