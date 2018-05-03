@@ -74,9 +74,9 @@ public class fcliente {
     
     public void cargarclientes(){
         String registro;
-        String id="";
-        
-        sSQL = "select p.idpersona,p.nombre, p.apellido from persona p inner join cliente c on p.idpersona = c.idpersona order by p.idpersona desc ";
+        String id;
+        sSQL = "select p.idpersona, p.nombre, p.apellido from persona p "
+                + "inner join cliente c on p.idpersona = c.idpersona ";
         try{
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
@@ -84,17 +84,35 @@ public class fcliente {
             cbocliente.removeAllItems();
             
             while(rs.next()){
-                id=rs.getString(1);
-                registro = rs.getString(2)+" "+rs.getString(3);
-                txtid.setText(id);
-                cbocliente.addItem(registro);
                 
+                id = rs.getString(1);
+                registro = rs.getString(2)+" "+rs.getString(3);
+                
+                cbocliente.addItem(id+registro);
+                                
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
     }
     
+    public void cargaridclientes(String buscar){
+        String id;
+        sSQL = "select p.idpersona from persona p inner join cliente c "
+                + "on p.idpersona = c.idpersona where p.nombre like'%"
+                + buscar+"%'";
+        try{
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+            
+            while(rs.next()){
+                id=rs.getString(1);
+                txtid.setText(id);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
     public boolean insertar(vcliente dts){
         sSQL = "insert into persona (nombre, apellido,telefono,email,direccion)"
                 + " values(?,?,?,?,?)";

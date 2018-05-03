@@ -189,7 +189,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             
             fcliente func3 = new fcliente();
             func3.cargarclientes();
-            
+            func3.cargaridclientes(buscar);
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
         }
@@ -502,6 +502,11 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         });
 
         cbocliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbocliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboclienteMouseClicked(evt);
+            }
+        });
 
         btnfiltrar.setText("Filtrar");
         btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
@@ -754,9 +759,17 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
         // TODO add your handling code here:
         idcliente = txtidcliente.getText();
+        //int seleccionado = cbocliente.getSelectedIndex();
+        //mostrar(cbocliente.getItemAt(seleccionado));
         mostrar(idcliente);
         habilitar();
     }//GEN-LAST:event_btnfiltrarActionPerformed
+
+    private void cboclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboclienteMouseClicked
+        // TODO add your handling code here:
+        
+        txtnombrecliente.setText(cbocliente.getSelectedItem().toString());
+    }//GEN-LAST:event_cboclienteMouseClicked
 
     /**
      * @param args the command line arguments
