@@ -186,10 +186,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             txtsaldo.setText(resultado.toString());
             
             ocultar_columnas();
-            
+            /**
             fcliente func3 = new fcliente();
             func3.cargarclientes();
-            func3.cargaridclientes(buscar);
+            func3.cargaridclientes(buscar);**/
         }catch(Exception e){
             JOptionPane.showConfirmDialog(rootPane,e);
         }
@@ -237,12 +237,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         txtidcliente = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnbuscarcliente = new javax.swing.JButton();
-        cbocliente = new javax.swing.JComboBox<>();
         btnfiltrar = new javax.swing.JButton();
         lbltotalregistrosinventa = new javax.swing.JLabel();
         lbltotalmedidainventa = new javax.swing.JLabel();
         lbltotalventainventa = new javax.swing.JLabel();
-        txtid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -501,13 +499,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
             }
         });
 
-        cbocliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbocliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cboclienteMouseClicked(evt);
-            }
-        });
-
         btnfiltrar.setText("Filtrar");
         btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,10 +532,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(btnbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnfiltrar)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(190, 190, 190))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lbltotalmedidainventa)
                         .addGap(146, 146, 146)
@@ -566,9 +554,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                         .addComponent(txtnombrecliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnbuscarcliente)
-                        .addComponent(cbocliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnfiltrar)
-                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnfiltrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistrosinventa)
@@ -765,12 +751,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         habilitar();
     }//GEN-LAST:event_btnfiltrarActionPerformed
 
-    private void cboclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboclienteMouseClicked
-        // TODO add your handling code here:
-        
-        txtnombrecliente.setText(cbocliente.getSelectedItem().toString());
-    }//GEN-LAST:event_cboclienteMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -815,7 +795,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
-    public static javax.swing.JComboBox<String> cbocliente;
     private com.toedter.calendar.JDateChooser dcfechaabono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -840,7 +819,6 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JTable tablalistadoventa;
     private javax.swing.JTextField txtabono;
     private javax.swing.JTextArea txtdescripcion;
-    public static javax.swing.JTextField txtid;
     private javax.swing.JTextField txtidabono;
     public static javax.swing.JTextField txtidcliente;
     public static javax.swing.JTextField txtnombrecliente;

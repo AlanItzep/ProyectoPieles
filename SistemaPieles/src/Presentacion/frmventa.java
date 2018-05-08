@@ -816,6 +816,7 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     private void btnbuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarproductoActionPerformed
         // TODO add your handling code here:
+        frmvistaproducto.clave = "venta";
         frmvistaproducto form = new frmvistaproducto();
         form.toFront();
         form.setVisible(true);

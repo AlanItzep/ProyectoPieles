@@ -5,8 +5,7 @@
  */
 package Presentacion;
 
-import Logica.fproducto;
-import java.awt.Toolkit;
+import Logica.fempleado;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,30 +13,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SONY
  */
-public class frmvistaproducto extends javax.swing.JFrame {
+public class frmvistaempleado extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmvistaproducto
+     * Creates new form frmvistaempleado
      */
-    public frmvistaproducto() {
+    public frmvistaempleado() {
         initComponents();
         mostrar("");
         this.setLocationRelativeTo(null);
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Files/devices1_78351.png")));
+        
     }
-
-    public static String clave;
-    
     void ocultar_columnas(){
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
         tablalistado.getColumnModel().getColumn(0).setMinWidth(0);
         tablalistado.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-    
+
     void mostrar(String buscar){
         try{
             DefaultTableModel modelo;
-            fproducto func = new fproducto();
+            fempleado func = new fempleado();
             modelo = func.mostrar(buscar);
             
             tablalistado.setModel(modelo);
@@ -48,6 +44,7 @@ public class frmvistaproducto extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane,e);
         }
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,7 +65,7 @@ public class frmvistaproducto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de productos"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de empleados"));
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,7 +110,6 @@ public class frmvistaproducto extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
@@ -127,6 +123,7 @@ public class frmvistaproducto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane2)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +140,10 @@ public class frmvistaproducto extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnsalir)
                             .addComponent(btnbuscar))))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(lbltotalregistros)
-                .addContainerGap())
+                .addComponent(lbltotalregistros))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,8 +172,24 @@ public class frmvistaproducto extends javax.swing.JFrame {
 
     private void tablalistadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_tablalistadoMouseClicked
+
+    private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            int fila = tablalistado.getSelectedRow();
+
+            String cod, valor1;
+            cod = tablalistado.getValueAt(fila, 0).toString();
+            valor1 = tablalistado.getValueAt(fila,3).toString();
+
+            frminventario.txtidempleado.setText(cod);
+            frminventario.txtnombreempleado.setText(valor1);
+
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_tablalistadoMousePressed
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
@@ -187,32 +200,6 @@ public class frmvistaproducto extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
-
-    private void tablalistadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablalistadoMousePressed
-        // TODO add your handling code here:
-        if(evt.getClickCount()==2){
-            int fila = tablalistado.getSelectedRow();
-            
-            String cod, valor1, valor2;
-            cod = tablalistado.getValueAt(fila, 0).toString();
-            valor1 = tablalistado.getValueAt(fila,1).toString();
-            valor2 = tablalistado.getValueAt(fila, 3).toString();
-            if(clave == "venta"){
-                frmventa.txtidproducto.setText(cod);
-                frmventa.txtnombreproducto.setText(valor1);
-                frmventa.txtprecioventa.setText(valor2);
-                clave = "";
-            }
-            if(clave =="inventario"){
-                frminventario.txtidproducto.setText(cod);
-                frminventario.txtnombreproducto.setText(valor1);
-                clave = "";
-            }
-            
-            this.dispose();
-        }
-        
-    }//GEN-LAST:event_tablalistadoMousePressed
 
     /**
      * @param args the command line arguments
@@ -231,20 +218,20 @@ public class frmvistaproducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmvistaproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmvistaproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmvistaproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmvistaproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmvistaempleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmvistaproducto().setVisible(true);
+                new frmvistaempleado().setVisible(true);
             }
         });
     }

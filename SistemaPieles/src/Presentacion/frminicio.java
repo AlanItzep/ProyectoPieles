@@ -48,6 +48,7 @@ public class frminicio extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mnuayuda = new javax.swing.JMenu();
@@ -153,6 +154,14 @@ public class frminicio extends javax.swing.JFrame {
         });
         mnuconsultas.add(jMenuItem6);
 
+        jMenuItem2.setText("Inventario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem2);
+
         menuBar.add(mnuconsultas);
 
         mnuconfiguraciones.setText("Configuraciones");
@@ -236,6 +245,14 @@ public class frminicio extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        frminventario form = new frminventario();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +297,7 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     public static javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

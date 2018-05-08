@@ -13,6 +13,7 @@ public class vpersona {
     private int idpersona;
     private String nombre;
     private String apellido;
+    private String completo;
     private String telefono;
     private String email;
     private String direccion;
@@ -20,10 +21,11 @@ public class vpersona {
     public vpersona() {
     }
 
-    public vpersona(int idpersona, String nombre, String apellido, String telefono, String email, String direccion) {
+    public vpersona(int idpersona, String nombre, String apellido, String completo, String telefono, String email, String direccion) {
         this.idpersona = idpersona;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.completo = completo;
         this.telefono = telefono;
         this.email = email;
         this.direccion = direccion;
@@ -53,6 +55,14 @@ public class vpersona {
         this.apellido = apellido;
     }
 
+    public String getCompleto() {
+        return completo;
+    }
+
+    public void setCompleto(String completo) {
+        this.completo = completo;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -75,5 +85,7 @@ public class vpersona {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }    
+    }
+
+    
 }

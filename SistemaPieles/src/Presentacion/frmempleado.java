@@ -494,8 +494,8 @@ public class frmempleado extends javax.swing.JFrame {
         fempleado func = new fempleado();
 
         dts.setNombre(txtnombre.getText());
-
         dts.setApellido(txtapellido.getText());
+        dts.setCompleto(txtnombre.getText()+" "+txtapellido.getText());
         dts.setTelefono(txttelefono.getText());
         dts.setEmail(txtemail.getText());
         dts.setDireccion(txtdireccion.getText());
@@ -508,7 +508,7 @@ public class frmempleado extends javax.swing.JFrame {
 
         if (accion.equals("guardar")) {
             if (func.insertar(dts)) {
-                JOptionPane.showConfirmDialog(rootPane, "El ingreso de empleado fue satisfactorio");
+                JOptionPane.showMessageDialog(rootPane, "El ingreso de empleado fue satisfactorio");
                 mostrar("");
                 inhabilitar();
             }

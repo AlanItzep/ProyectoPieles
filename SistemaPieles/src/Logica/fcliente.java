@@ -6,8 +6,8 @@
 package Logica;
 
 import Datos.vcliente;
-import static Presentacion.frmsaldoabono.cbocliente;
-import static Presentacion.frmsaldoabono.txtid;
+import static Presentacion.Pruebas.cbocliente;
+import static Presentacion.Pruebas.txtid;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,18 +34,19 @@ public class fcliente {
             "ID",
             "Nombre",
             "Apellido",
+            "Completo",
             "Telefono",
             "Email",
             "Direccion",
             "Nit"   
         };
         
-        String [] registro = new String[7];
+        String [] registro = new String[8];
         
             totalregistros = 0;
             modelo = new DefaultTableModel(null,titulos);
             
-            sSQL = "select p.idpersona, p.nombre, p.apellido, p.telefono, p.email, p.direccion,"
+            sSQL = "select p.idpersona, p.nombre, p.apellido, p.completo, p.telefono, p.email, p.direccion,"
                     + "c.nit from persona p inner join cliente c "
                     + "on p.idpersona = c.idpersona where nombre like '%"
                     + buscar +"%' order by idpersona desc";
@@ -57,10 +58,11 @@ public class fcliente {
                     registro[0] = rs.getString("idpersona");
                     registro[1] = rs.getString("nombre");
                     registro[2] = rs.getString("apellido");
-                    registro[3] = rs.getString("telefono");
-                    registro[4] = rs.getString("email");
-                    registro[5] = rs.getString("direccion");
-                    registro[6] = rs.getString("nit");
+                    registro[3] = rs.getString("completo");
+                    registro[4] = rs.getString("telefono");
+                    registro[5] = rs.getString("email");
+                    registro[6] = rs.getString("direccion");
+                    registro[7] = rs.getString("nit");
                     
                     totalregistros = totalregistros +1;
                     modelo.addRow(registro);
@@ -74,8 +76,7 @@ public class fcliente {
     
     public void cargarclientes(){
         String registro;
-        String id;
-        sSQL = "select p.idpersona, p.nombre, p.apellido from persona p "
+        sSQL = "select p.nombre, p.apellido from persona p "
                 + "inner join cliente c on p.idpersona = c.idpersona ";
         try{
             Statement st = cn.createStatement();
@@ -84,12 +85,9 @@ public class fcliente {
             cbocliente.removeAllItems();
             
             while(rs.next()){
+                registro = rs.getString(1)+rs.getString(2);
                 
-                id = rs.getString(1);
-                registro = rs.getString(2)+" "+rs.getString(3);
-                
-                cbocliente.addItem(id+registro);
-                                
+                cbocliente.addItem(registro);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -99,7 +97,7 @@ public class fcliente {
     public void cargaridclientes(String buscar){
         String id;
         sSQL = "select p.idpersona from persona p inner join cliente c "
-                + "on p.idpersona = c.idpersona where p.nombre like'%"
+                + "on p.idpersona = c.idpersona where (p.nombre, p.apellido) like'%"
                 + buscar+"%'";
         try{
             Statement st = cn.createStatement();
@@ -113,8 +111,19 @@ public class fcliente {
             JOptionPane.showMessageDialog(null,e);
         }
     }
+    
+    public void consultartablas(String buscar){
+        sSQL = "";
+        try{
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     public boolean insertar(vcliente dts){
-        sSQL = "insert into persona (nombre, apellido,telefono,email,direccion)"
+        sSQL = "insert into persona (nombre, apellido,completo,telefono,email,direccion)"
                 + " values(?,?,?,?,?)";
         
         sSQL2 = "insert into cliente (idpersona, nit) "
@@ -126,6 +135,7 @@ public class fcliente {
             
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getApellido());
+            pst.setString(3, dts.getCompleto());
             pst.setString(3, dts.getTelefono());
             pst.setString(4, dts.getEmail());
             pst.setString(5, dts.getDireccion());
@@ -153,7 +163,7 @@ public class fcliente {
     }
     
     public boolean editar(vcliente dts){
-        sSQL = "update persona set nombre=?,apellido=?,telefono=?,email=?,direccion=?"
+        sSQL = "update persona set nombre=?,apellido=?,completo=?,telefono=?,email=?,direccion=?"
                 + "where idpersona=?";
         
         sSQL2 = "update cliente set nit=? "
@@ -165,10 +175,11 @@ public class fcliente {
             
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getApellido());
-            pst.setString(3, dts.getTelefono());
-            pst.setString(4, dts.getEmail());
-            pst.setString(5, dts.getDireccion());
-            pst.setInt(6, dts.getIdpersona());
+            pst.setString(3, dts.getCompleto());
+            pst.setString(4, dts.getTelefono());
+            pst.setString(5, dts.getEmail());
+            pst.setString(6, dts.getDireccion());
+            pst.setInt(7, dts.getIdpersona());
             
             pst2.setString(1, dts.getNit());
             pst2.setInt(2, dts.getIdpersona());

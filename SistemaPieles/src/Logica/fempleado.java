@@ -26,9 +26,11 @@ public class fempleado {
     
     public DefaultTableModel mostrar (String buscar){
         DefaultTableModel modelo;
-        String[] titulos = {"ID",
+        String[] titulos = {
+                 "ID",
                  "Nombre",
                  "Apellido",
+                 "Completo",
                  "Telefono",
                  "Email",
                  "Direccion",
@@ -36,12 +38,12 @@ public class fempleado {
                  "Login",
                  "Clave",
                  "Estado"};
-        String [] registro = new String [10];
+        String [] registro = new String [11];
         
             totalregistros = 0;
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select p.idpersona, p.nombre, p.apellido, p.telefono, p.email, p.direccion, "
+            sSQL = "select p.idpersona, p.nombre, p.apellido,p.completo, p.telefono, p.email, p.direccion, "
                     + "e.acceso, e.login, e.password, e.estado from persona p inner join empleado e "
                     + "on p.idpersona = e.idpersona where nombre like '%"
                     + buscar + "%' order by idpersona desc";
@@ -53,13 +55,14 @@ public class fempleado {
                     registro[0] = rs.getString("idpersona");
                     registro[1] = rs.getString("nombre");
                     registro[2] = rs.getString("apellido");
-                    registro[3] = rs.getString("telefono");
-                    registro[4] = rs.getString("email");
-                    registro[5] = rs.getString("direccion");
-                    registro[6] = rs.getString("acceso");
-                    registro[7] = rs.getString("login");
-                    registro[8] = rs.getString("password");
-                    registro[9] = rs.getString("estado");
+                    registro[3] = rs.getString("completo");
+                    registro[4] = rs.getString("telefono");
+                    registro[5] = rs.getString("email");
+                    registro[6] = rs.getString("direccion");
+                    registro[7] = rs.getString("acceso");
+                    registro[8] = rs.getString("login");
+                    registro[9] = rs.getString("password");
+                    registro[10] = rs.getString("estado");
                     
                     totalregistros = totalregistros + 1;
                     modelo.addRow(registro);
@@ -72,8 +75,8 @@ public class fempleado {
     }
     
     public boolean insertar (vempleado dts){
-        sSQL = "insert into persona (nombre,apellido,telefono,email,direccion)"
-                + "values(?,?,?,?,?)";
+        sSQL = "insert into persona (nombre,apellido,completo,telefono,email,direccion)"
+                + "values(?,?,?,?,?,?)";
         sSQL2 = "insert into empleado (idpersona,acceso,login,password,estado) "
                 + "values ((select idpersona from persona order by idpersona desc limit 1),?,?,?,?)";
         
@@ -83,9 +86,10 @@ public class fempleado {
             
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getApellido());
-            pst.setString(3, dts.getTelefono());
-            pst.setString(4, dts.getEmail());
-            pst.setString(5, dts.getDireccion());
+            pst.setString(3, dts.getCompleto());
+            pst.setString(4, dts.getTelefono());
+            pst.setString(5, dts.getEmail());
+            pst.setString(6, dts.getDireccion());
             
             pst2.setString(1, dts.getAcceso());
             pst2.setString(2, dts.getLogin());
@@ -113,7 +117,7 @@ public class fempleado {
     
     
     public boolean editar(vempleado dts){
-        sSQL = "update persona set nombre = ?,apellido = ?,telefono = ?,email = ?,direccion = ? "
+        sSQL = "update persona set nombre = ?,apellido = ?,completo = ?,telefono = ?,email = ?,direccion = ? "
                 + "where idpersona  = ?";
         
         sSQL2 = "update empleado set acceso = ?,login = ?,password = ?,estado = ? "
@@ -124,10 +128,11 @@ public class fempleado {
             
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getApellido());
-            pst.setString(3, dts.getTelefono());
-            pst.setString(4, dts.getEmail());
-            pst.setString(5, dts.getDireccion());
-            pst.setInt(6, dts.getIdpersona());
+            pst.setString(3, dts.getCompleto());
+            pst.setString(4, dts.getTelefono());
+            pst.setString(5, dts.getEmail());
+            pst.setString(6, dts.getDireccion());
+            pst.setInt(7, dts.getIdpersona());
             
             pst2.setString(1, dts.getAcceso());
             pst2.setString(2, dts.getLogin());
@@ -189,19 +194,20 @@ public class fempleado {
     public DefaultTableModel login(String login, String password){
         DefaultTableModel modelo;
         
-        String [] titulos = {"ID",
+        String [] titulos = {
+                 "ID",
                  "Nombre",
                  "Apellido",
                  "Acceso",
                  "Login",
                  "Clave",
                  "Estado"};
-        String [] registro = new String[8];
+        String [] registro = new String[7];
         
             totalregistros = 0;
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select p.idpersona, p.nombre, p.apellido,"
+            sSQL = "select p.idpersona, p.nombre, p.apellido, "
                     + "e.acceso,e.login,e.password,e.estado from persona p inner join empleado e "
                     + "on p.idpersona = e.idpersona where e.login = '"
                     + login +"' and e.password = '"+ password +"' and e.estado = 'A'"; 
