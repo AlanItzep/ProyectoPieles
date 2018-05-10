@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fventa.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmcliente.java</file>
             <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmventa.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/Pruebas.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmvistaproducto.java</file>
             <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fcliente.java</file>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmsaldoabono.java</file>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fabono.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmempleado.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/finventario.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fempleado.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frminventario.java</file>
         </group>
     </open-files>
 </project-private>

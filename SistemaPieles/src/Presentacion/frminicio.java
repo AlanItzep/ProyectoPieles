@@ -49,6 +49,7 @@ public class frminicio extends javax.swing.JFrame {
         mnuconsultas = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mnuayuda = new javax.swing.JMenu();
@@ -162,6 +163,14 @@ public class frminicio extends javax.swing.JFrame {
         });
         mnuconsultas.add(jMenuItem2);
 
+        jMenuItem7.setText("Reportes");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        mnuconsultas.add(jMenuItem7);
+
         menuBar.add(mnuconsultas);
 
         mnuconfiguraciones.setText("Configuraciones");
@@ -253,6 +262,14 @@ public class frminicio extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        frmreportes form = new frmreportes();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -302,6 +319,7 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     public static javax.swing.JLabel lblacceso;
     public static javax.swing.JLabel lblapellido;
     public static javax.swing.JLabel lblidpersona;

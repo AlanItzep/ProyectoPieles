@@ -124,7 +124,7 @@ public class fcliente {
     
     public boolean insertar(vcliente dts){
         sSQL = "insert into persona (nombre, apellido,completo,telefono,email,direccion)"
-                + " values(?,?,?,?,?)";
+                + " values(?,?,?,?,?,?)";
         
         sSQL2 = "insert into cliente (idpersona, nit) "
                 + "values((select idpersona from persona order by idpersona desc limit 1), ?)";
@@ -136,9 +136,9 @@ public class fcliente {
             pst.setString(1, dts.getNombre());
             pst.setString(2, dts.getApellido());
             pst.setString(3, dts.getCompleto());
-            pst.setString(3, dts.getTelefono());
-            pst.setString(4, dts.getEmail());
-            pst.setString(5, dts.getDireccion());
+            pst.setString(4, dts.getTelefono());
+            pst.setString(5, dts.getEmail());
+            pst.setString(6, dts.getDireccion());
             
             pst2.setString(1, dts.getNit());
             

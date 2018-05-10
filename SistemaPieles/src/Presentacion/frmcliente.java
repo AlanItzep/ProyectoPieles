@@ -6,10 +6,19 @@
 package Presentacion;
 
 import Datos.vcliente;
+import Logica.conexion;
 import Logica.fcliente;
-import Logica.fempleado;
+import java.io.File;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -131,6 +140,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
         btneliminar = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
+        btnreporte = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -312,6 +322,13 @@ public class frmcliente extends javax.swing.JInternalFrame {
 
         lbltotalregistros.setText("jLabel7");
 
+        btnreporte.setText("Reporte");
+        btnreporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -329,7 +346,8 @@ public class frmcliente extends javax.swing.JInternalFrame {
                 .addComponent(btnsalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnreporte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2)
         );
@@ -347,8 +365,10 @@ public class frmcliente extends javax.swing.JInternalFrame {
                         .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(lbltotalregistros)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltotalregistros)
+                    .addComponent(btnreporte))
                 .addContainerGap())
         );
 
@@ -442,6 +462,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
 
         dts.setNombre(txtnombre.getText());
         dts.setApellido(txtapellido.getText());
+        dts.setCompleto(txtnombre.getText()+" "+txtapellido.getText());
         dts.setTelefono(txttelefono.getText());
         dts.setEmail(txtemail.getText());
         dts.setDireccion(txtdireccion.getText());
@@ -520,6 +541,28 @@ public class frmcliente extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_btnsalirActionPerformed
 
+    private Connection connection = new conexion().conectar();
+    
+    private void btnreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreporteActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        JasperReport report;
+        JasperPrint print;
+        
+        try{
+            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()+
+                    "/src/Reportes/reporteClientes.jrxml");
+            print = JasperFillManager.fillReport(report,p,connection);
+            
+            JasperViewer view = new JasperViewer(print, false);
+            view.setTitle("Reporte de Clientes");
+            view.setVisible(true);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnreporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,6 +604,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton btneliminar;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton btnnuevo;
+    private javax.swing.JButton btnreporte;
     private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
