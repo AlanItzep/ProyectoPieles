@@ -43,6 +43,7 @@ public class fventa {
                 
         String [] registro = new String[9];
         
+        totalventa = 0.00;
             modelo = new DefaultTableModel(null, titulos);
             
             sSQL = "select v.idventa,v.idcliente, "
@@ -67,6 +68,7 @@ public class fventa {
                     registro[7] = rs.getString("totalventa");
                     registro[8] = rs.getString("tipopago");
                     
+                    totalventa = totalventa +(rs.getDouble("totalventa"));
                     modelo.addRow(registro);
                 }
                 return modelo;
