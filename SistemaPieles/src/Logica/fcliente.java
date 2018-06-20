@@ -6,8 +6,8 @@
 package Logica;
 
 import Datos.vcliente;
-import static Presentacion.Pruebas.cbocliente;
-import static Presentacion.Pruebas.txtid;
+import static Presentacion.frmreportes.cbochoseclientes;
+import static Presentacion.frmreportes.txtidcliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,18 +76,18 @@ public class fcliente {
     
     public void cargarclientes(){
         String registro;
-        sSQL = "select p.nombre, p.apellido from persona p "
+        sSQL = "select p.completo from persona p "
                 + "inner join cliente c on p.idpersona = c.idpersona ";
         try{
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
             
-            cbocliente.removeAllItems();
+            cbochoseclientes.removeAllItems();
             
             while(rs.next()){
-                registro = rs.getString(1)+rs.getString(2);
+                registro = rs.getString(1);
                 
-                cbocliente.addItem(registro);
+                cbochoseclientes.addItem(registro);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -96,19 +96,17 @@ public class fcliente {
     
     public void cargaridclientes(String buscar){
         String id;
-        sSQL = "select p.idpersona from persona p inner join cliente c "
-                + "on p.idpersona = c.idpersona where (p.nombre, p.apellido) like'%"
-                + buscar+"%'";
-        try{
+        sSQL = "select p.idpersona from persona p inner join cliente c on p.idpersona = c.idpersona where completo like '%" + buscar + "%'";
+        try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
-            
-            while(rs.next()){
-                id=rs.getString(1);
-                txtid.setText(id);
+
+            while (rs.next()) {
+                id = rs.getString(1);
+                txtidcliente.setText(id);
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     

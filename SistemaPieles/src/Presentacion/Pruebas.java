@@ -74,6 +74,11 @@ public final class Pruebas extends javax.swing.JFrame {
         });
 
         btnfiltrar.setText("Filtrar");
+        btnfiltrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnfiltrarActionPerformed(evt);
+            }
+        });
 
         tablafiltrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,6 +141,10 @@ public final class Pruebas extends javax.swing.JFrame {
         // TODO add your handling code here:
         mostrarid(cbocliente.getSelectedItem().toString());
     }//GEN-LAST:event_cboclienteMouseReleased
+
+    private void btnfiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfiltrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnfiltrarActionPerformed
 
     /**
      * @param args the command line arguments

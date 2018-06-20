@@ -120,9 +120,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
+        setFrameIcon(null);
+        setVisible(true);
 
         jLabel1.setText("Procucto");
 

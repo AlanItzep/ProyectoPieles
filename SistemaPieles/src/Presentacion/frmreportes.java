@@ -7,12 +7,14 @@
 package Presentacion;
 
 import Logica.conexion;
+import Logica.fcliente;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,8 +31,61 @@ public class frmreportes extends javax.swing.JInternalFrame {
     /** Creates new form frmreportes */
     public frmreportes() {
         initComponents();
+        inhabilitar();
+        mostrar();
     }
-
+    
+    public static int idcliente;
+    
+    public void mostrar(){
+        try{
+            fcliente func = new fcliente();
+            func.cargarclientes();
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
+    public void callid(String buscar){
+        try{
+            fcliente func = new fcliente();
+            func.cargaridclientes(buscar);
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(rootPane,e);
+        }
+    }
+    
+    void inhabilitar(){
+        reportefecha.setVisible(false);
+        reporteutilidades.setVisible(false);
+        reportecuenta.setVisible(false);
+        reportedetalle.setVisible(false);
+        jLabel2.setVisible(false);
+        cbochoseclientes.setVisible(false);
+        txtidcliente.setVisible(false);
+    }
+    
+    void cliente(){
+        jLabel2.setVisible(true);
+        cbochoseclientes.setVisible(true);    
+    }
+    
+    void ocultarfechas(){
+        dcfecha1.setVisible(false);
+        dcfecha2.setVisible(false);
+        btngenerarreporte.setVisible(false);
+    }
+    void eleccion1(){
+        dcfecha1.setVisible(true);
+        dcfecha2.setVisible(false);
+        btngenerarreporte.setVisible(true);
+    }
+    void eleccion2(){
+        dcfecha1.setVisible(true);
+        dcfecha2.setVisible(true);
+        btngenerarreporte.setVisible(true);
+    }
+    public Integer ping;
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -40,32 +95,30 @@ public class frmreportes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        cbomes = new javax.swing.JComboBox<>();
-        dcfechaconsulta = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
+        reportefecha = new javax.swing.JPanel();
+        dcfecha1 = new com.toedter.calendar.JDateChooser();
         btngenerarreporte = new javax.swing.JButton();
-        lblresultado = new javax.swing.JLabel();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
+        dcfecha2 = new com.toedter.calendar.JDateChooser();
+        cboeleccion = new javax.swing.JComboBox<>();
+        reporteutilidades = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        reportecuenta = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        reportedetalle = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbotiporeporte = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cbochoseclientes = new javax.swing.JComboBox<>();
+        txtidcliente = new javax.swing.JTextField();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setPreferredSize(new java.awt.Dimension(960, 560));
 
-        jLabel1.setText("Escoja una fecha");
-
-        cbomes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        cbomes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbomesItemStateChanged(evt);
-            }
-        });
-        cbomes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbomesActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Escoja un mes");
+        reportefecha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Por fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         btngenerarreporte.setText("Generar Reporte");
         btngenerarreporte.addActionListener(new java.awt.event.ActionListener() {
@@ -74,62 +127,198 @@ public class frmreportes extends javax.swing.JInternalFrame {
             }
         });
 
-        lblresultado.setText("jLabel3");
+        cboeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Una fecha", "Dos fechas" }));
+        cboeleccion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboeleccionItemStateChanged(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btngenerarreporte)
-                .addGap(117, 117, 117))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(dcfechaconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblresultado)
-                    .addComponent(jLabel2)
-                    .addComponent(cbomes, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+        javax.swing.GroupLayout reportefechaLayout = new javax.swing.GroupLayout(reportefecha);
+        reportefecha.setLayout(reportefechaLayout);
+        reportefechaLayout.setHorizontalGroup(
+            reportefechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportefechaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(reportefechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btngenerarreporte, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(dcfecha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dcfecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboeleccion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbomes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dcfechaconsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addComponent(lblresultado)
+        reportefechaLayout.setVerticalGroup(
+            reportefechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportefechaLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(cboeleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dcfecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dcfecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(btngenerarreporte)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        reporteutilidades.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Utilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jButton1.setText("Consultar utilidades");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reporteutilidadesLayout = new javax.swing.GroupLayout(reporteutilidades);
+        reporteutilidades.setLayout(reporteutilidadesLayout);
+        reporteutilidadesLayout.setHorizontalGroup(
+            reporteutilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reporteutilidadesLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1))
+        );
+        reporteutilidadesLayout.setVerticalGroup(
+            reporteutilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reporteutilidadesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        reportecuenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado de cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jButton2.setText("Consultar abonos y ventas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reportecuentaLayout = new javax.swing.GroupLayout(reportecuenta);
+        reportecuenta.setLayout(reportecuentaLayout);
+        reportecuentaLayout.setHorizontalGroup(
+            reportecuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportecuentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2))
+        );
+        reportecuentaLayout.setVerticalGroup(
+            reportecuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportecuentaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        reportedetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+
+        jButton3.setText("Consultar detalles");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout reportedetalleLayout = new javax.swing.GroupLayout(reportedetalle);
+        reportedetalle.setLayout(reportedetalleLayout);
+        reportedetalleLayout.setHorizontalGroup(
+            reportedetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportedetalleLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3))
+        );
+        reportedetalleLayout.setVerticalGroup(
+            reportedetalleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportedetalleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+
+        jLabel1.setText("Reporte:");
+
+        cbotiporeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de utilidades", "Ventas por fechas", "Estado de cuenta de cliente", "Detalle de ventas de cliente" }));
+        cbotiporeporte.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbotiporeporteItemStateChanged(evt);
+            }
+        });
+        cbotiporeporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbotiporeporteActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Cliente:");
+
+        cbochoseclientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbochoseclientes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbochoseclientesItemStateChanged(evt);
+            }
+        });
+        cbochoseclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cbochoseclientesMouseReleased(evt);
+            }
+        });
+        cbochoseclientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbochoseclientesActionPerformed(evt);
+            }
+        });
+
+        txtidcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidclienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 39, Short.MAX_VALUE))
+                    .addComponent(reportedetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(135, 135, 135)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbotiporeporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbochoseclientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(reporteutilidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reportecuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reportefecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(263, 263, 263))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cbotiporeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(cbochoseclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(reportefecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reporteutilidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(reportecuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reportedetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,80 +328,198 @@ public class frmreportes extends javax.swing.JInternalFrame {
     
     private void btngenerarreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngenerarreporteActionPerformed
         // TODO add your handling code here:
-        Calendar cal;
-        int d,m,a;
-        cal = dcfechaconsulta.getCalendar();
-        d = cal.get(Calendar.DAY_OF_MONTH);
-        m = cal.get(Calendar.MONTH);
-        a = cal.get(Calendar.YEAR)-1900;
-        
-        Map p = new HashMap();
-        p.put("fechaconsulta",(new Date(a,m,d)));
-        JasperReport report;
-        JasperPrint print;
-        
-        try{
-            report = JasperCompileManager.compileReport(new File("").getAbsolutePath()+
-                    "/src/Reportes/Ventas.jrxml");
-            print = JasperFillManager.fillReport(report,p,connection);
-            
-            JasperViewer view = new JasperViewer(print, false);
-            view.setTitle("Reporte de Clientes");
-            view.setVisible(true);
-            
-        }catch(Exception e){
-            e.printStackTrace();
+        if(ping == 1){
+            Calendar cal;
+            int d, m, a;
+            cal = dcfecha1.getCalendar();
+            d = cal.get(Calendar.DAY_OF_MONTH);
+            m = cal.get(Calendar.MONTH);
+            a = cal.get(Calendar.YEAR) - 1900;
+
+            Map p = new HashMap();
+            p.put("fechaconsulta", (new Date(a, m, d)));
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/Ventas.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de Clientes");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        if(ping == 2){
+            Calendar cal1,cal2;
+            int d1,d2, m1,m2, a1,a2;
+            cal1 = dcfecha1.getCalendar();
+            cal2 = dcfecha2.getCalendar();
+            d1 = cal1.get(Calendar.DAY_OF_MONTH);
+            m1 = cal1.get(Calendar.MONTH);
+            a1 = cal1.get(Calendar.YEAR) - 1900;
+
+            d2 = cal2.get(Calendar.DAY_OF_MONTH);
+            m2 = cal2.get(Calendar.MONTH);
+            a2 = cal2.get(Calendar.YEAR) - 1900;
+            
+            Map p = new HashMap();
+            p.put("fechaconsulta1", (new Date(a1, m1, d1)));
+            p.put("fechaconsulta2", (new Date(a2, m2, d2)));
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/VentasFechas.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de Clientes");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
     }//GEN-LAST:event_btngenerarreporteActionPerformed
 
-    private void cbomesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbomesActionPerformed
+    private void cboeleccionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboeleccionItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbomesActionPerformed
+        String estado;
+        int seleccionado = cboeleccion.getSelectedIndex();
+        estado = (String) cboeleccion.getItemAt(seleccionado);
+        if(estado.equals("Una fecha")){
+            ping = 1;
+            eleccion1();
+            
+        }
+        if(estado.equals("Dos fechas")){
+            ping = 2;
+            eleccion2();
+        }
+    }//GEN-LAST:event_cboeleccionItemStateChanged
 
-    private void cbomesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbomesItemStateChanged
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int seleccionado = cbomes.getSelectedIndex();
-        String seleccion = (String)cbomes.getItemAt(seleccionado);
-        lblresultado.setText("Enero");
+        Map p = new HashMap();
+        p.put("idventa", "3");
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/Utilidad.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de utilidad de venta");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        idcliente = Integer.parseInt(txtidcliente.getText());
+        p.put("idcliente", idcliente);
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/VentasAbonos.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de ventas y abonos");
+                view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        idcliente = Integer.parseInt(txtidcliente.getText());
+        p.put("idcliente", idcliente);
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/ventasdetalladas.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de ventas detalladas");
+                view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cbotiporeporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotiporeporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbotiporeporteActionPerformed
+
+    private void cbotiporeporteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbotiporeporteItemStateChanged
+        // TODO add your handling code here:
+        String estado;
+        int seleccionado = cbotiporeporte.getSelectedIndex();
+        estado = (String) cbotiporeporte.getItemAt(seleccionado);
+        if(estado.equals("Ventas por fechas")){
+            inhabilitar();
+            ocultarfechas();
+            reportefecha.setVisible(true);         
+            
+        }
+        if(estado.equals("Reporte de utilidades")){
+            inhabilitar();
+            reporteutilidades.setVisible(true); 
+        }
+        if(estado.equals("Estado de cuenta de cliente")){
+            inhabilitar();
+            cliente();
+            reportecuenta.setVisible(true);            
+        }
+        if(estado.equals("Detalle de ventas de cliente")){
+            inhabilitar();
+            cliente();
+            reportedetalle.setVisible(true); 
+        }
+    }//GEN-LAST:event_cbotiporeporteItemStateChanged
+
+    private void cbochoseclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbochoseclientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbochoseclientesActionPerformed
+
+    private void txtidclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidclienteActionPerformed
+
+    private void cbochoseclientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbochoseclientesItemStateChanged
+        // TODO add your handling code here:String estado;
+        int seleccionado = cbochoseclientes.getSelectedIndex();
+        String estado = (String) cbochoseclientes.getItemAt(seleccionado);
+        callid(estado);
+    }//GEN-LAST:event_cbochoseclientesItemStateChanged
+
+    private void cbochoseclientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbochoseclientesMouseReleased
+        // TODO add your handling code here:
         
-        if(seleccion.equals("Enero")){
-            lblresultado.setText("Mes 1");
-        }
-        if(seleccion.equals("Febrero")){
-            lblresultado.setText("Mes 2");
-        }
-        if(seleccion.equals("Marzo")){
-            lblresultado.setText("Mes 3");
-        }
-        if(seleccion.equals("Abril")){
-            lblresultado.setText("Mes 4");
-        }
-        if(seleccion.equals("Mayo")){
-            lblresultado.setText("Mes 5");
-        }
-        if(seleccion.equals("Junio")){
-            lblresultado.setText("Mes 6");
-        }
-        if(seleccion.equals("Julio")){
-            lblresultado.setText("Mes 7");
-        }
-        if(seleccion.equals("Agosto")){
-            lblresultado.setText("Mes 8");
-        }
-        if(seleccion.equals("Septiembre")){
-            lblresultado.setText("Mes 9");
-        }
-        if(seleccion.equals("Octubre")){
-            lblresultado.setText("Mes 10");
-        }
-        if(seleccion.equals("Noviembre")){
-            lblresultado.setText("Mes 11");
-        }
-        if(seleccion.equals("Diciembre")){
-            lblresultado.setText("Mes 12");
-        }
-        
-    }//GEN-LAST:event_cbomesItemStateChanged
+    }//GEN-LAST:event_cbochoseclientesMouseReleased
 
     /**
      * @param args the command line arguments
@@ -251,13 +558,21 @@ public class frmreportes extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btngenerarreporte;
-    private javax.swing.JComboBox<String> cbomes;
-    private com.toedter.calendar.JDateChooser dcfechaconsulta;
-    private com.toedter.calendar.JCalendar jCalendar1;
+    public static javax.swing.JComboBox<String> cbochoseclientes;
+    private javax.swing.JComboBox<String> cboeleccion;
+    private javax.swing.JComboBox<String> cbotiporeporte;
+    private com.toedter.calendar.JDateChooser dcfecha1;
+    private com.toedter.calendar.JDateChooser dcfecha2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblresultado;
+    private javax.swing.JPanel reportecuenta;
+    private javax.swing.JPanel reportedetalle;
+    private javax.swing.JPanel reportefecha;
+    private javax.swing.JPanel reporteutilidades;
+    public static javax.swing.JTextField txtidcliente;
     // End of variables declaration//GEN-END:variables
 
 }

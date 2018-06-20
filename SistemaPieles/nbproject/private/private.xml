@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmcliente.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmproducto.java</file>
             <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/Pruebas.java</file>
             <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmreportes.java</file>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/finventario.java</file>
-            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frminventario.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/festado.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Datos/vpersona.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frminicio.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fcliente.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/Acercade.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Presentacion/frmempleado.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Logica/fempleado.java</file>
+            <file>file:/C:/Users/SONY/Documents/NetBeansProjects/Proyecto%20Pieles/ProyectoPieles/SistemaPieles/src/Datos/vestado.java</file>
         </group>
     </open-files>
 </project-private>

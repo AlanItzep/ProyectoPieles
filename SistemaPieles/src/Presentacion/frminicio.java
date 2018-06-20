@@ -53,6 +53,7 @@ public class frminicio extends javax.swing.JFrame {
         mnuconfiguraciones = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         mnuayuda = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +112,11 @@ public class frminicio extends javax.swing.JFrame {
         lblapellido.setBounds(160, 150, 230, 30);
 
         jMenu1.setText("Sistema pieles");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
         menuBar.add(jMenu1);
 
         mnuagregar.setText("Agregar");
@@ -191,6 +197,15 @@ public class frminicio extends javax.swing.JFrame {
         menuBar.add(mnuconfiguraciones);
 
         mnuayuda.setText("Ayuda");
+
+        jMenuItem8.setText("Acerca de...");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        mnuayuda.add(jMenuItem8);
+
         menuBar.add(mnuayuda);
 
         setJMenuBar(menuBar);
@@ -210,28 +225,28 @@ public class frminicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-    frmproducto mostproducto = new frmproducto();        // TODO add your handling code here:
-    escritorio.add(mostproducto);
-    mostproducto.toFront();
-    mostproducto.setVisible(true);
+        frmproducto mostproducto = new frmproducto();        // TODO add your handling code here:
+        escritorio.add(mostproducto);
+        mostproducto.toFront();
+        mostproducto.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    frmcliente mostcliente = new frmcliente();   // TODO add your handling code here:
-    escritorio.add(mostcliente);
-    mostcliente.toFront();
-    mostcliente.setVisible(true);
+        frmcliente mostcliente = new frmcliente();   // TODO add your handling code here:
+        escritorio.add(mostcliente);
+        mostcliente.toFront();
+        mostcliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void mnuconfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuconfiguracionesActionPerformed
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_mnuconfiguracionesActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-    frmempleado mostempleado = new frmempleado();
-    escritorio.add(mostempleado);
-    mostempleado.toFront();
-    mostempleado.setVisible(true);    // TODO add your handling code here:
+        frmempleado mostempleado = new frmempleado();
+        escritorio.add(mostempleado);
+        mostempleado.toFront();
+        mostempleado.setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -240,9 +255,9 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
-        
+
         frmventa.txtidempleado.setText(lblidpersona.getText());
-        frmventa.txtnombreempleado.setText(lblnombre.getText()+" "+lblapellido.getText());
+        frmventa.txtnombreempleado.setText(lblnombre.getText() + " " + lblapellido.getText());
         frmventa.idusuario = Integer.parseInt(lblidpersona.getText());
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -269,6 +284,19 @@ public class frminicio extends javax.swing.JFrame {
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        Acercade form  = new Acercade();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        this.setState(ICONIFIED);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -320,6 +348,7 @@ public class frminicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     public static javax.swing.JLabel lblacceso;
     public static javax.swing.JLabel lblapellido;
     public static javax.swing.JLabel lblidpersona;
