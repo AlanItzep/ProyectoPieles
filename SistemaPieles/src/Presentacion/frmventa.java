@@ -262,7 +262,12 @@ public class frmventa extends javax.swing.JInternalFrame {
         txtidventa2 = new javax.swing.JTextField();
         btnguardarproducto = new javax.swing.JButton();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices_78336.png"))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1010, 560));
 
         jLabel1.setText("Venta");
 
