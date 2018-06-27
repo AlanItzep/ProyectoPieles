@@ -142,6 +142,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
         lbltotalregistros = new javax.swing.JLabel();
         btnreporte = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
@@ -149,12 +150,19 @@ public class frmcliente extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/3dglasses_78346.png"))); // NOI18N
         setPreferredSize(new java.awt.Dimension(1010, 560));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(44, 62, 80));
         jLabel1.setText("Cliente");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de clientes"));
+        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(236, 240, 241))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(236, 240, 241));
         jLabel2.setText("Nombre");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(236, 240, 241));
         jLabel3.setText("Apellido");
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +171,9 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnnuevo.setBackground(new java.awt.Color(149, 165, 166));
+        btnnuevo.setForeground(new java.awt.Color(236, 240, 241));
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/New1.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +181,9 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnguardar.setBackground(new java.awt.Color(149, 165, 166));
+        btnguardar.setForeground(new java.awt.Color(236, 240, 241));
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save1.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +191,9 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btncancelar.setBackground(new java.awt.Color(149, 165, 166));
+        btncancelar.setForeground(new java.awt.Color(236, 240, 241));
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancel1.png"))); // NOI18N
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,12 +207,20 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(236, 240, 241));
         jLabel7.setText("Telefono");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(236, 240, 241));
         jLabel8.setText("Email");
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(236, 240, 241));
         jLabel9.setText("Direccion");
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(236, 240, 241));
         jLabel11.setText("NIT");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -270,7 +295,8 @@ public class frmcliente extends javax.swing.JInternalFrame {
                 .addGap(33, 33, 33))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de clientes"));
+        jPanel2.setBackground(new java.awt.Color(52, 73, 94));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(236, 240, 241))); // NOI18N
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -290,8 +316,13 @@ public class frmcliente extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablalistado);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(236, 240, 241));
         jLabel6.setText("Buscar:");
 
+        btnbuscar.setBackground(new java.awt.Color(149, 165, 166));
+        btnbuscar.setForeground(new java.awt.Color(236, 240, 241));
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/search1.png"))); // NOI18N
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +330,9 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btneliminar.setBackground(new java.awt.Color(149, 165, 166));
+        btneliminar.setForeground(new java.awt.Color(236, 240, 241));
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/delete1.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,6 +340,9 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        btnsalir.setBackground(new java.awt.Color(149, 165, 166));
+        btnsalir.setForeground(new java.awt.Color(236, 240, 241));
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/close1.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,8 +350,13 @@ public class frmcliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lbltotalregistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbltotalregistros.setForeground(new java.awt.Color(236, 240, 241));
         lbltotalregistros.setText("jLabel7");
 
+        btnreporte.setBackground(new java.awt.Color(149, 165, 166));
+        btnreporte.setForeground(new java.awt.Color(236, 240, 241));
+        btnreporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
         btnreporte.setText("Reporte");
         btnreporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +398,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 4, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -374,7 +416,7 @@ public class frmcliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap(958, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

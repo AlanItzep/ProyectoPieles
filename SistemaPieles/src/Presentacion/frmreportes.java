@@ -112,14 +112,18 @@ public class frmreportes extends javax.swing.JInternalFrame {
         cbochoseclientes = new javax.swing.JComboBox<>();
         txtidcliente = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setPreferredSize(new java.awt.Dimension(960, 560));
 
-        reportefecha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Por fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        reportefecha.setBackground(new java.awt.Color(44, 62, 80));
+        reportefecha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Por fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
+        btngenerarreporte.setBackground(new java.awt.Color(52, 73, 94));
+        btngenerarreporte.setForeground(new java.awt.Color(236, 240, 241));
         btngenerarreporte.setText("Generar Reporte");
         btngenerarreporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,8 +165,11 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        reporteutilidades.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Utilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        reporteutilidades.setBackground(new java.awt.Color(44, 62, 80));
+        reporteutilidades.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Utilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
+        jButton1.setBackground(new java.awt.Color(52, 73, 94));
+        jButton1.setForeground(new java.awt.Color(236, 240, 241));
         jButton1.setText("Consultar utilidades");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,8 +193,11 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        reportecuenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado de cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        reportecuenta.setBackground(new java.awt.Color(44, 62, 80));
+        reportecuenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado de cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
+        jButton2.setBackground(new java.awt.Color(52, 73, 94));
+        jButton2.setForeground(new java.awt.Color(236, 240, 241));
         jButton2.setText("Consultar abonos y ventas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +210,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
         reportecuentaLayout.setHorizontalGroup(
             reportecuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportecuentaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(610, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
         reportecuentaLayout.setVerticalGroup(
@@ -211,8 +221,11 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        reportedetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        reportedetalle.setBackground(new java.awt.Color(44, 62, 80));
+        reportedetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
+        jButton3.setBackground(new java.awt.Color(52, 73, 94));
+        jButton3.setForeground(new java.awt.Color(236, 240, 241));
         jButton3.setText("Consultar detalles");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,6 +249,8 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
         jLabel1.setText("Reporte:");
 
         cbotiporeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de utilidades", "Ventas por fechas", "Estado de cuenta de cliente", "Detalle de ventas de cliente" }));
@@ -250,6 +265,8 @@ public class frmreportes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(236, 240, 241));
         jLabel2.setText("Cliente:");
 
         cbochoseclientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -280,23 +297,24 @@ public class frmreportes extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(reportedetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addComponent(txtidcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbotiporeporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbochoseclientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbochoseclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(reporteutilidades, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reportecuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reportefecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(263, 263, 263))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

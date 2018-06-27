@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author Alan Itzep
@@ -111,7 +113,10 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(lblapellido);
         lblapellido.setBounds(160, 150, 230, 30);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/controller_78338.png"))); // NOI18N
         jMenu1.setText("Sistema pieles");
+        jMenu1.setMaximumSize(new java.awt.Dimension(150, 32767));
+        jMenu1.setPreferredSize(new java.awt.Dimension(150, 32));
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu1MouseClicked(evt);
@@ -119,7 +124,10 @@ public class frminicio extends javax.swing.JFrame {
         });
         menuBar.add(jMenu1);
 
+        mnuagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/folder_78343.png"))); // NOI18N
         mnuagregar.setText("Agregar");
+        mnuagregar.setMaximumSize(new java.awt.Dimension(119, 32767));
+        mnuagregar.setPreferredSize(new java.awt.Dimension(119, 32));
 
         jMenuItem1.setText("Productos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +147,9 @@ public class frminicio extends javax.swing.JFrame {
 
         menuBar.add(mnuagregar);
 
+        mnuventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/devices1_78351.png"))); // NOI18N
         mnuventas.setText("Ventas");
+        mnuventas.setPreferredSize(new java.awt.Dimension(119, 32));
 
         jMenuItem5.setText("Detalle Venta");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +161,9 @@ public class frminicio extends javax.swing.JFrame {
 
         menuBar.add(mnuventas);
 
+        mnuconsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/printer_78349.png"))); // NOI18N
         mnuconsultas.setText("Consultas");
+        mnuconsultas.setPreferredSize(new java.awt.Dimension(119, 32));
 
         jMenuItem6.setText("Abono");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +191,9 @@ public class frminicio extends javax.swing.JFrame {
 
         menuBar.add(mnuconsultas);
 
+        mnuconfiguraciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/settings_78352.png"))); // NOI18N
         mnuconfiguraciones.setText("Configuraciones");
+        mnuconfiguraciones.setPreferredSize(new java.awt.Dimension(145, 32));
         mnuconfiguraciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuconfiguracionesActionPerformed(evt);
@@ -196,7 +210,9 @@ public class frminicio extends javax.swing.JFrame {
 
         menuBar.add(mnuconfiguraciones);
 
+        mnuayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/minimize_78340.png"))); // NOI18N
         mnuayuda.setText("Ayuda");
+        mnuayuda.setPreferredSize(new java.awt.Dimension(119, 32));
 
         jMenuItem8.setText("Acerca de...");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -214,28 +230,38 @@ public class frminicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        frmproducto mostproducto = new frmproducto();        // TODO add your handling code here:
-        escritorio.add(mostproducto);
-        mostproducto.toFront();
-        mostproducto.setVisible(true);
+        frmproducto form = new frmproducto();        // TODO add your handling code here:
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        frmcliente mostcliente = new frmcliente();   // TODO add your handling code here:
-        escritorio.add(mostcliente);
-        mostcliente.toFront();
-        mostcliente.setVisible(true);
+        frmcliente form = new frmcliente();   // TODO add your handling code here:
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void mnuconfiguracionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuconfiguracionesActionPerformed
@@ -243,10 +269,15 @@ public class frminicio extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuconfiguracionesActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        frmempleado mostempleado = new frmempleado();
-        escritorio.add(mostempleado);
-        mostempleado.toFront();
-        mostempleado.setVisible(true);    // TODO add your handling code here:
+        frmempleado form = new frmempleado();
+        escritorio.add(form);
+        form.toFront();
+        form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -255,6 +286,11 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
 
         frmventa.txtidempleado.setText(lblidpersona.getText());
         frmventa.txtnombreempleado.setText(lblnombre.getText() + " " + lblapellido.getText());
@@ -267,6 +303,11 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -275,6 +316,12 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -283,12 +330,20 @@ public class frminicio extends javax.swing.JFrame {
         escritorio.add(form);
         form.toFront();
         form.setVisible(true);
+        try {   
+            form.setSelected(true);   
+            form.setMaximizable(true);   
+            form.setMaximum(true);   
+        }catch(Exception e){}
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
+ 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         Acercade form  = new Acercade();
         escritorio.add(form);
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = form.getSize();
+        form.setLocation((desktopSize.width - FrameSize.width)/2,(desktopSize.height-FrameSize.height)/2);
         form.toFront();
         form.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed

@@ -145,9 +145,14 @@ public class frminventario extends javax.swing.JInternalFrame {
         btnbuscarproducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(127, 140, 141));
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de empleados"));
+        jPanel2.setBackground(new java.awt.Color(52, 73, 94));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(240, 240, 240))); // NOI18N
 
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,8 +172,13 @@ public class frminventario extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tablalistado);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(236, 240, 241));
         jLabel6.setText("Buscar:");
 
+        btnbuscar.setBackground(new java.awt.Color(149, 165, 166));
+        btnbuscar.setForeground(new java.awt.Color(236, 240, 241));
+        btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/search1.png"))); // NOI18N
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +186,9 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btneliminar.setBackground(new java.awt.Color(149, 165, 166));
+        btneliminar.setForeground(new java.awt.Color(236, 240, 241));
+        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/delete1.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +196,9 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btnsalir.setBackground(new java.awt.Color(149, 165, 166));
+        btnsalir.setForeground(new java.awt.Color(236, 240, 241));
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/close1.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +206,8 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        lbltotalregistros.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbltotalregistros.setForeground(new java.awt.Color(236, 240, 241));
         lbltotalregistros.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -207,7 +225,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                 .addComponent(btneliminar)
                 .addGap(42, 42, 42)
                 .addComponent(btnsalir)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lbltotalregistros, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,10 +250,15 @@ public class frminventario extends javax.swing.JInternalFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de empleados"));
+        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de empleados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 15), new java.awt.Color(240, 240, 240))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(236, 240, 241));
         jLabel2.setText("Empleado");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(236, 240, 241));
         jLabel3.setText("Presentacion");
 
         txtnombreempleado.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +267,9 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btnnuevo.setBackground(new java.awt.Color(149, 165, 166));
+        btnnuevo.setForeground(new java.awt.Color(236, 240, 241));
+        btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/New1.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +277,9 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btnguardar.setBackground(new java.awt.Color(149, 165, 166));
+        btnguardar.setForeground(new java.awt.Color(236, 240, 241));
+        btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save1.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,6 +287,9 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btncancelar.setBackground(new java.awt.Color(149, 165, 166));
+        btncancelar.setForeground(new java.awt.Color(236, 240, 241));
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancel1.png"))); // NOI18N
         btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -271,10 +303,16 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(236, 240, 241));
         jLabel10.setText("Producto");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(236, 240, 241));
         jLabel12.setText("Fecha");
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(236, 240, 241));
         jLabel14.setText("Estado");
 
         txtcantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -289,8 +327,12 @@ public class frminventario extends javax.swing.JInternalFrame {
         txtpresentacion.setRows(5);
         jScrollPane1.setViewportView(txtpresentacion);
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(236, 240, 241));
         jLabel13.setText("Cantidad");
 
+        btnbuscarempleado.setBackground(new java.awt.Color(149, 165, 166));
+        btnbuscarempleado.setForeground(new java.awt.Color(236, 240, 241));
         btnbuscarempleado.setText("...");
         btnbuscarempleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,6 +340,8 @@ public class frminventario extends javax.swing.JInternalFrame {
             }
         });
 
+        btnbuscarproducto.setBackground(new java.awt.Color(149, 165, 166));
+        btnbuscarproducto.setForeground(new java.awt.Color(236, 240, 241));
         btnbuscarproducto.setText("...");
         btnbuscarproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +358,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnnuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addComponent(btnguardar)
                         .addGap(52, 52, 52)
                         .addComponent(btncancelar))
@@ -377,7 +421,7 @@ public class frminventario extends javax.swing.JInternalFrame {
                             .addComponent(txtnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnbuscarproducto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1)))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dcfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,6 +441,8 @@ public class frminventario extends javax.swing.JInternalFrame {
                     .addComponent(btncancelar)))
         );
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(44, 62, 80));
         jLabel1.setText("Inventario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
