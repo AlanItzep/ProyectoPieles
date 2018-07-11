@@ -123,7 +123,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
         reportefecha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Por fechas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
         btngenerarreporte.setBackground(new java.awt.Color(52, 73, 94));
-        btngenerarreporte.setForeground(new java.awt.Color(236, 240, 241));
+        btngenerarreporte.setForeground(new java.awt.Color(255, 255, 255));
         btngenerarreporte.setText("Generar Reporte");
         btngenerarreporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +169,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
         reporteutilidades.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Utilidades", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(52, 73, 94));
-        jButton1.setForeground(new java.awt.Color(236, 240, 241));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Consultar utilidades");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,7 +197,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
         reportecuenta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Estado de cuenta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
         jButton2.setBackground(new java.awt.Color(52, 73, 94));
-        jButton2.setForeground(new java.awt.Color(236, 240, 241));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Consultar abonos y ventas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +225,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
         reportedetalle.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalle de ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(236, 240, 241))); // NOI18N
 
         jButton3.setBackground(new java.awt.Color(52, 73, 94));
-        jButton3.setForeground(new java.awt.Color(236, 240, 241));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Consultar detalles");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,8 +249,8 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(52, 73, 94));
         jLabel1.setText("Reporte:");
 
         cbotiporeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reporte de utilidades", "Ventas por fechas", "Estado de cuenta de cliente", "Detalle de ventas de cliente" }));
@@ -265,8 +265,8 @@ public class frmreportes extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(52, 73, 94));
         jLabel2.setText("Cliente:");
 
         cbochoseclientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

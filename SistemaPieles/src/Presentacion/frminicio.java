@@ -6,6 +6,7 @@
 package Presentacion;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -18,6 +19,7 @@ public class frminicio extends javax.swing.JFrame {
      */
     public frminicio() {
         initComponents();
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Files/3dglasses_78346.png")));  
         this.setExtendedState(frminicio.MAXIMIZED_BOTH);
         this.setTitle("Sistema Administracion de venta de Pieles");
     }

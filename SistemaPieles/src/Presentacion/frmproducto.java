@@ -171,8 +171,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnnuevo.setBackground(new java.awt.Color(149, 165, 166));
-        btnnuevo.setForeground(new java.awt.Color(236, 240, 241));
+        btnnuevo.setBackground(new java.awt.Color(52, 73, 94));
+        btnnuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/New1.png"))); // NOI18N
         btnnuevo.setText("Nuevo");
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +181,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnguardar.setBackground(new java.awt.Color(149, 165, 166));
-        btnguardar.setForeground(new java.awt.Color(236, 240, 241));
+        btnguardar.setBackground(new java.awt.Color(52, 73, 94));
+        btnguardar.setForeground(new java.awt.Color(255, 255, 255));
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/save1.png"))); // NOI18N
         btnguardar.setText("Guardar");
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,8 +191,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btncancelar.setBackground(new java.awt.Color(149, 165, 166));
-        btncancelar.setForeground(new java.awt.Color(236, 240, 241));
+        btncancelar.setBackground(new java.awt.Color(52, 73, 94));
+        btncancelar.setForeground(new java.awt.Color(255, 255, 255));
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/cancel1.png"))); // NOI18N
         btncancelar.setText("Cancelar");
 
@@ -288,8 +288,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(236, 240, 241));
         jLabel6.setText("Buscar:");
 
-        btnbuscar.setBackground(new java.awt.Color(149, 165, 166));
-        btnbuscar.setForeground(new java.awt.Color(236, 240, 241));
+        btnbuscar.setBackground(new java.awt.Color(52, 73, 94));
+        btnbuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/search1.png"))); // NOI18N
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -298,8 +298,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btneliminar.setBackground(new java.awt.Color(149, 165, 166));
-        btneliminar.setForeground(new java.awt.Color(236, 240, 241));
+        btneliminar.setBackground(new java.awt.Color(52, 73, 94));
+        btneliminar.setForeground(new java.awt.Color(255, 255, 255));
         btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/delete1.png"))); // NOI18N
         btneliminar.setText("Eliminar");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -308,8 +308,8 @@ public class frmproducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnsalir.setBackground(new java.awt.Color(149, 165, 166));
-        btnsalir.setForeground(new java.awt.Color(236, 240, 241));
+        btnsalir.setBackground(new java.awt.Color(52, 73, 94));
+        btnsalir.setForeground(new java.awt.Color(255, 255, 255));
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/close1.png"))); // NOI18N
         btnsalir.setText("Salir");
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -332,7 +332,7 @@ public class frmproducto extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
                 .addComponent(btnbuscar)
                 .addGap(44, 44, 44)
                 .addComponent(btneliminar)

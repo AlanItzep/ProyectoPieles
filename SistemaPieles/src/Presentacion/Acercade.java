@@ -31,17 +31,18 @@ public class Acercade extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(241, 196, 15));
+        setBackground(new java.awt.Color(52, 73, 94));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/loupe_78347.png"))); // NOI18N
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/locogo.png"))); // NOI18N
 
-        jLabel2.setBackground(new java.awt.Color(26, 188, 156));
+        jLabel2.setBackground(new java.awt.Color(52, 73, 94));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(236, 240, 241));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("<html>El Sistema Pieles esta disenado para un control detallado de los movimientos de los clientes, empleados, ventas, abonos y pagos.");
+        jLabel2.setText("<html>El Sistema Pieles esta diseñado para un control detallado de los movimientos de los clientes, empleados, ventas, abonos y pagos.\nDesarrollador por Trinux Coders.");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setAutoscrolls(true);
         jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -53,8 +54,9 @@ public class Acercade extends javax.swing.JInternalFrame {
         jLabel2.setOpaque(true);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
+        jButton1.setBackground(new java.awt.Color(52, 73, 94));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(236, 240, 241));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cerrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
