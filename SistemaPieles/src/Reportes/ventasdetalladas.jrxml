@@ -6,6 +6,9 @@
 	<parameter name="idcliente" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\SONY\\Documents\\NetBeansProjects\\Proyecto Pieles\\ProyectoPieles\\SistemaPieles\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      venta.`idventa` AS venta_idventa,
@@ -70,18 +73,15 @@ WHERE
 	<pageHeader>
 		<band height="102" splitType="Stretch">
 			<subreport>
-				<reportElement x="1" y="0" width="200" height="100" uuid="f7836737-24d1-4988-98d9-7756f2b5eba2"/>
+				<reportElement x="0" y="2" width="200" height="100" uuid="17be26ae-2865-45b7-af47-f4b73c8ad4ab"/>
 				<subreportParameter name="idcliente">
 					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\SONY\\Documents\\NetBeansProjects\\Proyecto Pieles\\ProyectoPieles\\SistemaPieles\\src\\Reportes\\pageheader.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pageheader.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
-	<columnHeader>
-		<band height="31" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
 		<band height="198" splitType="Stretch">
 			<rectangle radius="10">
@@ -107,14 +107,6 @@ WHERE
 				<reportElement x="463" y="39" width="74" height="20" uuid="0f0f2454-f70c-49db-bf37-94755fd4bc43"/>
 				<textFieldExpression><![CDATA[$F{venta_totalventa}]]></textFieldExpression>
 			</textField>
-			<subreport>
-				<reportElement x="112" y="83" width="200" height="100" uuid="87386e71-7156-4b39-905a-6400fc9db573"/>
-				<subreportParameter name="idventa">
-					<subreportParameterExpression><![CDATA[$F{venta_idventa}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\SONY\\Documents\\NetBeansProjects\\Proyecto Pieles\\ProyectoPieles\\SistemaPieles\\src\\Reportes\\detalleventa.jasper"]]></subreportExpression>
-			</subreport>
 			<staticText>
 				<reportElement x="10" y="11" width="108" height="20" forecolor="#FFFFFF" uuid="a36b5954-8482-492c-9475-8706ea9a33fe"/>
 				<textElement>
@@ -157,6 +149,14 @@ WHERE
 				</textElement>
 				<text><![CDATA[Detalle]]></text>
 			</staticText>
+			<subreport>
+				<reportElement x="126" y="87" width="200" height="100" uuid="ee71a653-8f45-40d9-85d6-45856d6a748d"/>
+				<subreportParameter name="idventa">
+					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "detalleventa.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>

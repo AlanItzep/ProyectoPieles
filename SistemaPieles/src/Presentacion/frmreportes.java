@@ -365,7 +365,7 @@ public class frmreportes extends javax.swing.JInternalFrame {
                 print = JasperFillManager.fillReport(report, p, connection);
 
                 JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Reporte de Clientes");
+                view.setTitle("Reporte de utilidades");
                 view.setVisible(true);
 
             } catch (Exception e) {

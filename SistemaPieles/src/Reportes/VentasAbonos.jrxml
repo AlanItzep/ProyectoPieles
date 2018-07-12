@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VentasAbonos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1eb1c36c-0d54-469f-a529-ba9c6d5f2102">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="41"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
 	<subDataset name="dataset1" uuid="348bbd5b-7060-432e-97b8-94b2474a878c"/>
 	<parameter name="idcliente" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -96,14 +96,14 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="100" splitType="Stretch">
+		<band height="101" splitType="Stretch">
 			<subreport>
-				<reportElement x="1" y="0" width="200" height="100" uuid="d86ee8c0-ba9c-41b0-8d08-e6568dbc0d0c"/>
+				<reportElement x="1" y="0" width="200" height="100" uuid="224c5113-6708-44e0-bdf6-4b421614dbdf"/>
 				<subreportParameter name="idcliente">
 					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["C:\\Users\\SONY\\Documents\\NetBeansProjects\\Proyecto Pieles\\ProyectoPieles\\SistemaPieles\\src\\Reportes\\pageheader.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pageheader.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>

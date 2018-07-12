@@ -27,17 +27,17 @@ public class fempleado {
     public DefaultTableModel mostrar (String buscar){
         DefaultTableModel modelo;
         String[] titulos = {
-                 "ID",
-                 "Nombre",
-                 "Apellido",
-                 "Completo",
-                 "Telefono",
-                 "Email",
-                 "Direccion",
-                 "Acceso",
-                 "Login",
-                 "Clave",
-                 "Estado"};
+                 "ID",//0
+                 "Nombre",//1
+                 "Apellido",//2
+                 "Completo",//3
+                 "Telefono",//4
+                 "Email",//5
+                 "Direccion",//6
+                 "Acceso",//7
+                 "Login",//8
+                 "Clave",//9
+                 "Estado"};//10
         String [] registro = new String [11];
         
             totalregistros = 0;
@@ -207,10 +207,10 @@ public class fempleado {
             totalregistros = 0;
             modelo = new DefaultTableModel(null, titulos);
             
-            sSQL = "select p.idpersona, p.nombre, p.apellido, "
+            sSQL = "select p.idpersona, p.nombre, p.apellido,"
                     + "e.acceso,e.login,e.password,e.estado from persona p inner join empleado e "
-                    + "on p.idpersona = e.idpersona where e.login = '"
-                    + login +"' and e.password = '"+ password +"' and e.estado = 'A'"; 
+                    + "on p.idpersona=e.idpersona where e.login='"
+                    + login + "' and e.password='" + password + "' and e.estado= 'A'"; 
             try{
                 Statement st = cn.createStatement();
                 ResultSet rs = st.executeQuery(sSQL);
@@ -233,5 +233,4 @@ public class fempleado {
                 return null;
             }
     }
-            
 }
