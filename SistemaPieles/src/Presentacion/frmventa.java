@@ -182,10 +182,8 @@ public class frmventa extends javax.swing.JInternalFrame {
     void inhabilitar2(){
         txtidventa.setText("");
         txtidcliente.setText("");
-        txtidempleado.setText("");
         
         txtnombrecliente.setText("");
-        txtnombreempleado.setText("");
         dcfechaventa.cleanup();
         txttotalmedida.setText("0.00");
         txttotalventa.setText("0.00");
