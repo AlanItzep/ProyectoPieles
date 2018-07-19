@@ -6,13 +6,25 @@
 package Presentacion;
 
 import Datos.vabono;
+import Logica.conexion;
 import Logica.fabono;
 import Logica.fcliente;
 import Logica.fventa;
+import static Presentacion.frmreportes.idcliente;
+import static Presentacion.frmreportes.txtidcliente;
+import java.io.File;
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -32,7 +44,7 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
 
     private String accion = "guardar";
     public static String idcliente = "";
-    
+    private Connection connection = new conexion().conectar();
     
     void ocultar_columnas() {
         tablalistadoventa.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -241,6 +253,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalregistrosinventa = new javax.swing.JLabel();
         lbltotalmedidainventa = new javax.swing.JLabel();
         lbltotalventainventa = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(127, 140, 141));
         setClosable(true);
@@ -556,6 +570,20 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         lbltotalventainventa.setForeground(new java.awt.Color(236, 240, 241));
         lbltotalventainventa.setText("jLabel10");
 
+        jButton1.setText("Estado de cuenta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Detalle de ventas");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -564,7 +592,10 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbltotalregistrosinventa)
                         .addGap(18, 18, 18)
                         .addComponent(lbltotalmedidainventa)
@@ -599,7 +630,9 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbltotalregistrosinventa)
                     .addComponent(lbltotalmedidainventa)
-                    .addComponent(lbltotalventainventa))
+                    .addComponent(lbltotalventainventa)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -784,6 +817,48 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
         habilitar();
     }//GEN-LAST:event_btnfiltrarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        p.put("idcliente", txtidcliente.getText());
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/VentasAbonos.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de ventas y abonos");
+                view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        p.put("idcliente", txtidcliente.getText());
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/ventasdetalladas.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de ventas detalladas");
+                view.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -829,6 +904,8 @@ public class frmsaldoabono extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnnuevo;
     private javax.swing.JButton btnsalir;
     private com.toedter.calendar.JDateChooser dcfechaabono;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

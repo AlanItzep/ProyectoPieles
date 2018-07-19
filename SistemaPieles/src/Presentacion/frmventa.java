@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.vdetalleventa;
 import Datos.vventa;
+import Logica.conexion;
 import Logica.fdetalleventa;
 import Logica.fventa;
 import java.sql.Date;
@@ -15,6 +16,15 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
 import java.awt.Checkbox;
+import java.io.File;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -34,6 +44,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     private String accion = "guardar";
     public static int idusuario;
     public static String idventa = "";
+    private Connection connection = new conexion().conectar();
 
     void ocultar_columnas() {
         tablalistado.getColumnModel().getColumn(0).setMaxWidth(0);
@@ -284,6 +295,7 @@ public class frmventa extends javax.swing.JInternalFrame {
         tablaclientes = new javax.swing.JTable();
         lblinstruccion = new javax.swing.JLabel();
         chkmodificar = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablalistado = new javax.swing.JTable();
@@ -432,6 +444,13 @@ public class frmventa extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("Utilidades por venta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -480,7 +499,8 @@ public class frmventa extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblinstruccion)
                             .addComponent(chkmodificar)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -527,8 +547,10 @@ public class frmventa extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblinstruccion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(52, 73, 94));
@@ -1040,6 +1062,27 @@ public class frmventa extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Map p = new HashMap();
+        p.put("idventa", txtidventa.getText());
+            JasperReport report;
+            JasperPrint print;
+
+            try {
+                report = JasperCompileManager.compileReport(new File("").getAbsolutePath()
+                        + "/src/Reportes/Utilidad.jrxml");
+                print = JasperFillManager.fillReport(report, p, connection);
+
+                JasperViewer view = new JasperViewer(print, false);
+                view.setTitle("Reporte de utilidad de venta");
+                view.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1061,6 +1104,7 @@ public class frmventa extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox chkmodificar;
     private com.toedter.calendar.JDateChooser dcfechaventa;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
