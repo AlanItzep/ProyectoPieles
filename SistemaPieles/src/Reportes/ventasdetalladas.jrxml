@@ -71,16 +71,7 @@ WHERE
 		</band>
 	</title>
 	<pageHeader>
-		<band height="102" splitType="Stretch">
-			<subreport>
-				<reportElement x="0" y="2" width="200" height="100" uuid="17be26ae-2865-45b7-af47-f4b73c8ad4ab"/>
-				<subreportParameter name="idcliente">
-					<subreportParameterExpression><![CDATA[$P{idcliente}]]></subreportParameterExpression>
-				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "pageheader.jasper"]]></subreportExpression>
-			</subreport>
-		</band>
+		<band height="102" splitType="Stretch"/>
 	</pageHeader>
 	<detail>
 		<band height="198" splitType="Stretch">
