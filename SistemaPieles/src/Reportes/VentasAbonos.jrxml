@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VentasAbonos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1eb1c36c-0d54-469f-a529-ba9c6d5f2102">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="53"/>
+	<property name="ireport.y" value="0"/>
 	<subDataset name="dataset1" uuid="348bbd5b-7060-432e-97b8-94b2474a878c"/>
 	<parameter name="idcliente" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>

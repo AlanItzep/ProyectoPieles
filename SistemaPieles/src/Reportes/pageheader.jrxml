@@ -13,19 +13,17 @@
      persona.`telefono` AS persona_telefono,
      persona.`email` AS persona_email,
      persona.`direccion` AS persona_direccion,
-     cliente.`idpersona` AS cliente_idpersona,
      cliente.`nit` AS cliente_nit
 FROM
      `persona` persona INNER JOIN `cliente` cliente ON persona.`idpersona` = cliente.`idpersona`
 WHERE
-     cliente.`idpersona`  = $P{idcliente}]]>
+     persona.`idpersona` = $P{idcliente}]]>
 	</queryString>
 	<field name="persona_idpersona" class="java.lang.Integer"/>
 	<field name="persona_completo" class="java.lang.String"/>
 	<field name="persona_telefono" class="java.lang.String"/>
 	<field name="persona_email" class="java.lang.String"/>
 	<field name="persona_direccion" class="java.lang.String"/>
-	<field name="cliente_idpersona" class="java.lang.Integer"/>
 	<field name="cliente_nit" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
